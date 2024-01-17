@@ -15,7 +15,7 @@ const dummyData = [
 
 const SkillBadgeList = () => {
   return (
-    <ul className="flex flex-wrap gap-2 m-0">
+    <ul className="m-0 flex flex-wrap gap-2">
       {dummyData.map((e) => (
         <SkillBadge
           key={`skill-badge-${e.emoji}-${e.text}`}

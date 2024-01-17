@@ -1,6 +1,6 @@
 const SkillBadge = ({ emoji, text }: { emoji?: string; text: string }) => {
   return (
-    <li className="bg-blue-800 rounded-full flex py-1.5 px-3 text-label items-center">
+    <li className="text-label flex items-center rounded-full bg-blue-800 px-3 py-1.5">
       {emoji && <span className="mr-1">{emoji}</span>}
       {text}
     </li>

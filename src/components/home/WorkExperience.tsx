@@ -3,9 +3,9 @@ import ProjectThumbnail from "../ProjectThumbnail";
 
 const WorkExperience = () => {
   return (
-    <section className="bg-blue-900 rounded-2xl overflow-hidden max-w-[40rem] xl:max-w-[68.75rem]">
-      <div className="bg-blue-700 p-round-wrapper flex gap-4 xl:gap-6">
-        <div className="h-14 xl:h-[6.25rem] border-solid border-2 border-white rounded-full">
+    <section className="max-w-[40rem] overflow-hidden rounded-2xl bg-blue-900 xl:max-w-[68.75rem]">
+      <div className="p-round-wrapper flex gap-4 bg-blue-700 xl:gap-6">
+        <div className="h-14 rounded-full border-2 border-solid border-white xl:h-[6.25rem]">
           <svg
             className="h-full"
             viewBox="0 0 256 256"
@@ -33,7 +33,7 @@ const WorkExperience = () => {
         </div>
       </div>
       <div className="p-round-wrapper">
-        <div className="[&>section>h4]:mb-3 grid xl:grid-cols-2 gap-6 xl:gap-10 mb-6 sm:mb-8">
+        <div className="mb-6 grid gap-6 sm:mb-8 xl:grid-cols-2 xl:gap-10 [&>section>h4]:mb-3">
           <section className=" [&>p:not(:last-child)]:mb-6">
             <h4 className="text-h3">🔎 OVERVIEW</h4>
             <p className="text-body">
@@ -54,7 +54,7 @@ const WorkExperience = () => {
           </section>
           <section>
             <h4 className="text-h3">🖻 PROJECTS</h4>
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+            <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
               <ProjectThumbnail />
               <ProjectThumbnail />
               <ProjectThumbnail />

@@ -14,7 +14,7 @@ const Section = ({
       >
         {title}
       </h2>
-      <div className="mx-section flex flex-col py-8 xl:py-16 gap-8 xl:gap-16 items-center">
+      <div className="mx-section flex flex-col items-center gap-8 py-8 xl:gap-16 xl:py-16">
         {children}
       </div>
     </section>
