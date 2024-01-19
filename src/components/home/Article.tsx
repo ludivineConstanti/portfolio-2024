@@ -1,4 +1,4 @@
-import SkillBadgeList from "../SkillBadgeList";
+import { SkillBadgeList } from "@/components";
 
 const Article = ({ emoji, text }: { emoji: string; text: string }) => {
   return (

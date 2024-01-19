@@ -24,7 +24,7 @@ const SkillBadgeList = ({
   size?: "small" | "medium";
 }) => {
   return (
-    <ul className={clsx("m-0 flex flex-wrap gap-2", customClass)}>
+    <ul className={clsx("flex flex-wrap gap-2", customClass)}>
       {dummyData.map((e) => (
         <SkillBadge
           key={`skill-badge-${e.emoji}-${e.text}`}
