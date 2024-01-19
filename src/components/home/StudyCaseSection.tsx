@@ -3,7 +3,7 @@ import StudyCase from "./StudyCase";
 
 const WorkExperienceSection = () => {
   return (
-    <Section title="🔬 Study cases" color="bg-blue-800">
+    <Section title="🔬 Study cases" color="bg-indigo-800">
       <StudyCase />
       <StudyCase />
       <StudyCase />
