@@ -2,6 +2,7 @@ import {
   HomeHero,
   HomeWorkExperienceSection,
   HomeStudyCaseSection,
+  HomeArticleSection,
 } from "@/components";
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
       <HomeHero />
       <HomeWorkExperienceSection />
       <HomeStudyCaseSection />
+      <HomeArticleSection />
     </main>
   );
 };

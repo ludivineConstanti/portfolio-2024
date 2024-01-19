@@ -90,8 +90,14 @@
 
   /* home components */
 
+  .home-max-w {
+    @apply max-w-[40rem];
+    @apply xl:max-w-[68.75rem];
+  }
+
   .home-article-wrapper {
-    @apply max-w-[40rem] overflow-hidden rounded-2xl xl:max-w-[68.75rem] xl:rounded-[2rem];
+    @apply home-max-w;
+    @apply overflow-hidden rounded-2xl xl:rounded-[2rem];
   }
 
   /* home article padding */

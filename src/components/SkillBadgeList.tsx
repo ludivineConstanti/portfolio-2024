@@ -17,9 +17,11 @@ const dummyData = [
 const SkillBadgeList = ({
   customClass,
   color = "bg-blue-800",
+  size,
 }: {
   customClass?: string;
   color?: string;
+  size?: "small" | "medium";
 }) => {
   return (
     <ul className={clsx("m-0 flex flex-wrap gap-2", customClass)}>
@@ -29,6 +31,7 @@ const SkillBadgeList = ({
           emoji={e.emoji}
           text={e.text}
           color={color}
+          size={size}
         />
       ))}
     </ul>
