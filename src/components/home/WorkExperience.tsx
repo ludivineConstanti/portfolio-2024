@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import SkillBadgeList from "../SkillBadgeList";
+import { SkillBadgeList } from "@/components";
 import ProjectThumbnail from "../ProjectThumbnail";
 
 const WorkExperience = ({
@@ -65,7 +65,7 @@ const WorkExperience = ({
           </section>
           <section>
             <h4>🖻 PROJECTS</h4>
-            <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+            <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4">
               <ProjectThumbnail color={colorBackground} />
               <ProjectThumbnail color={colorBackground} />
               <ProjectThumbnail color={colorBackground} />
@@ -76,7 +76,7 @@ const WorkExperience = ({
               <ProjectThumbnail color={colorBackground} />
               <ProjectThumbnail color={colorBackground} />
               <ProjectThumbnail color={colorBackground} />
-            </div>
+            </ul>
           </section>
         </div>
         <SkillBadgeList color={colorSkillBadge || colorTitle} />
