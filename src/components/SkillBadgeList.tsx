@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import SkillBadge from "./SkillBadge";
 
 const dummyData = [
@@ -13,14 +14,21 @@ const dummyData = [
   { emoji: "📊", text: "Data Visualization" },
 ];
 
-const SkillBadgeList = () => {
+const SkillBadgeList = ({
+  customClass,
+  color = "bg-blue-800",
+}: {
+  customClass?: string;
+  color?: string;
+}) => {
   return (
-    <ul className="m-0 flex flex-wrap gap-2">
+    <ul className={clsx("m-0 flex flex-wrap gap-2", customClass)}>
       {dummyData.map((e) => (
         <SkillBadge
           key={`skill-badge-${e.emoji}-${e.text}`}
           emoji={e.emoji}
           text={e.text}
+          color={color}
         />
       ))}
     </ul>

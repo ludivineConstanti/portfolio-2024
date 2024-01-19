@@ -1,6 +1,30 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* default */
+
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+
+    /* home page */
+
+    --home-article-padding-base: 1rem;
+    --home-article-padding-sm: 2rem;
+    --home-article-padding-xl: 4rem;
+
+    --home-article-padding-small-base: 1rem;
+    --home-article-padding-small-sm: 2rem;
+    --home-article-padding-small-xl: 2rem;
+  }
+}
+
 @layer components {
   /* custom settings */
 
@@ -36,11 +60,11 @@
     @apply xl:text-[1.25rem];
   }
   .text-body {
-    @apply text-[0.9rem] font-extralight;
+    @apply text-[0.9rem] font-extralight leading-snug tracking-wider;
     @apply sm:text-[1rem];
   }
   .text-label {
-    @apply text-[0.8rem] font-extralight;
+    @apply text-[0.8rem] font-light tracking-wider;
   }
 
   /* margins */
@@ -64,22 +88,62 @@
     @apply mx-xl;
   }
 
-  /* paddings */
+  /* home components */
 
-  .p-round-wrapper {
-    @apply p-4 sm:p-8 xl:p-16;
+  .home-article-wrapper {
+    @apply max-w-[40rem] overflow-hidden rounded-2xl xl:max-w-[68.75rem] xl:rounded-[2rem];
   }
-}
 
-:root {
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+  /* home article padding */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  .home-article-padding {
+    @apply p-[var(--home-article-padding-base)];
+    @apply sm:p-[var(--home-article-padding-sm)];
+    @apply xl:p-[var(--home-article-padding-xl)];
+  }
+
+  .home-article-padding-x {
+    @apply px-[var(--home-article-padding-base)];
+    @apply sm:px-[var(--home-article-padding-sm)];
+    @apply xl:px-[var(--home-article-padding-xl)];
+  }
+
+  .home-article-padding-t {
+    @apply pt-[var(--home-article-padding-base)];
+    @apply sm:pt-[var(--home-article-padding-sm)];
+    @apply xl:pt-[var(--home-article-padding-xl)];
+  }
+
+  .home-article-padding-b {
+    @apply pb-[var(--home-article-padding-base)];
+    @apply sm:pb-[var(--home-article-padding-sm)];
+    @apply xl:pb-[var(--home-article-padding-xl)];
+  }
+
+  /* home article padding small */
+
+  .home-article-padding-small-y {
+    @apply py-[var(--home-article-padding-small-base)];
+    @apply sm:py-[var(--home-article-padding-small-sm)];
+    @apply xl:py-[var(--home-article-padding-small-xl)];
+  }
+
+  .home-article-padding-small-t {
+    @apply pt-[var(--home-article-padding-small-base)];
+    @apply sm:pt-[var(--home-article-padding-small-sm)];
+    @apply xl:pt-[var(--home-article-padding-small-xl)];
+  }
+
+  .home-article-padding-small-b {
+    @apply pb-[var(--home-article-padding-small-base)];
+    @apply sm:pb-[var(--home-article-padding-small-sm)];
+    @apply xl:pb-[var(--home-article-padding-small-xl)];
+  }
+
+  /* home article text */
+
+  .home-article-text-content {
+    @apply [&>section>h4]:text-h3 [&>section>p]:text-body grid gap-[var(--home-article-padding-small-base)] sm:gap-[var(--home-article-padding-small-sm)] xl:grid-cols-2 xl:gap-[var(--home-article-padding-small-xl)] [&>section>h4]:mb-3 [&>section>p:not(:last-child)]:mb-6;
   }
 }
 

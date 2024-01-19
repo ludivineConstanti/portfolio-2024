@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 const Section = ({
   title,
   color,
@@ -10,7 +12,10 @@ const Section = ({
   return (
     <section>
       <h2
-        className={`text-h1 bg-${color} flex items-center justify-center py-8 xl:py-16`}
+        className={clsx(
+          "text-h1 ${color} flex items-center justify-center py-8 xl:py-16",
+          color,
+        )}
       >
         {title}
       </h2>
