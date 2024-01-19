@@ -1,17 +1,10 @@
-import clsx from "clsx";
+import { TitleYear } from "@/components";
 import Project from "./Project";
 
 const ProjectList = ({ color }: { color: string }) => {
   return (
-    <section className="mb-16 flex flex-col items-center">
-      <h2
-        className={clsx(
-          "text-h2 mb-16 inline-block rounded-2xl px-10 py-5",
-          color,
-        )}
-      >
-        2024
-      </h2>
+    <section className="mx-custom flex flex-col items-center">
+      <TitleYear text="2024" color={color} />
       <ul className="flex flex-col gap-4 xl:gap-8">
         <Project />
         <Project />

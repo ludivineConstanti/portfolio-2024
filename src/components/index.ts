@@ -1,7 +1,11 @@
 export * from "./icons";
-export { default as PageTitle } from "./PageTitle";
+export { default as TitlePage } from "./TitlePage";
+export { default as TitleYear } from "./TitleYear";
 export { default as SkillBadgeList } from "./SkillBadgeList";
 export { default as LinkCTA } from "./LinkCTA";
+export { default as ArticleList } from "./ArticleList";
+
+/* PAGES */
 
 /* home */
 
@@ -13,3 +17,7 @@ export { default as HomeArticleSection } from "./home/ArticleSection";
 /* all projects */
 
 export { default as AllProjectsProjectList } from "./allProjects/ProjectList";
+
+/* all articles */
+
+export { default as AllArticlesArticleListPerYear } from "./allArticles/ArticleListPerYear";
