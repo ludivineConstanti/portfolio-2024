@@ -22,6 +22,12 @@
     --home-article-padding-small-base: 1rem;
     --home-article-padding-small-sm: 2rem;
     --home-article-padding-small-xl: 2rem;
+
+    /* all articles and all projects page */
+
+    --all-projects-all-articles-margin-base: 2rem;
+    --all-projects-all-articles-margin-sm: 4rem;
+    --all-projects-all-articles-margin-xl: 8rem;
   }
 }
 
@@ -151,6 +157,26 @@
   .home-article-text-content {
     @apply [&>section>h4]:text-h3 [&>section>p]:text-body grid gap-[var(--home-article-padding-small-base)] sm:gap-[var(--home-article-padding-small-sm)] xl:grid-cols-2 xl:gap-[var(--home-article-padding-small-xl)] [&>section>h4]:mb-3 [&>section>p:not(:last-child)]:mb-6;
   }
+
+  /* all articles and all projects page */
+
+  .all-projects-all-articles-my {
+    @apply my-[var(--all-projects-all-articles-margin-base)];
+    @apply sm:my-[var(--all-projects-all-articles-margin-sm)];
+    @apply xl:my-[var(--all-projects-all-articles-margin-xl)];
+  }
+
+  .all-projects-all-articles-gap {
+    @apply gap-[var(--all-projects-all-articles-margin-base)];
+    @apply sm:gap-[var(--all-projects-all-articles-margin-sm)];
+    @apply xl:gap-[var(--all-projects-all-articles-margin-xl)];
+  }
+
+  .all-projects-all-articles-pb {
+    @apply pb-[var(--all-projects-all-articles-margin-base)];
+    @apply sm:pb-[var(--all-projects-all-articles-margin-sm)];
+    @apply xl:pb-[var(--all-projects-all-articles-margin-xl)];
+  }
 }
 
 html {
@@ -166,6 +192,11 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+a {
+  color: white;
+  text-decoration: none;
 }
 
 ul,

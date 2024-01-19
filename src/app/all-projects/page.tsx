@@ -1,11 +1,11 @@
-import { PageTitle, AllProjectsProjectList } from "@/components";
+import { TitlePage, AllProjectsProjectList } from "@/components";
 
 const colorBackgroundTitle = "bg-blue-800";
 
 const AllProjects = () => {
   return (
-    <main>
-      <PageTitle emoji="🕰️" text="All Projects" color={colorBackgroundTitle} />
+    <main className="all-projects-all-articles-pb">
+      <TitlePage emoji="🕰️" text="All Projects" color={colorBackgroundTitle} />
       <AllProjectsProjectList color={colorBackgroundTitle} />
       <AllProjectsProjectList color={colorBackgroundTitle} />
       <AllProjectsProjectList color={colorBackgroundTitle} />
