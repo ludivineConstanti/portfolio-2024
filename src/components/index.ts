@@ -4,6 +4,7 @@ export { default as TitleYear } from "./TitleYear";
 export { default as SkillBadgeList } from "./SkillBadgeList";
 export { default as LinkCTA } from "./LinkCTA";
 export { default as ArticleList } from "./ArticleList";
+export { default as Layout } from "./Layout";
 
 /* PAGES */
 
