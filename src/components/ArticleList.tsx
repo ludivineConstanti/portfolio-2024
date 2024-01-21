@@ -16,21 +16,21 @@ const dummySkills = [
 
 const dummyArticles = [
   {
-    id: "1",
+    _id: "1",
     emoji: "🌠",
     text: "Creating a workshop on accessibility",
     href: "/",
     skillBadges: dummySkills,
   },
   {
-    id: "2",
+    _id: "2",
     emoji: "🌠",
     text: "Communicating with the design team",
     href: "/",
     skillBadges: dummySkills,
   },
   {
-    id: "3",
+    _id: "3",
     emoji: "🌠",
     text: "Processing assets with Node.js",
     href: "/",
@@ -43,7 +43,7 @@ const ArticleList = ({
   articles = dummyArticles,
 }: {
   color: string;
-  articles: ArticleData[];
+  articles?: ArticleData[];
 }) => {
   return (
     <section className="max-w-[40rem] xl:max-w-[46.5rem]">
@@ -52,7 +52,7 @@ const ArticleList = ({
       </h3>
       <ul className="flex flex-col gap-6 xl:gap-8">
         {articles.map((e) => (
-          <Article key={`article-home-${e.id}`} {...e} color={color} />
+          <Article key={`article-home-${e._id}`} {...e} color={color} />
         ))}
       </ul>
     </section>

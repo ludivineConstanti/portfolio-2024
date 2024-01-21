@@ -4,6 +4,7 @@ export interface SkillBadgeData {
 }
 
 export interface ArticleData {
+  _id: string;
   emoji: string;
   text: string;
   href: string;
