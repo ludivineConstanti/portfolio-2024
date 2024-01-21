@@ -56,12 +56,12 @@
     @apply xl:text-[2rem];
   }
   .text-h5 {
-    @apply text-[1.1rem] font-extralight uppercase;
+    @apply text-[1.1rem] font-extralight;
     @apply sm:text-[1.4rem];
     @apply xl:text-[1.6rem];
   }
   .text-h6 {
-    @apply text-[1rem] font-extralight uppercase;
+    @apply text-[1rem] font-extralight;
     @apply sm:text-[1.2rem];
     @apply xl:text-[1.25rem];
   }
@@ -70,7 +70,7 @@
     @apply sm:text-[1rem];
   }
   .text-label {
-    @apply text-[0.8rem] font-light tracking-wider;
+    @apply text-[0.65rem] font-light tracking-wider;
   }
 
   /* margins */
@@ -155,7 +155,7 @@
   /* home article text */
 
   .home-article-text-content {
-    @apply [&>section>h4]:text-h3 [&>section>p]:text-body grid gap-[var(--home-article-padding-small-base)] sm:gap-[var(--home-article-padding-small-sm)] xl:grid-cols-2 xl:gap-[var(--home-article-padding-small-xl)] [&>section>h4]:mb-3 [&>section>p:not(:last-child)]:mb-6;
+    @apply [&>section>h4]:text-h4 [&>section>p]:text-body grid gap-[var(--home-article-padding-small-base)] sm:gap-[var(--home-article-padding-small-sm)] xl:grid-cols-2 xl:gap-[var(--home-article-padding-small-xl)] [&>section>h4]:mb-3 xl:[&>section>h4]:mb-4 [&>section>p:not(:last-child)]:mb-6;
   }
 
   /* all articles and all projects page */

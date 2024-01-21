@@ -1,11 +1,20 @@
 import { ArticleList, TitleYear } from "@/components";
+import { ArticleData } from "@/models";
 
-const ArticleListPerYear = ({ color }: { color: string }) => {
+const ArticleListPerYear = ({
+  year,
+  color,
+  articles,
+}: {
+  year: string;
+  color: string;
+  articles: ArticleData[];
+}) => {
   return (
     <section className="mx-custom flex flex-col items-center">
-      <TitleYear text="2024" color={color} />
+      <TitleYear text={year} color={color} />
       <div className="all-projects-all-articles-gap flex flex-col items-center">
-        <ArticleList color={color} />
+        <ArticleList color={color} articles={articles} />
         <ArticleList color={color} />
       </div>
     </section>
