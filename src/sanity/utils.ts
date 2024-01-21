@@ -8,6 +8,6 @@ import {
 export const client = createClient({
   projectId: sanityProjectId,
   dataset: sanityDataset,
-  apiVersion: sanityApiVersion,
+  // apiVersion: sanityApiVersion,
   useCdn: false,
 });

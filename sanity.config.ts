@@ -12,7 +12,7 @@ export default defineConfig({
   title: "portfolio-2024-sanity-backend",
   projectId: sanityProjectId,
   dataset: sanityDataset,
-  apiVersion: sanityApiVersion,
+  // apiVersion: sanityApiVersion,
   // the path used by sanity to query the data
   basePath: "/admin",
 
