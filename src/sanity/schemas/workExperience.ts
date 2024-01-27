@@ -1,30 +1,45 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "article",
-  title: "Article",
+  name: "workExperience",
+  title: "Work Experience",
   type: "document",
   fields: [
     defineField({
-      name: "category",
-      title: "Category",
-      type: "reference",
-      to: [{ type: "articleCategory" }, { type: "project" }],
-    }),
-    defineField({
-      name: "emoji",
-      title: "Emoji",
-      type: "string",
-    }),
-    defineField({
-      name: "text",
-      title: "Text",
+      name: "title",
+      title: "Title",
       type: "string",
     }),
     defineField({
       name: "href",
       title: "Href",
       type: "string",
+    }),
+    defineField({
+      name: "role",
+      title: "Role",
+      type: "string",
+    }),
+    defineField({
+      name: "location",
+      title: "Location",
+      type: "string",
+    }),
+    defineField({
+      name: "dateStart",
+      title: "Date start",
+      type: "date",
+    }),
+    defineField({
+      name: "dateEnd",
+      title: "Date end",
+      type: "date",
+    }),
+    defineField({
+      name: "text",
+      title: "Text",
+      type: "array",
+      of: [{ type: "block" }],
     }),
     defineField({
       name: "skillBadges",
@@ -39,15 +54,10 @@ export default defineType({
         },
       ],
     }),
-    defineField({
-      name: "date",
-      title: "Date",
-      type: "date",
-    }),
   ],
   preview: {
     select: {
-      title: "text",
+      title: "title",
     },
   },
 });
