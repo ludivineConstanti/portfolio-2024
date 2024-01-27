@@ -11,7 +11,7 @@ const Home = () => {
       <HomeHero />
       <HomeWorkExperienceSection />
       <HomeStudyCaseSection />
-      <HomeArticleSection />
+      {/* <HomeArticleSection /> */}
     </main>
   );
 };
