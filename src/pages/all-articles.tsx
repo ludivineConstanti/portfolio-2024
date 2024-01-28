@@ -1,18 +1,12 @@
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
-import { client } from "@/sanity/utils";
+import { client, queryArticle } from "@/sanity/utils";
 import type { ArticleData } from "@/models";
 import { TitlePage, AllArticlesArticleListPerYear, Layout } from "@/components";
 
 export const getStaticProps = async () => {
   const data = await client.fetch(groq`*[_type == "article"] | order(date desc){
-    _id,
-    category->{_type,text,title},
-    emoji,
-    text,
-    href,
-    skillBadges[]->{...},
-    date,
+    ${queryArticle}
   }`);
 
   const sortedData: { [key: string]: { [key: string]: ArticleData[] } } = {};

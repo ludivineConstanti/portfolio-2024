@@ -1,5 +1,6 @@
 import React from "react";
-import { ArticleList, TitleYear } from "@/components";
+import { TitleYear } from "@/components";
+import ArticleListsWithTitle from "./ArticleListsWithTitle";
 import { ArticleData } from "@/models";
 
 const ArticleListPerYear = ({
@@ -19,7 +20,7 @@ const ArticleListPerYear = ({
             className="col-start-2 flex max-w-[40rem] flex-col xl:max-w-[46.5rem]"
           >
             <TitleYear text={key} color={color} customClass="self-center" />
-            <ArticleList color={color} articles={articles[key]} />
+            <ArticleListsWithTitle color={color} articles={articles[key]} />
           </section>
         ))}
     </div>

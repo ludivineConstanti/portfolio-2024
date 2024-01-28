@@ -1,9 +1,8 @@
 import React from "react";
-import { TitleYear } from "@/components";
+import { ProjectList, TitleYear } from "@/components";
 import type { ProjectData } from "@/models";
-import Project from "./Project";
 
-const ProjectList = ({
+const ProjectListsWithTitle = ({
   projects,
   color,
 }: {
@@ -17,15 +16,11 @@ const ProjectList = ({
         .map((key) => (
           <React.Fragment key={`project-section-${key}`}>
             <TitleYear text={key} color={color} />
-            <ul className="flex flex-col gap-4 xl:gap-8">
-              {projects[key].map((project) => (
-                <Project key={`project-${project._id}`} {...project} />
-              ))}
-            </ul>
+            <ProjectList projects={projects[key]} />
           </React.Fragment>
         ))}
     </section>
   );
 };
 
-export default ProjectList;
+export default ProjectListsWithTitle;
