@@ -1,4 +1,4 @@
-import { SkillBadgeList, ArrowOpenNewWindow } from "@/components";
+import { SkillBadgeList } from "@/components";
 import { ArticleData } from "@/models";
 
 interface ArticleProps extends ArticleData {
@@ -7,16 +7,16 @@ interface ArticleProps extends ArticleData {
 
 const Article = ({ color, emoji, text, href, skillBadges }: ArticleProps) => {
   return (
-    <li className="flex gap-2">
-      <span className="text-[2rem] sm:text-[2.75rem]">{emoji}</span>
+    <li className="grid grid-cols-[3rem_auto] sm:grid-cols-[4.5rem_auto]">
+      <span className="justify-self-center text-[1.75rem] sm:text-[2.75rem]">
+        {emoji}
+      </span>
       <div className="flex flex-col gap-2">
-        <a className="text-h6 flex" target="_blank" href={href}>
+        <a className="text-h6" target="_blank" href={href}>
           <span className="underline decoration-1 underline-offset-4">
             {text}
           </span>
-          <div className="ml-2 h-5">
-            <ArrowOpenNewWindow />
-          </div>
+          <span className="ml-1.5 no-underline">↗️</span>
         </a>
         <SkillBadgeList size="small" color={color} skillBadges={skillBadges} />
       </div>

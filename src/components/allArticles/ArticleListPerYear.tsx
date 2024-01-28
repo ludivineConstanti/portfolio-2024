@@ -1,23 +1,29 @@
-import { ArticleList, TitleYear } from "@/components";
+import React from "react";
+import { TitleYear } from "@/components";
+import ArticleListsWithTitle from "./ArticleListsWithTitle";
 import { ArticleData } from "@/models";
 
 const ArticleListPerYear = ({
-  year,
   color,
   articles,
 }: {
-  year: string;
   color: string;
-  articles: ArticleData[];
+  articles: { [key: string]: { [key: string]: ArticleData[] } };
 }) => {
   return (
-    <section className="mx-custom flex flex-col items-center">
-      <TitleYear text={year} color={color} />
-      <div className="all-projects-all-articles-gap flex flex-col items-center">
-        <ArticleList color={color} articles={articles} />
-        <ArticleList color={color} />
-      </div>
-    </section>
+    <div className="mx-custom grid grid-cols-[1fr_auto_1fr]">
+      {Object.keys(articles)
+        .reverse()
+        .map((key) => (
+          <section
+            key={`all-articles-${key}`}
+            className="col-start-2 flex max-w-[40rem] flex-col xl:max-w-[46.5rem]"
+          >
+            <TitleYear text={key} color={color} customClass="self-center" />
+            <ArticleListsWithTitle color={color} articles={articles[key]} />
+          </section>
+        ))}
+    </div>
   );
 };
 

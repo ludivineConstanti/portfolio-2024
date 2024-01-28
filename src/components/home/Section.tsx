@@ -5,12 +5,14 @@ import { ArrowForward } from "@/components";
 const classNameMarginTitle = "py-8 xl:py-16";
 
 const Section = ({
+  emoji,
   title,
   color,
   children,
   margin = "small",
   link,
 }: {
+  emoji: string;
   title: string;
   color: string;
   children: JSX.Element | JSX.Element[];
@@ -26,6 +28,7 @@ const Section = ({
           color,
         )}
       >
+        <span>{emoji}</span>
         {title}
       </h2>
       <div

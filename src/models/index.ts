@@ -3,12 +3,11 @@ export interface SkillBadgeData {
   text: string;
 }
 
-export interface ArticleData {
+interface ArticleCategoryData {
   _id: string;
+  _type: "articleCategory";
   emoji: string;
   text: string;
-  href: string;
-  skillBadges: SkillBadgeData[];
 }
 
 interface RoleDataProject {
@@ -21,6 +20,7 @@ interface WorkExperienceDataProject {
 
 export interface ProjectData {
   _id: string;
+  _type: "project";
   emoji: string;
   title: string;
   slug: string;
@@ -36,4 +36,14 @@ export interface ProjectData {
   colorPrimary: string;
   colorSecondary: string;
   colorSkillBadge: string;
+}
+
+export interface ArticleData {
+  _id: string;
+  emoji: string;
+  text: string;
+  href: string;
+  date: string;
+  category: ArticleCategoryData | ProjectData;
+  skillBadges: SkillBadgeData[];
 }

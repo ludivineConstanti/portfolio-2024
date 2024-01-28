@@ -1,30 +1,19 @@
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
-import { client } from "@/sanity/utils";
+import { client, queryProject } from "@/sanity/utils";
 import type { ProjectData } from "@/models";
-import { Layout, TitlePage, AllProjectsProjectList } from "@/components";
+import {
+  Layout,
+  TitlePage,
+  AllProjectsProjectListsWithTitle,
+} from "@/components";
 
 const colorBackgroundTitle = "bg-blue-800";
 
 export const getStaticProps = async () => {
   const data =
     await client.fetch(groq`*[_type == "project"] | order(dateEnd desc){
-      _id,
-      emoji,
-      title,
-      slug,
-      role->{text},
-      dateStart,
-      dateEnd,
-      workExperience->{title},
-      skillBadges[]->{...},
-      colorPrimary,
-      colorSecondary,
-      colorSkillBadge,
-      image{
-        'url': asset->url,
-        alt
-      },
+    ${queryProject}  
     }`);
 
   const sortedData: { [key: string]: ProjectData[] } = {};
@@ -64,7 +53,10 @@ const AllProjects = ({
           text="All Projects"
           color={colorBackgroundTitle}
         />
-        <AllProjectsProjectList color={colorBackgroundTitle} projects={data} />
+        <AllProjectsProjectListsWithTitle
+          color={colorBackgroundTitle}
+          projects={data}
+        />
       </main>
     </Layout>
   );

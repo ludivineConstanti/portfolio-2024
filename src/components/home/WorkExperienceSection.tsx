@@ -3,7 +3,7 @@ import WorkExperience from "./WorkExperience";
 
 const WorkExperienceSection = () => {
   return (
-    <Section title="🗃️ Work experience" color="bg-blue-800">
+    <Section emoji="🗃️" title="Work experience" color="bg-blue-800">
       <WorkExperience
         colorBackground="bg-purple-900"
         colorTitle="bg-purple-700"

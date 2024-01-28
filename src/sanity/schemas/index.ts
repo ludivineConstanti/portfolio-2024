@@ -7,6 +7,8 @@ import project from "./project";
 import role from "./role";
 import skillBadge from "./skillBadge";
 import workExperience from "./workExperience";
+// pages
+import pageHome from "./pageHome";
 
 export const schemaTypes = [
   article,
@@ -18,4 +20,6 @@ export const schemaTypes = [
   role,
   skillBadge,
   workExperience,
+  // pages
+  pageHome,
 ];
