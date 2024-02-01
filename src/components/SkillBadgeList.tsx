@@ -30,7 +30,7 @@ const SkillBadgeList = ({
     <ul className={clsx("flex flex-wrap gap-2", customClass)}>
       {skillBadges.map((e) => (
         <SkillBadge
-          key={`skill-badge-${e.emoji}-${e.text}`}
+          key={`skill-badge-${e._id}`}
           emoji={e.emoji}
           text={e.text}
           color={color}

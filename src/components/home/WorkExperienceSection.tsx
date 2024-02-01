@@ -1,22 +1,22 @@
 import Section from "./Section";
 import WorkExperience from "./WorkExperience";
+import { WorkExperienceData } from "@/models";
 
-const WorkExperienceSection = () => {
+const WorkExperienceSection = ({
+  workExperiences,
+}: {
+  workExperiences: WorkExperienceData[];
+}) => {
   return (
     <Section emoji="🗃️" title="Work experience" color="bg-blue-800">
-      <WorkExperience
-        colorBackground="bg-purple-900"
-        colorTitle="bg-purple-700"
-      />
-      <WorkExperience
-        colorBackground="bg-violet-900"
-        colorTitle="bg-violet-700"
-        colorSkillBadge="bg-violet-800"
-      />
-      <WorkExperience
-        colorBackground="bg-violet-900"
-        colorTitle="bg-violet-700"
-      />
+      {workExperiences.map((workExperience) => (
+        <WorkExperience
+          {...workExperience}
+          key={`work-experience-${workExperience._id}`}
+          colorBackground="bg-purple-900"
+          colorTitle="bg-purple-700"
+        />
+      ))}
     </Section>
   );
 };

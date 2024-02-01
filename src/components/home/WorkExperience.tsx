@@ -1,85 +1,82 @@
 import clsx from "clsx";
+import { PortableText } from "@portabletext/react";
 import { SkillBadgeList } from "@/components";
 import ProjectThumbnail from "../ProjectThumbnail";
+import type { WorkExperienceData } from "@/models";
 
 const WorkExperience = ({
-  colorBackground = "bg-violet-900",
-  colorTitle = "bg-violet-700",
-  colorSkillBadge = "bg-violet-700",
-}: {
-  colorBackground: string;
-  colorTitle: string;
-  colorSkillBadge?: string;
-}) => {
+  _id,
+  title,
+  role,
+  location,
+  text,
+  dateStart,
+  dateEnd,
+  skillBadges,
+  projects,
+  href,
+  logo,
+  colorPrimary,
+  colorSecondary,
+  colorLogo,
+  colorSkillBadge,
+}: WorkExperienceData) => {
+  const start = new Date(dateStart).getFullYear();
+  const end = dateEnd ? new Date(dateEnd).getFullYear() : "Present";
   return (
-    <article className={clsx("home-article-wrapper", colorBackground)}>
+    <article className={clsx("home-article-wrapper", colorPrimary)}>
       <div
-        className={clsx("home-article-padding flex gap-4 xl:gap-6", colorTitle)}
+        className={clsx(
+          "home-article-padding-x home-article-padding-t flex gap-4 pb-4 sm:pb-8",
+          colorSecondary,
+        )}
       >
-        <div className="border-3 h-14 rounded-full border-solid border-current xl:h-[6.25rem]">
-          <svg
-            className="h-full"
-            viewBox="0 0 256 256"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g clipPath="url(#clip0_1851_43655)">
-              <circle cx="128" cy="128" r="128" fill="#642DFF" />
-              <path
-                d="M166.616 99.993H150.795V214.759H166.616V99.993ZM166.616 46.5332H150.795V90.1743H166.616V46.5332Z"
-                fill="#F0F00A"
-              />
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M115.645 41.2408C101.166 41.2408 89.3828 53.0257 89.3828 67.5027V214.749H105.204V150.531H130.526V135.692H105.204V66.9567C105.204 61.1963 109.884 56.0799 115.645 56.0799C121.405 56.0799 126.085 61.1963 126.085 66.9567V118.912H141.907V67.5027C141.907 53.0237 130.122 41.2408 115.645 41.2408Z"
-                fill="#F0F00A"
-              />
-            </g>
-          </svg>
-        </div>
+        <a
+          href={href}
+          target="_blank"
+          className={clsx(
+            "border-3 hidden shrink-0 rounded-full border-solid border-current sm:flex sm:h-10 sm:w-10 sm:p-3 xl:p-4",
+            colorLogo,
+          )}
+        >
+          <img
+            className={clsx("relative h-full w-full", {
+              "left-[0.13rem]": _id === "69a580b9-6c3a-495b-a047-e5d077809ae3",
+            })}
+            src={logo.asset.url}
+            alt={`${title} logo`}
+          />
+        </a>
         <div>
-          <h3 className="text-h2">🌟 DEVELOPER 🌟 Figures</h3>
-          <p className="text-h4">2021 - Present 📆 Remote 🌍</p>
+          <h3 className="text-h3">
+            {role} {title}
+          </h3>
+          <p className="text-h6">
+            📆 {start} - {end} 📆 {location}
+          </p>
         </div>
       </div>
-      <div className="home-article-padding">
-        <div className="home-article-text-content home-article-padding-small-b">
+      <div className="home-article-padding-x home-article-padding-b pt-4 sm:pt-8">
+        <div className="[&>section>h4]:text-h5 [&>section>p]:text-body home-article-padding-small-b grid gap-[var(--home-article-padding-small-base)] sm:gap-[var(--home-article-padding-small-sm)] xl:grid-cols-2 xl:gap-[var(--home-article-padding-small-xl)] [&>section>h4]:mb-3 xl:[&>section>h4]:mb-4 [&>section>p:not(:last-child)]:mb-6">
           <section>
-            <h4>🔎 OVERVIEW</h4>
-            <p>
-              My role at Figures is to deliver high-quality code for digital
-              information visualization. Being one of the two developers in the
-              agency, I was able to get mentorship, as well as take ownership of
-              projects, and see them through from start to finish. Being part of
-              an international team, I communicated daily, both in English and
-              German.
-            </p>
-            <h4>👩‍💻 MY ROLE</h4>
-            <p>
-              I got to craft custom experiences, bring the design team’s
-              concepts to life, and work with them closely, communicating how we
-              could have the best workflow. More recently, I gave a workshop on
-              how to improve our skills in accessibility.
-            </p>
+            <PortableText value={text} />
           </section>
           <section>
-            <h4>🖻 PROJECTS</h4>
-            <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4">
-              <ProjectThumbnail color={colorBackground} />
-              <ProjectThumbnail color={colorBackground} />
-              <ProjectThumbnail color={colorBackground} />
-              <ProjectThumbnail color={colorBackground} />
-              <ProjectThumbnail color={colorBackground} />
-              <ProjectThumbnail color={colorBackground} />
-              <ProjectThumbnail color={colorBackground} />
-              <ProjectThumbnail color={colorBackground} />
-              <ProjectThumbnail color={colorBackground} />
-              <ProjectThumbnail color={colorBackground} />
+            <h4>⚗️ Project{projects.length > 1 && "s"}</h4>
+            <ul className="grid grid-cols-3 gap-3 sm:grid-cols-4 xl:gap-4">
+              {projects.map((project) => (
+                <ProjectThumbnail
+                  key={`project-teaser-${title}-${project._id}`}
+                  image={project.image}
+                />
+              ))}
             </ul>
           </section>
         </div>
-        <SkillBadgeList color={colorSkillBadge || colorTitle} />
+        <SkillBadgeList
+          color={colorSkillBadge || colorSecondary}
+          skillBadges={skillBadges}
+        />
       </div>
     </article>
   );

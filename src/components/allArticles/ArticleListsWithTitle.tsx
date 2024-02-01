@@ -1,5 +1,6 @@
 import { ArticleList } from "@/components";
 import { ArticleData } from "@/models";
+import { sortAlphabetically } from "@/utils";
 
 const ArticleListsWithTitle = ({
   color,
@@ -15,7 +16,7 @@ const ArticleListsWithTitle = ({
           <h3 className="text-h2 mb-6 leading-none sm:mb-8 xl:mb-10">{key}</h3>
           <ArticleList
             color={color}
-            articles={articles[key].sort((a, b) => (a.text > b.text ? 1 : -1))}
+            articles={sortAlphabetically(articles[key])}
           />
         </section>
       ))}

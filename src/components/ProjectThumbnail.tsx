@@ -1,14 +1,28 @@
+import Image from "next/image";
 import { ArrowOpenNewWindow } from ".";
 
-const ProjectThumbnail = ({ color }: { color: string }) => {
+const ProjectThumbnail = ({
+  image,
+}: {
+  image: { url: string; alt: string };
+}) => {
   return (
-    <a className="relative overflow-hidden rounded-lg border-2 border-solid border-current pt-[56%]">
-      <div className="absolute bottom-2 right-2 h-5 w-5 rounded-sm bg-current p-1">
-        <ArrowOpenNewWindow color={color} />
+    <a className="relative overflow-hidden rounded-lg outline outline-2 outline-current xl:h-16">
+      {image && (
+        <Image
+          className="h-full w-full object-cover"
+          src={image.url}
+          alt={image.alt}
+          width={336}
+          height={189}
+        />
+      )}
+      <div className="absolute bottom-1 right-1 flex rounded-sm text-[1.25rem]">
+        ↗️
       </div>
-      <div className="text-label bg-grey absolute left-0 top-0 h-full w-full bg-white p-1 text-blue-800">
+      {/* <div className="text-label bg-grey absolute left-0 top-0 h-full w-full bg-white p-1 text-blue-800">
         Heavens of Mankind
-      </div>
+      </div> */}
     </a>
   );
 };

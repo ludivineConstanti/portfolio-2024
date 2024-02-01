@@ -20,7 +20,7 @@ const Section = ({
   link?: { text: string; href: string };
 }) => {
   return (
-    <section>
+    <section className="flex flex-col">
       <h2
         className={clsx(
           classNameMarginTitle,
@@ -43,19 +43,20 @@ const Section = ({
         {children}
       </div>
       {link && (
-        <div
-          className={clsx(classNameMarginTitle, "flex justify-center", color)}
+        <Link
+          href={link.href}
+          className="text-h3 align-center mb-16 flex max-w-fit items-center justify-center gap-3 self-center sm:mb-20 sm:gap-4 xl:mb-32 xl:gap-6"
         >
-          <Link
-            href={link.href}
-            className="text-h4 flex items-center gap-2 sm:gap-3 xl:gap-4"
+          {link.text}
+          <div
+            className={clsx(
+              color,
+              "flex h-4 w-4 rounded-full border-[2px] border-solid border-white p-2 sm:h-6 sm:w-6 sm:p-3 xl:h-7 xl:w-7 xl:border-2 xl:p-4",
+            )}
           >
-            {link.text}
-            <div className="flex h-2 w-2 rounded-full border-[2px] border-solid border-white p-1 sm:h-4 sm:w-4 xl:h-6 xl:w-6 xl:border-2 xl:p-2">
-              <ArrowForward />
-            </div>
-          </Link>
-        </div>
+            <ArrowForward />
+          </div>
+        </Link>
       )}
     </section>
   );

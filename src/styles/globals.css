@@ -67,10 +67,10 @@
   }
   .text-body {
     @apply text-[0.9rem] font-extralight leading-snug tracking-wider;
-    @apply sm:text-[1rem];
+    @apply sm:text-[0.925rem];
   }
   .text-label {
-    @apply text-[0.65rem] font-light tracking-wider;
+    @apply text-[0.6rem] font-light tracking-wider;
   }
 
   /* margins */
@@ -152,12 +152,6 @@
     @apply xl:pb-[var(--home-article-padding-small-xl)];
   }
 
-  /* home article text */
-
-  .home-article-text-content {
-    @apply [&>section>h4]:text-h4 [&>section>p]:text-body grid gap-[var(--home-article-padding-small-base)] sm:gap-[var(--home-article-padding-small-sm)] xl:grid-cols-2 xl:gap-[var(--home-article-padding-small-xl)] [&>section>h4]:mb-3 xl:[&>section>h4]:mb-4 [&>section>p:not(:last-child)]:mb-6;
-  }
-
   /* all articles and all projects page */
 
   .all-projects-all-articles-my {
@@ -186,14 +180,8 @@ html {
 body {
   margin: 0;
   color: white;
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #082f49;
 }
-
 a {
   color: white;
   text-decoration: none;
