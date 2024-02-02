@@ -62,7 +62,7 @@ export const getStaticProps = async () => {
       asset->{
         url
       }
-    }
+    },
     ${querySkillBadges}
   }`);
 
