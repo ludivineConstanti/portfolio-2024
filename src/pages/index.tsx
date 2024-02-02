@@ -15,6 +15,7 @@ import type {
   WorkExperienceData,
   ProjectTeaserData,
 } from "@/models";
+import { querySkillBadges } from "@/sanity/utils";
 
 export const getStaticProps = async () => {
   const dataHomePage = await client.fetch(groq`*[_type == "pageHome"]{
@@ -52,17 +53,17 @@ export const getStaticProps = async () => {
     location,
     dateStart,
     dateEnd,
-    skillBadges[]->{...},
     href,
     colorPrimary,
     colorSecondary,
     colorLogo,
     colorSkillBadge,
     logo {
-    asset->{
-      url
+      asset->{
+        url
+      }
     }
-  }
+    ${querySkillBadges}
   }`);
 
   const dataProjects =

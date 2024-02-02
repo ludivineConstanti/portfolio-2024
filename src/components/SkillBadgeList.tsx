@@ -2,29 +2,16 @@ import clsx from "clsx";
 import { SkillBadgeData } from "@/models";
 import SkillBadge from "./SkillBadge";
 
-const dummyData = [
-  { emoji: "🤖", text: "AI" },
-  { emoji: "🌐", text: "DApp" },
-  { emoji: "💻", text: "Code Sample" },
-  { emoji: "🐱", text: "Public on GitHub" },
-  { emoji: "⏳", text: "Asynchronous" },
-  { emoji: "🍱", text: "Web Components" },
-  { emoji: "📦", text: "NPM Package" },
-  { emoji: "📄", text: "Documentation" },
-  { emoji: "📝", text: "Technical Writing" },
-  { emoji: "📊", text: "Data Visualization" },
-];
-
 const SkillBadgeList = ({
   customClass,
   color = "bg-blue-800",
   size,
-  skillBadges = dummyData,
+  skillBadges,
 }: {
   customClass?: string;
   color?: string;
   size?: "small" | "medium";
-  skillBadges?: SkillBadgeData[];
+  skillBadges: SkillBadgeData[];
 }) => {
   return (
     <ul className={clsx("flex flex-wrap gap-2", customClass)}>

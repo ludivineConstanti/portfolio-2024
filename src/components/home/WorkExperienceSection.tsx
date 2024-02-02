@@ -13,8 +13,6 @@ const WorkExperienceSection = ({
         <WorkExperience
           {...workExperience}
           key={`work-experience-${workExperience._id}`}
-          colorBackground="bg-purple-900"
-          colorTitle="bg-purple-700"
         />
       ))}
     </Section>
