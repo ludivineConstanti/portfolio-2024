@@ -1,6 +1,7 @@
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
 import { client, queryArticle } from "@/sanity/utils";
+import { sortAlphabetically } from "@/utils";
 import type { ArticleData } from "@/models";
 import { TitlePage, AllArticlesArticleListPerYear, Layout } from "@/components";
 
@@ -17,7 +18,7 @@ export const getStaticProps = async () => {
         ? new Date(article.date).getFullYear()
         : new Date(Date.now()).getFullYear();
     const skillBadges = article.skillBadges
-      ? article.skillBadges.sort((a, b) => (a.text > b.text ? 1 : -1))
+      ? sortAlphabetically(article.skillBadges)
       : [];
     const currentArticle = { ...article, skillBadges };
 

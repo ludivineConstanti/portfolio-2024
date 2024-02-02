@@ -7,11 +7,11 @@ interface ArticleProps extends ArticleData {
 
 const Article = ({ color, emoji, text, href, skillBadges }: ArticleProps) => {
   return (
-    <li className="grid grid-cols-[3rem_auto] sm:grid-cols-[4.5rem_auto]">
-      <span className="justify-self-center text-[1.75rem] sm:text-[2.75rem]">
+    <li className="grid grid-cols-[3rem_auto] sm:grid-cols-[4.75rem_auto]">
+      <span className="justify-self-center text-[1.75rem] sm:text-[3rem]">
         {emoji}
       </span>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 xl:gap-3">
         <a className="text-h6" target="_blank" href={href}>
           <span className="underline decoration-1 underline-offset-4">
             {text}

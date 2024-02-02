@@ -7,14 +7,18 @@ export const client = createClient({
   useCdn: false,
 });
 
+export const querySkillBadges = `
+  skillBadges[]->{...},
+`;
+
 export const queryArticle = `
   _id,
   category->{_type,text,title},
   emoji,
   text,
   href,
-  skillBadges[]->{...},
   date,
+  ${querySkillBadges}
 `;
 
 export const queryProject = `
@@ -26,7 +30,6 @@ export const queryProject = `
   dateStart,
   dateEnd,
   workExperience->{title},
-  skillBadges[]->{...},
   colorPrimary,
   colorSecondary,
   colorSkillBadge,
@@ -34,4 +37,5 @@ export const queryProject = `
     'url': asset->url,
     alt
   },
+  ${querySkillBadges}
 `;

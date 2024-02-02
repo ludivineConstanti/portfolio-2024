@@ -11,6 +11,14 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "logo",
+      title: "Logo (svg)",
+      type: "file",
+      options: {
+        accept: "image/svg+xml",
+      },
+    }),
+    defineField({
       name: "href",
       title: "Href",
       type: "string",
@@ -40,6 +48,26 @@ export default defineType({
       title: "Text",
       type: "array",
       of: [{ type: "block" }],
+    }),
+    defineField({
+      name: "colorPrimary",
+      title: "Color primary",
+      type: "string",
+    }),
+    defineField({
+      name: "colorSecondary",
+      title: "Color secondary",
+      type: "string",
+    }),
+    defineField({
+      name: "colorLogo",
+      title: "Color logo",
+      type: "string",
+    }),
+    defineField({
+      name: "colorSkillBadge",
+      title: "Color skill badge",
+      type: "string",
     }),
     defineField({
       name: "skillBadges",
