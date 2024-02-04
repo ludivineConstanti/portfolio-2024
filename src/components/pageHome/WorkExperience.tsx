@@ -68,6 +68,7 @@ const WorkExperience = ({
                 <ProjectThumbnail
                   key={`project-teaser-${title}-${project._id}`}
                   image={project.image}
+                  href={project.slug.current}
                 />
               ))}
             </ul>

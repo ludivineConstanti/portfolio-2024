@@ -1,9 +1,14 @@
 import { createClient } from "next-sanity";
-import { sanityProjectId, sanityDataset } from "../../sanity.config";
+import {
+  sanityProjectId,
+  sanityDataset,
+  sanityApiVersion,
+} from "../../sanity.config";
 
 export const client = createClient({
   projectId: sanityProjectId,
   dataset: sanityDataset,
+  apiVersion: sanityApiVersion,
   useCdn: false,
 });
 
@@ -11,7 +16,7 @@ export const querySkillBadges = `
   skillBadges[]->{...},
 `;
 
-export const queryArticle = `
+export const queryArticleLink = `
   _id,
   category->{_type,text,title},
   emoji,
@@ -21,7 +26,7 @@ export const queryArticle = `
   ${querySkillBadges}
 `;
 
-export const queryProject = `
+export const queryProjectLink = `
   _id,
   emoji,
   title,

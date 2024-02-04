@@ -1,6 +1,6 @@
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
-import { client, queryProject, queryArticle } from "@/sanity/utils";
+import { client, queryProjectLink, queryArticleLink } from "@/sanity/utils";
 import { sortAlphabetically } from "@/utils";
 import {
   Layout,
@@ -20,8 +20,8 @@ import { querySkillBadges } from "@/sanity/utils";
 export const getStaticProps = async () => {
   const dataHomePage = await client.fetch(groq`*[_type == "pageHome"]{
       title,
-      sectionProjects{emoji,title,projects[]->{${queryProject}}},
-      sectionArticles{emoji,title,articles[]->{${queryArticle}}},
+      sectionProjects{emoji,title,projects[]->{${queryProjectLink}}},
+      sectionArticles{emoji,title,articles[]->{${queryArticleLink}}},
     }`);
 
   const sectionProjects = {
@@ -71,6 +71,7 @@ export const getStaticProps = async () => {
   _id,
   workExperience,
   dateEnd,
+  slug,
   image{
     'url': asset->url,
     alt
@@ -114,7 +115,7 @@ export const getStaticProps = async () => {
   };
 };
 
-const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Layout>
       <main>
@@ -137,4 +138,4 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   );
 };
 
-export default Home;
+export default HomePage;

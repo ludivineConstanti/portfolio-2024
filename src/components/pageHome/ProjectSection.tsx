@@ -1,5 +1,5 @@
 import Section from "./Section";
-import { ProjectList } from "@/components";
+import { ProjectLinkList } from "@/components";
 import type { ProjectData } from "@/models";
 
 const ProjectSection = ({
@@ -18,7 +18,7 @@ const ProjectSection = ({
       color="bg-indigo-800"
       link={{ href: "/all-projects", text: "See all projects" }}
     >
-      <ProjectList projects={projects} />
+      <ProjectLinkList projects={projects} />
     </Section>
   );
 };

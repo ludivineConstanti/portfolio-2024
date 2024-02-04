@@ -12,6 +12,19 @@ export default defineType({
       to: [{ type: "articleCategory" }, { type: "project" }],
     }),
     defineField({
+      name: "projects",
+      title: "projects",
+      type: "array",
+      of: [
+        {
+          name: "project",
+          title: "Project",
+          type: "reference",
+          to: [{ type: "project" }],
+        },
+      ],
+    }),
+    defineField({
       name: "emoji",
       title: "Emoji",
       type: "string",

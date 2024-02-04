@@ -3,6 +3,7 @@ import articleCategory from "./articleCategory";
 import award from "./award";
 import awardCategory from "./awardCategory";
 import client from "./client";
+import post from "./post";
 import project from "./project";
 import role from "./role";
 import skillBadge from "./skillBadge";
@@ -16,6 +17,7 @@ export const schemaTypes = [
   award,
   awardCategory,
   client,
+  post,
   project,
   role,
   skillBadge,

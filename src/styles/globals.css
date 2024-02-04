@@ -69,6 +69,10 @@
     @apply text-[0.9rem] font-extralight leading-snug tracking-wider;
     @apply sm:text-[0.925rem];
   }
+  .text-label-big {
+    @apply text-[0.6rem] font-light tracking-wider;
+    @apply xl:text-[0.75rem];
+  }
   .text-label {
     @apply text-[0.6rem] font-light tracking-wider;
   }

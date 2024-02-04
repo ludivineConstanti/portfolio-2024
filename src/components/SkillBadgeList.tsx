@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { SkillBadgeData } from "@/models";
+import { SkillBadgeData, SkillBadgeSizeOptions } from "@/models";
 import SkillBadge from "./SkillBadge";
 
 const SkillBadgeList = ({
@@ -10,11 +10,17 @@ const SkillBadgeList = ({
 }: {
   customClass?: string;
   color?: string;
-  size?: "small" | "medium";
+  size?: SkillBadgeSizeOptions;
   skillBadges: SkillBadgeData[];
 }) => {
   return (
-    <ul className={clsx("flex flex-wrap gap-2", customClass)}>
+    <ul
+      className={clsx(
+        "flex flex-wrap",
+        { "gap-2": size !== "big", "gap-3": size === "big" },
+        customClass,
+      )}
+    >
       {skillBadges.map((e) => (
         <SkillBadge
           key={`skill-badge-${e._id}`}

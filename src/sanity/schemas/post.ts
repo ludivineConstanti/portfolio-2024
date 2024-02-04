@@ -1,16 +1,10 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "award",
-  title: "Award",
+  name: "post",
+  title: "Post",
   type: "document",
   fields: [
-    defineField({
-      name: "category",
-      title: "Category",
-      type: "reference",
-      to: [{ type: "awardCategory" }],
-    }),
     defineField({
       name: "project",
       title: "Project",
@@ -26,6 +20,21 @@ export default defineType({
       name: "href",
       title: "Href",
       type: "string",
+    }),
+    defineField({
+      name: "instagramPost",
+      title: "Instagram Post",
+      type: "boolean",
+    }),
+    defineField({
+      name: "youtubePost",
+      title: "Youtube Post",
+      type: "boolean",
+    }),
+    defineField({
+      name: "linkedinPost",
+      title: "Linkedin Post",
+      type: "boolean",
     }),
   ],
   preview: {

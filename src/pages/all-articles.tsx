@@ -1,22 +1,19 @@
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
-import { client, queryArticle } from "@/sanity/utils";
-import { sortAlphabetically } from "@/utils";
+import { client, queryArticleLink } from "@/sanity/utils";
+import { sortAlphabetically, returnProjectOrArticleYear } from "@/utils";
 import type { ArticleData } from "@/models";
 import { TitlePage, AllArticlesArticleListPerYear, Layout } from "@/components";
 
 export const getStaticProps = async () => {
   const data = await client.fetch(groq`*[_type == "article"] | order(date desc){
-    ${queryArticle}
+    ${queryArticleLink}
   }`);
 
   const sortedData: { [key: string]: { [key: string]: ArticleData[] } } = {};
 
   data.forEach((article: ArticleData) => {
-    const year =
-      article.date !== undefined
-        ? new Date(article.date).getFullYear()
-        : new Date(Date.now()).getFullYear();
+    const year = returnProjectOrArticleYear(article.date);
     const skillBadges = article.skillBadges
       ? sortAlphabetically(article.skillBadges)
       : [];
@@ -51,7 +48,7 @@ export const getStaticProps = async () => {
 
 const colorTitle = "bg-violet-900";
 
-const AllArticles = ({
+const AllArticlesPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -64,4 +61,4 @@ const AllArticles = ({
   );
 };
 
-export default AllArticles;
+export default AllArticlesPage;
