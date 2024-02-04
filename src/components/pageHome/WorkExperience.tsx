@@ -3,6 +3,7 @@ import { PortableText } from "@portabletext/react";
 import { SkillBadgeList } from "@/components";
 import ProjectThumbnail from "../ProjectThumbnail";
 import type { WorkExperienceData } from "@/models";
+import { returnProjectOrArticleYear } from "@/utils";
 
 const WorkExperience = ({
   _id,
@@ -22,7 +23,7 @@ const WorkExperience = ({
   colorSkillBadge,
 }: WorkExperienceData) => {
   const start = new Date(dateStart).getFullYear();
-  const end = dateEnd ? new Date(dateEnd).getFullYear() : "Present";
+  const end = returnProjectOrArticleYear(dateEnd, true);
   return (
     <article className={clsx("home-article-wrapper", colorPrimary)}>
       <div

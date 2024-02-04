@@ -165,7 +165,6 @@ export const getStaticProps = async ({
 
   const posts = postsData
     .sort((a, b) => {
-      // Prioritize null values
       // INSTAGRAM post get at the bottom
       if (a.instagramPost === null && b.instagramPost !== null) return -1;
       if (a.instagramPost !== null && b.instagramPost === null) return 1;

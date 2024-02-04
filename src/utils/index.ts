@@ -1,13 +1,13 @@
 export const returnProjectOrArticleYear = (
-  year: Date | string,
+  year?: Date | string,
   shouldReturnPresent = false,
 ) => {
   const thisYear = new Date(Date.now()).getFullYear();
-  const originalYear = new Date(year).getFullYear();
+  const originalYear = year ? new Date(year).getFullYear() : undefined;
   // If dateEnd is undefined, it means that the project is ongoing
   // But if it is left to undefined, Sanity uses 1970 as a backup
   // So we need to check if the year is before or after 2000 (since no valid dateEnd will be before 2000)
-  if (originalYear > 2000) {
+  if (originalYear !== undefined && originalYear > 2000) {
     return originalYear;
   } else {
     return shouldReturnPresent ? "Present" : thisYear;

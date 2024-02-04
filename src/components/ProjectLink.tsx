@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ProjectData } from "@/models";
 import { SkillBadgeList, ArrowForward } from "@/components";
+import { returnProjectOrArticleYear } from "@/utils";
 
 const Project = ({
   workExperience,
@@ -18,7 +19,7 @@ const Project = ({
   slug,
 }: ProjectData) => {
   const start = new Date(dateStart).getFullYear();
-  const end = dateEnd ? new Date(dateEnd).getFullYear() : "Present";
+  const end = returnProjectOrArticleYear(dateEnd, true);
 
   return (
     <li>
