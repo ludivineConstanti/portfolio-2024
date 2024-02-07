@@ -1,5 +1,7 @@
 import type { TypedObject } from "sanity";
 
+export type SkillBadgeSizeOptions = "small" | "medium" | "big";
+
 export interface SkillBadgeData {
   _id: string;
   emoji: string;
@@ -15,6 +17,11 @@ interface ArticleCategoryData {
 
 interface RoleDataProject {
   text: string;
+}
+
+export interface SlugProps {
+  _type: "slug";
+  current: string;
 }
 
 export interface WorkExperienceData {
@@ -42,7 +49,7 @@ export interface ProjectData {
   _type: "project";
   emoji: string;
   title: string;
-  slug: string;
+  slug: SlugProps;
   image: {
     url: string;
     alt: string;
@@ -61,6 +68,7 @@ export interface ProjectTeaserData {
   _id: string;
   dateEnd: string;
   workExperience: { _ref: string };
+  slug: SlugProps;
   image: {
     url: string;
     alt: string;

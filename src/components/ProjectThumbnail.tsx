@@ -3,11 +3,17 @@ import { ArrowOpenNewWindow } from ".";
 
 const ProjectThumbnail = ({
   image,
+  href,
 }: {
   image: { url: string; alt: string };
+  href: string;
 }) => {
   return (
-    <a className="relative overflow-hidden rounded-lg outline outline-2 outline-current xl:h-16">
+    <a
+      className="relative overflow-hidden rounded-lg outline outline-2 outline-current xl:h-16"
+      target="_blank"
+      href={href}
+    >
       {image && (
         <Image
           className="h-full w-full object-cover"

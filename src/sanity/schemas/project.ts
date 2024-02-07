@@ -73,6 +73,18 @@ export default defineType({
       to: [{ type: "workExperience" }],
     }),
     defineField({
+      name: "client",
+      title: "client",
+      type: "reference",
+      to: [{ type: "client" }, { type: "workExperience" }],
+    }),
+    defineField({
+      name: "text",
+      title: "Text",
+      type: "array",
+      of: [{ type: "block" }],
+    }),
+    defineField({
       name: "skillBadges",
       title: "Skill Badges",
       type: "array",

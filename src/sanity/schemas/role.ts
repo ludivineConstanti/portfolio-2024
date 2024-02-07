@@ -6,6 +6,11 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
+      name: "emoji",
+      title: "Emoji",
+      type: "string",
+    }),
+    defineField({
       name: "text",
       title: "Text",
       type: "string",
