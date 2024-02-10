@@ -15,7 +15,7 @@ const ProjectSection = ({
     <Section
       emoji={emoji}
       title={title}
-      color="bg-indigo-800"
+      color="bg-blue-800"
       link={{ href: "/all-projects", text: "See all projects" }}
     >
       <ProjectLinkList projects={projects} />

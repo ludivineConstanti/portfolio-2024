@@ -36,7 +36,7 @@ const WorkExperience = ({
           href={href}
           target="_blank"
           className={clsx(
-            "border-3 hidden shrink-0 rounded-full border-solid border-current sm:flex sm:h-10 sm:w-10 sm:p-3 xl:p-4",
+            "border-3 sm:h-19 sm:w-19 hidden shrink-0 rounded-full border-solid border-current sm:flex sm:p-4",
             colorLogo,
           )}
         >

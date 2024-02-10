@@ -1,6 +1,12 @@
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
-import { client, queryProjectLink, queryArticleLink } from "@/sanity/utils";
+import clsx from "clsx";
+import {
+  client,
+  queryProjectLink,
+  queryArticleLink,
+  queryMenu,
+} from "@/sanity/utils";
 import { sortAlphabetically } from "@/utils";
 import {
   Layout,
@@ -8,18 +14,27 @@ import {
   HomeWorkExperienceSection,
   HomeProjectSection,
   HomeArticleSection,
+  Menu,
 } from "@/components";
 import type {
   ProjectData,
   ArticleData,
   WorkExperienceData,
   ProjectTeaserData,
+  InternalLinkData,
 } from "@/models";
 import { querySkillBadges } from "@/sanity/utils";
 
+// is used to get the title of the page
+// if nothing is returned, it means that the path in the CMS is wrong
+const pageHref = "/";
+
 export const getStaticProps = async () => {
+  const dataMenu = await client.fetch(groq`*[_type == "componentMenu"]{
+    ${queryMenu}
+  }`);
+
   const dataHomePage = await client.fetch(groq`*[_type == "pageHome"]{
-      title,
       sectionProjects{emoji,title,projects[]->{${queryProjectLink}}},
       sectionArticles{emoji,title,articles[]->{${queryArticleLink}}},
     }`);
@@ -100,6 +115,12 @@ export const getStaticProps = async () => {
   );
 
   const data = {
+    menu: {
+      ...dataMenu[0],
+      internalLinks: dataMenu[0].internalLinks.filter(
+        (link: InternalLinkData) => link.href !== pageHref,
+      ),
+    },
     ...dataHomePage[0],
     ...sectionProjects,
     ...sectionArticles,
@@ -115,10 +136,19 @@ export const getStaticProps = async () => {
   };
 };
 
+const colorPrimary = "bg-blue-950";
+const colorSecondary = "bg-blue-800";
+
 const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Layout>
-      <main>
+      <Menu
+        internalLinks={data.menu.internalLinks}
+        socialMedias={data.menu.socialMedias}
+        colorPrimary={colorPrimary}
+        colorSecondary={colorSecondary}
+      />
+      <main className={clsx(colorPrimary)}>
         <HomeHero />
         <HomeWorkExperienceSection
           workExperiences={data.sectionWorkExperiences.workExperiences}

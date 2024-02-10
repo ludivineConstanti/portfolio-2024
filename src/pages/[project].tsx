@@ -9,10 +9,11 @@ import {
   SkillBadgeList,
   ProjectBlockBase,
   ProjectBlockLinkList,
+  Menu,
 } from "@/components";
-import { SlugProps, SkillBadgeData } from "@/models";
+import { SlugProps, SkillBadgeData, MenuComponentProps } from "@/models";
 import { groq } from "next-sanity";
-import { client, querySkillBadges } from "@/sanity/utils";
+import { client, querySkillBadges, queryMenu } from "@/sanity/utils";
 import { sortAlphabetically, returnProjectOrArticleYear } from "@/utils";
 
 // Returns a list of possible value for the projects id
@@ -33,6 +34,10 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({
   params,
 }: InferGetStaticPropsType<typeof getStaticPaths>) => {
+  const dataMenu = await client.fetch(groq`*[_type == "componentMenu"]{
+    ${queryMenu}
+  }`);
+
   const { project } = params;
   const data = await client.fetch(
     groq`*[_type == "project" && slug.current == $project]{
@@ -219,6 +224,7 @@ export const getStaticProps = async ({
   return {
     props: {
       data: {
+        menu: dataMenu[0],
         ...data[0],
         dateStart: new Date(data[0].dateStart).getFullYear(),
         dateEnd: returnProjectOrArticleYear(data[0].dateEnd, true),
@@ -246,6 +252,7 @@ type ExternalLinksProps =
 interface ProjectPageProps {
   colorSkillBadge: string;
   data: {
+    menu: MenuComponentProps;
     emoji: string;
     title: string;
     colorPrimary: string;
@@ -269,6 +276,12 @@ interface ProjectPageProps {
 const ProjectPage = ({ data }: ProjectPageProps) => {
   return (
     <Layout>
+      <Menu
+        internalLinks={data.menu.internalLinks}
+        socialMedias={data.menu.socialMedias}
+        colorPrimary={data.colorPrimary}
+        colorSecondary={data.colorSecondary}
+      />
       <main className={clsx(data.colorPrimary, "flex flex-col")}>
         <TitlePage
           emoji={data.emoji}
@@ -292,7 +305,7 @@ const ProjectPage = ({ data }: ProjectPageProps) => {
         <section className="home-max-w mx-custom flex flex-col self-center pb-8 xl:pb-20">
           <div className="my-8 xl:my-20">
             <h2 className="text-h2">
-              My role {data.role.emoji} {data.role.text} {data.role.emoji}
+              My role {data.role.emoji} {data.role.text}
             </h2>
             <p className="text-h4">
               {data.workExperience ? (
@@ -305,7 +318,6 @@ const ProjectPage = ({ data }: ProjectPageProps) => {
                   >
                     {data.workExperience.title}
                   </a>{" "}
-                  {data.workExperience.emoji}
                 </>
               ) : (
                 "🔥 Personal project 🔥"
@@ -319,8 +331,7 @@ const ProjectPage = ({ data }: ProjectPageProps) => {
                     target="_blank"
                   >
                     {data.client.text}
-                  </a>{" "}
-                  {data.client.emoji}
+                  </a>
                 </>
               ) : (
                 ""

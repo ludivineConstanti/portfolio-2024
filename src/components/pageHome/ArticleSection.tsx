@@ -2,7 +2,7 @@ import Section from "./Section";
 import { ArticleList } from "@/components";
 import { ArticleData } from "@/models";
 
-const colorTitle = "bg-violet-800";
+const colorTitle = "bg-blue-800";
 
 const ArticleSection = ({
   emoji,

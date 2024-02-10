@@ -1,11 +1,28 @@
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
-import { client, queryArticleLink } from "@/sanity/utils";
+import clsx from "clsx";
+import { client, queryArticleLink, queryMenu } from "@/sanity/utils";
 import { sortAlphabetically, returnProjectOrArticleYear } from "@/utils";
-import type { ArticleData } from "@/models";
-import { TitlePage, AllArticlesArticleListPerYear, Layout } from "@/components";
+import type { ArticleData, InternalLinkData } from "@/models";
+import {
+  TitlePage,
+  AllArticlesArticleListPerYear,
+  Layout,
+  Menu,
+} from "@/components";
+
+// is used to get the title of the page
+// if nothing is returned, it means that the path in the CMS is wrong
+const pageHref = "/all-articles";
 
 export const getStaticProps = async () => {
+  const dataMenu = await client.fetch(groq`*[_type == "componentMenu"]{
+    ${queryMenu}
+  }`);
+
+  const dataTitle = dataMenu[0].internalLinks.find(
+    (internalLink: InternalLinkData) => internalLink.href === pageHref,
+  );
   const data = await client.fetch(groq`*[_type == "article"] | order(date desc){
     ${queryArticleLink}
   }`);
@@ -41,21 +58,44 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      data: sortedData,
+      data: {
+        menu: {
+          ...dataMenu[0],
+          internalLinks: dataMenu[0].internalLinks.filter(
+            (link: InternalLinkData) => link.href !== pageHref,
+          ),
+        },
+        title: dataTitle,
+        articles: sortedData,
+      },
     },
   };
 };
 
-const colorTitle = "bg-violet-900";
+const colorPrimary = "bg-violet-950";
+const colorSecondary = "bg-violet-800";
 
 const AllArticlesPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Layout>
-      <main className="all-projects-all-articles-pb bg-violet-950">
-        <TitlePage emoji="📰" text="All Articles" color={colorTitle} />
-        <AllArticlesArticleListPerYear articles={data} color={colorTitle} />
+      <Menu
+        internalLinks={data.menu.internalLinks}
+        socialMedias={data.menu.socialMedias}
+        colorPrimary={colorPrimary}
+        colorSecondary={colorSecondary}
+      />
+      <main className={clsx(colorPrimary, "all-projects-all-articles-pb")}>
+        <TitlePage
+          emoji={data.title.emoji}
+          text={data.title.text}
+          color={colorSecondary}
+        />
+        <AllArticlesArticleListPerYear
+          articles={data.articles}
+          color={colorSecondary}
+        />
       </main>
     </Layout>
   );

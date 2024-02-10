@@ -62,7 +62,7 @@ const Project = ({
         <div
           className={clsx(
             colorPrimary,
-            "absolute right-6 top-6 flex h-5 w-5 rounded-full border-[2px] border-solid border-white p-1 sm:right-8 sm:top-8 sm:h-6 sm:w-6 xl:right-6 xl:top-6 xl:h-5 xl:w-5 xl:border-2 xl:p-2",
+            "absolute right-8 top-8 flex h-8 w-8 rounded-full border-[2px] border-solid border-white p-1 xl:right-6 xl:top-6 xl:h-10 xl:w-10 xl:border-2 xl:p-2",
           )}
         >
           <ArrowForward />
