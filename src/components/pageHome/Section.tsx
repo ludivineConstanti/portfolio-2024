@@ -51,7 +51,7 @@ const Section = ({
           <div
             className={clsx(
               color,
-              "flex h-4 w-4 rounded-full border-[2px] border-solid border-white p-2 sm:h-6 sm:w-6 sm:p-3 xl:h-7 xl:w-7 xl:border-2 xl:p-4",
+              "flex h-4 w-4 rounded-full border-[2px] border-solid border-white p-2 sm:h-12 sm:w-12 sm:p-3 xl:h-16 xl:w-16 xl:border-2 xl:p-4",
             )}
           >
             <ArrowForward />

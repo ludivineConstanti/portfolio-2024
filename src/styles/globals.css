@@ -181,10 +181,14 @@ html {
   scroll-behavior: smooth;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   color: white;
-  background: #082f49;
+  background: #172554;
 }
 a {
   color: white;

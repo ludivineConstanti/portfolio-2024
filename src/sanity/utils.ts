@@ -16,6 +16,20 @@ export const querySkillBadges = `
   skillBadges[]->{...},
 `;
 
+export const queryMenu = `
+internalLinks[]->{_id,text,emoji,href},
+socialMedias[]->{
+  _id,
+  text,
+  icon {
+    asset->{
+    url
+  }
+  },
+  href
+  },
+`;
+
 export const queryArticleLink = `
   _id,
   category->{_type,text,title},

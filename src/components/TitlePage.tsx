@@ -16,7 +16,12 @@ const TitlePage = ({
   doubleEmoji?: boolean;
 }) => {
   return (
-    <h1 className={clsx("text-h1 p-8 text-center xl:p-16", color)}>
+    <h1
+      className={clsx(
+        "text-h1 p-8 text-center sm:pt-18 xl:p-16 xl:pt-22",
+        color,
+      )}
+    >
       <Emoji emoji={emoji} />
       {text}
       {doubleEmoji && <Emoji emoji={emoji} />}
