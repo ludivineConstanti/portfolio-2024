@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { MenuComponentProps } from "@/models";
 import InternalLink from "./InternalLink";
@@ -14,9 +14,22 @@ const Menu = ({
   colorSecondary,
 }: MenuComponentProps) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  /* useEffect(() => {
+    if (document && window) {
+      if (menuIsOpen && window.innerWidth > 640) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "auto";
+      }
+    }
+  }, [menuIsOpen]); */
   return (
     <header className="pointer-events-none fixed z-10 grid h-full w-full grid-rows-[1fr_auto] sm:mt-6 sm:block xl:mt-7">
-      <ButtonClose menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
+      <ButtonClose
+        menuIsOpen={menuIsOpen}
+        setMenuIsOpen={setMenuIsOpen}
+        color={colorPrimary}
+      />
       <nav
         className={clsx(
           { "hidden sm:flex": !menuIsOpen },
@@ -38,7 +51,7 @@ const Menu = ({
         className={clsx(
           { "hidden sm:flex": !menuIsOpen },
           colorSecondary,
-          "flex h-full flex-wrap justify-center gap-8 px-12 py-16 sm:absolute sm:right-6 sm:top-0 sm:flex-col sm:bg-[rgba(255,255,255,0)] sm:p-0 xl:right-7",
+          "flex h-full flex-wrap justify-center gap-6 px-12 py-16 sm:absolute sm:right-6 sm:top-0 sm:flex-col sm:bg-[rgba(255,255,255,0)] sm:p-0 xl:right-7",
         )}
       >
         {socialMedias.map((data) => (

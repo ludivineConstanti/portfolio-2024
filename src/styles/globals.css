@@ -1,5 +1,6 @@
 @tailwind components;
 @tailwind utilities;
+@tailwind base;
 
 :root {
   --background-start-rgb: 214, 219, 220;
@@ -77,6 +78,15 @@
     @apply text-[0.6rem] font-light tracking-wider;
   }
 
+  .text-link-interactive {
+    @apply hover:decoration-dashed active:decoration-dotted;
+  }
+
+  .text-link {
+    @apply underline decoration-1 underline-offset-4;
+    @apply text-link-interactive;
+  }
+
   /* margins */
   .mx-base {
     @apply mx-8;
@@ -103,11 +113,6 @@
   .home-max-w {
     @apply max-w-[40rem];
     @apply xl:max-w-[68.75rem];
-  }
-
-  .home-article-wrapper {
-    @apply home-max-w;
-    @apply overflow-hidden rounded-2xl xl:rounded-[2rem];
   }
 
   /* home article padding */

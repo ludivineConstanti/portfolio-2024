@@ -69,7 +69,7 @@ const AllProjectsPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <Layout>
+    <Layout title={data.title.text}>
       <Menu
         internalLinks={data.menu.internalLinks}
         socialMedias={data.menu.socialMedias}

@@ -89,6 +89,7 @@ export interface ProjectData {
 
 export interface ProjectTeaserData {
   _id: string;
+  title: string;
   dateEnd: string;
   workExperience: { _ref: string };
   slug: SlugProps;

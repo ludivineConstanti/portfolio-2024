@@ -18,7 +18,7 @@ const ExternalLink = ({
       >
         <span className="text-[1.75em]">{emoji}</span>{" "}
         <span>
-          <span className="underline underline-offset-4">{text}</span> ↗️
+          <span className="text-link">{text}</span> ↗️
         </span>
       </a>
     </li>

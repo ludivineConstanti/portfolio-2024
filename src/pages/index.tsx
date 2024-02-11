@@ -35,6 +35,7 @@ export const getStaticProps = async () => {
   }`);
 
   const dataHomePage = await client.fetch(groq`*[_type == "pageHome"]{
+      title,
       sectionProjects{emoji,title,projects[]->{${queryProjectLink}}},
       sectionArticles{emoji,title,articles[]->{${queryArticleLink}}},
     }`);
@@ -85,6 +86,7 @@ export const getStaticProps = async () => {
     await client.fetch(groq`*[_type == "project"] | order(dateEnd desc){
   _id,
   workExperience,
+  title,
   dateEnd,
   slug,
   image{
@@ -141,7 +143,7 @@ const colorSecondary = "bg-blue-800";
 
 const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <Layout>
+    <Layout title={data.title}>
       <Menu
         internalLinks={data.menu.internalLinks}
         socialMedias={data.menu.socialMedias}
