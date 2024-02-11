@@ -27,7 +27,7 @@ const Project = ({
         href={`/${slug.current}`}
         className={clsx(
           colorPrimary,
-          "home-max-w relative flex flex-col gap-6 rounded-2xl p-4 xl:flex-row xl:gap-8 xl:p-6",
+          "home-max-w group relative flex flex-col gap-6 rounded-2xl p-4 outline-offset-4 transition-transform hover:scale-[1.03] active:scale-105 sm:hover:scale-105 sm:active:scale-110 xl:flex-row xl:gap-8 xl:p-6",
         )}
       >
         {image && (
@@ -62,7 +62,7 @@ const Project = ({
         <div
           className={clsx(
             colorPrimary,
-            "absolute right-8 top-8 flex h-8 w-8 rounded-full border-[2px] border-solid border-white p-1 xl:right-6 xl:top-6 xl:h-10 xl:w-10 xl:border-2 xl:p-2",
+            "absolute right-8 top-8 flex h-8 w-8 origin-top-right rounded-full border-[2px] border-solid border-white p-1 transition-transform group-hover:scale-150 xl:right-6 xl:top-6 xl:h-10 xl:w-10 xl:border-2 xl:p-2",
           )}
         >
           <ArrowForward />

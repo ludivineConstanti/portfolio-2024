@@ -1,18 +1,24 @@
 import React from "react";
+import clsx from "clsx";
 
 const ButtonClose = ({
   menuIsOpen,
   setMenuIsOpen,
+  color,
 }: {
   menuIsOpen: boolean;
   setMenuIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  color: string;
 }) => {
   return (
     <button
       onClick={() => {
         setMenuIsOpen((v) => !v);
       }}
-      className="pointer-events-auto absolute right-8 top-8 h-12 w-12 cursor-pointer rounded-full border-2 border-solid border-white bg-[rgba(255,255,255,0)] p-3.5 sm:hidden"
+      className={clsx(
+        color,
+        "pointer-events-auto absolute right-8 top-8 h-12 w-12 cursor-pointer rounded-full border-2 border-solid border-white bg-[rgba(255,255,255,0)] p-3.5 transition-transform hover:scale-125 active:scale-150 sm:hidden",
+      )}
     >
       {menuIsOpen ? (
         <>

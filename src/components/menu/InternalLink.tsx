@@ -1,6 +1,6 @@
 import Link from "next/link";
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 import { InternalLinkData } from "@/models";
 
 interface InternalLinkProps extends InternalLinkData {
@@ -9,13 +9,16 @@ interface InternalLinkProps extends InternalLinkData {
 
 const InternalLink = ({ text, href, color }: InternalLinkProps) => {
   return (
-    <li
-      className={clsx(
-        color,
-        "text-body pointer-events-auto w-fit rounded-full border-2 border-solid border-white px-3 py-1",
-      )}
-    >
-      <Link href={href}>{text}</Link>
+    <li className="transition-transform hover:scale-110 active:scale-125">
+      <Link
+        className={clsx(
+          color,
+          "text-link-interactive text-body pointer-events-auto rounded-full border-2 border-solid border-white px-2 py-1 underline-offset-[3px] outline-offset-4 hover:underline hover:decoration-1 focus-visible:outline-1 focus-visible:outline-white",
+        )}
+        href={href}
+      >
+        {text}
+      </Link>
     </li>
   );
 };

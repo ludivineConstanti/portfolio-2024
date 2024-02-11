@@ -14,6 +14,33 @@ export const returnProjectOrArticleYear = (
   }
 };
 
+export const returnDiffInYearsAndMonths = (date1: Date, date2: Date) => {
+  let years = date2.getFullYear() - date1.getFullYear();
+  let months = date2.getMonth() - date1.getMonth();
+  let days = date2.getDate() - date1.getDate();
+
+  if (days < 0) {
+    months--;
+    days += new Date(date2.getFullYear(), date2.getMonth(), 0).getDate();
+  }
+  if (months < 0 || (months === 0 && date2.getDate() < date1.getDate())) {
+    years--;
+    months += 12;
+  }
+
+  if (days > 0) months++;
+
+  const textYears = years > 0 ? `${years} ` : "";
+  let textMonths = "";
+  if (months >= 3) textMonths = "¼ ";
+  if (months >= 6) textMonths = "½ ";
+  if (months >= 9) textMonths = "¾ ";
+
+  return years >= 1
+    ? `${textYears}${textMonths}year${years > 1 ? "s" : ""}`
+    : `${months} month${months > 1 ? "s" : ""}`;
+};
+
 export const sortAlphabetically = <T extends { text: string }[]>(
   data: T,
 ): T => {

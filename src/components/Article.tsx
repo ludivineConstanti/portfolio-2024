@@ -12,11 +12,9 @@ const Article = ({ color, emoji, text, href, skillBadges }: ArticleProps) => {
         {emoji}
       </span>
       <div className="flex flex-col gap-2 xl:gap-3">
-        <a className="text-h6" target="_blank" href={href}>
-          <span className="underline decoration-1 underline-offset-4">
-            {text}
-          </span>
-          <span className="ml-1.5 no-underline">↗️</span>
+        <a className="text-h6 group" target="_blank" href={href}>
+          <span className="text-link">{text}</span>
+          <span className="relative ml-1.5 no-underline">↗️</span>
         </a>
         <SkillBadgeList size="small" color={color} skillBadges={skillBadges} />
       </div>

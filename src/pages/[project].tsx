@@ -275,7 +275,7 @@ interface ProjectPageProps {
 
 const ProjectPage = ({ data }: ProjectPageProps) => {
   return (
-    <Layout>
+    <Layout title={data.title}>
       <Menu
         internalLinks={data.menu.internalLinks}
         socialMedias={data.menu.socialMedias}
@@ -313,7 +313,7 @@ const ProjectPage = ({ data }: ProjectPageProps) => {
                   Made with {data.workExperience.emoji}{" "}
                   <a
                     href={data.workExperience.href}
-                    className="underline decoration-1 underline-offset-[5px]"
+                    className="text-link"
                     target="_blank"
                   >
                     {data.workExperience.title}
@@ -326,7 +326,7 @@ const ProjectPage = ({ data }: ProjectPageProps) => {
                 <>
                   for {data.client.emoji}{" "}
                   <a
-                    className="underline decoration-1 underline-offset-[5px]"
+                    className="text-link"
                     href={data.client.href}
                     target="_blank"
                   >

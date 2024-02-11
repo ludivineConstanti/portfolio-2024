@@ -45,17 +45,17 @@ const Section = ({
       {link && (
         <Link
           href={link.href}
-          className="text-h3 align-center mb-16 flex max-w-fit items-center justify-center gap-3 self-center sm:mb-20 sm:gap-4 xl:mb-32 xl:gap-6"
+          className="text-h3 align-center text-link-interactive group mb-16 flex max-w-fit items-center justify-center gap-3 self-center underline-offset-8 outline-offset-4 hover:underline hover:decoration-1 sm:mb-20 sm:gap-4 xl:mb-32 xl:gap-6"
         >
           {link.text}
-          <div
+          <span
             className={clsx(
               color,
-              "flex h-4 w-4 rounded-full border-[2px] border-solid border-white p-2 sm:h-12 sm:w-12 sm:p-3 xl:h-16 xl:w-16 xl:border-2 xl:p-4",
+              "flex h-8 w-8 origin-[center_left] rounded-full border-[2px] border-solid border-white p-2 transition-transform group-hover:scale-125 group-active:scale-150 sm:h-12 sm:w-12 sm:p-3 xl:h-14 xl:w-14 xl:border-2 xl:p-3.5",
             )}
           >
             <ArrowForward />
-          </div>
+          </span>
         </Link>
       )}
     </section>

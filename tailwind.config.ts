@@ -27,5 +27,8 @@ const config: Config = {
     },
   },
   plugins: [],
+  corePlugins: {
+    transform: true,
+  },
 };
 export default config;
