@@ -28,31 +28,31 @@ const Paris = () => {
   return (
     <group ref={ref} scale={12} position={[-17.7, 0, -30]}>
       <mesh geometry={nodes.Sphere006.geometry}>
-        <MaterialWhite />
+        <useMaterialWhite />
       </mesh>
       <mesh geometry={nodes.Sphere006_1.geometry}>
-        <MaterialWater />
+        <useMaterialWater />
       </mesh>
       <mesh geometry={nodes.Sphere006_2.geometry}>
-        <MaterialBlue />
+        <useMaterialBlue />
       </mesh>
       <mesh geometry={nodes.Sphere006_3.geometry}>
-        <MaterialGreen />
+        <useMaterialGreen />
       </mesh>
       <mesh geometry={nodes.Sphere006_4.geometry}>
-        <MaterialPink />
+        <useMaterialPink />
       </mesh>
       <mesh geometry={nodes.Sphere006_5.geometry}>
-        <MaterialGlass.blueLight />
+        <MaterialGlass.BlueLight />
       </mesh>
       <mesh geometry={nodes.Sphere006_6.geometry}>
-        <MaterialGlass.white />
+        <MaterialGlass.White />
       </mesh>
       <mesh geometry={nodes.Sphere006_7.geometry}>
-        <MaterialGlass.blueDark />
+        <MaterialGlass.BlueDark />
       </mesh>
       <mesh geometry={nodes.Sphere006_8.geometry}>
-        <MaterialGlass.blue />
+        <MaterialGlass.Blue />
       </mesh>
     </group>
   );

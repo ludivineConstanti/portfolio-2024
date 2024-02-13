@@ -1,29 +1,28 @@
 import React from "react";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
-import * as THREE from "three";
 import Matcap from "./Matcap";
 import MaterialGlassBlueBasic from "./MaterialGlassBlueBasic";
 
 export const MaterialGlass = {
-  red: () => {
+  Red: () => {
     const matcap = useLoader(TextureLoader, "matcaps/glassWhite.jpg");
     return <Matcap matcap={matcap} color={"#ffcac9"} />;
   },
-  white: () => {
+  White: () => {
     const matcap = useLoader(TextureLoader, "matcaps/glassWhite.jpg");
     return <Matcap matcap={matcap} color={"#FFF"} />;
   },
-  blueLight: () => {
+  BlueLight: () => {
     return <MaterialGlassBlueBasic color={"#FFF"} />;
   },
-  blue: () => {
+  Blue: () => {
     return <MaterialGlassBlueBasic color={"#cee0ff"} />;
   },
-  blueDark: () => {
+  BlueDark: () => {
     return <MaterialGlassBlueBasic color={"#95bdff"} />;
   },
-  green: () => {
+  Green: () => {
     return <MaterialGlassBlueBasic color={"#b9ffe9"} />;
   },
 };

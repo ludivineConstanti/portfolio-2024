@@ -34,34 +34,34 @@ const Sintra = () => {
     <group dispose={null}>
       <group position={[-45, -40, -45]} scale={12} ref={ref}>
         <mesh geometry={nodes.glassDarkBlue.geometry}>
-          <MaterialGlass.blueDark />
+          <MaterialGlass.BlueDark />
         </mesh>
         <mesh geometry={nodes.glassRed.geometry}>
-          <MaterialGlass.red />
+          <MaterialGlass.Red />
         </mesh>
         <mesh geometry={nodes.blue.geometry}>
-          <MaterialBlue />
+          <useMaterialBlue />
         </mesh>
         <mesh geometry={nodes.water.geometry}>
-          <MaterialWater />
+          <useMaterialWater />
         </mesh>
         <mesh geometry={nodes.glassGreen.geometry}>
-          <MaterialGlass.green />
+          <MaterialGlass.Green />
         </mesh>
         <mesh geometry={nodes.yellow.geometry}>
-          <MaterialYellow />
+          <useMaterialYellow />
         </mesh>
         <mesh geometry={nodes.glassWhite.geometry}>
-          <MaterialGlass.white />
+          <MaterialGlass.White />
         </mesh>
         <mesh geometry={nodes.white.geometry}>
-          <MaterialWhite />
+          <useMaterialWhite />
         </mesh>
         <mesh geometry={nodes.green.geometry}>
-          <MaterialGreen />
+          <useMaterialGreen />
         </mesh>
         <mesh geometry={nodes.red.geometry}>
-          <MaterialRed />
+          <useMaterialRed />
         </mesh>
       </group>
     </group>

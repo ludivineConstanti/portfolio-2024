@@ -25,13 +25,13 @@ const Miyajima = () => {
   return (
     <group scale={8} position={[-66.5, 28, -50]} ref={ref}>
       <mesh geometry={nodes.water.geometry}>
-        <MaterialWater />
+        <useMaterialWater />
       </mesh>
       <mesh geometry={nodes.green.geometry}>
-        <MaterialGreen />
+        <useMaterialGreen />
       </mesh>
       <mesh geometry={nodes.red.geometry}>
-        <MaterialRed />
+        <useMaterialRed />
       </mesh>
     </group>
   );
