@@ -37,8 +37,4 @@ const Miyajima = () => {
   );
 };
 
-// </e.group>
-
-// useGLTF.preload('/miyajima.gltf')
-
 export default Miyajima;

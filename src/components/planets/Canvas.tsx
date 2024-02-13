@@ -8,23 +8,9 @@ import Camera from "./Camera";
 
 interface CanvasProps {
   pixelSize?: number;
-  hue?: number;
-  saturation?: number;
 }
 
-const CanvasComponent = ({
-  pixelSize = 100,
-  hue = 0,
-  saturation = 0,
-}: CanvasProps) => {
-  const [shaderState, setShadersState] = useState({
-    pixel: { pixelSize: 0 },
-    hueSaturation: {
-      hue: 0,
-      saturation: 0,
-    },
-  });
-
+const CanvasComponent = ({ pixelSize = 100 }: CanvasProps) => {
   return (
     <div className="fixed top-0 h-full w-full">
       <Canvas
@@ -36,12 +22,7 @@ const CanvasComponent = ({
         }}
         linear
       >
-        <Composer
-          shadersState={shaderState}
-          pixelSize={pixelSize}
-          hue={hue}
-          saturation={saturation}
-        />
+        <Composer pixelSize={pixelSize} />
         <Camera />
         <PlanetsAndStars />
       </Canvas>
