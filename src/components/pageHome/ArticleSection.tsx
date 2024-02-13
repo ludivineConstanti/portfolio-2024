@@ -20,6 +20,7 @@ const ArticleSection = ({
       color={colorTitle}
       margin="medium"
       link={{ href: "/all-articles", text: "See all articles" }}
+      customClass="bg-blue-950 pointer-events-auto"
     >
       <ArticleList color={colorTitle} articles={articles} />
     </Section>
