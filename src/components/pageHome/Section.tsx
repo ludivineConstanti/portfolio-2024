@@ -11,6 +11,7 @@ const Section = ({
   children,
   margin = "small",
   link,
+  customClass,
 }: {
   emoji: string;
   title: string;
@@ -18,13 +19,14 @@ const Section = ({
   children: JSX.Element | JSX.Element[];
   margin?: "small" | "medium";
   link?: { text: string; href: string };
+  customClass?: string;
 }) => {
   return (
-    <section className="flex flex-col">
+    <section className={clsx(customClass, "flex flex-col")}>
       <h2
         className={clsx(
           classNameMarginTitle,
-          "text-h1 flex items-center justify-center",
+          "text-h1 pointer-events-auto flex items-center justify-center",
           color,
         )}
       >
@@ -45,7 +47,7 @@ const Section = ({
       {link && (
         <Link
           href={link.href}
-          className="text-h3 align-center text-link-interactive group mb-16 flex max-w-fit items-center justify-center gap-3 self-center underline-offset-8 outline-offset-4 hover:underline hover:decoration-1 sm:mb-20 sm:gap-4 xl:mb-32 xl:gap-6"
+          className="text-h3 align-center text-link-interactive group pointer-events-auto mb-16 flex max-w-fit items-center justify-center gap-3 self-center underline-offset-8 outline-offset-4 hover:underline hover:decoration-1 sm:mb-20 sm:gap-4 xl:mb-32 xl:gap-6"
         >
           {link.text}
           <span

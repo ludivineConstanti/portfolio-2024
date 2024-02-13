@@ -33,7 +33,10 @@ const WorkExperience = ({
   );
   return (
     <article
-      className={clsx("home-max-w rounded-2xl xl:rounded-[2rem]", colorPrimary)}
+      className={clsx(
+        "home-max-w pointer-events-auto rounded-2xl xl:rounded-[2rem]",
+        colorPrimary,
+      )}
     >
       <header
         className={clsx(

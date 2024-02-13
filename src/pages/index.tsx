@@ -1,6 +1,6 @@
+import { useState } from "react";
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
-import clsx from "clsx";
 import {
   client,
   queryProjectLink,
@@ -15,6 +15,7 @@ import {
   HomeProjectSection,
   HomeArticleSection,
   Menu,
+  Canvas,
 } from "@/components";
 import type {
   ProjectData,
@@ -140,8 +141,10 @@ export const getStaticProps = async () => {
 
 const colorPrimary = "bg-blue-950";
 const colorSecondary = "bg-blue-800";
+const maxPixelSize = 250;
 
 const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const [pixelSize, setPixelSize] = useState(1);
   return (
     <Layout title={data.title}>
       <Menu
@@ -150,7 +153,23 @@ const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
         colorPrimary={colorPrimary}
         colorSecondary={colorSecondary}
       />
-      <main className={clsx(colorPrimary)}>
+      <Canvas pixelSize={pixelSize} />
+      <main
+        className="z-1 pointer-events-none relative"
+        onWheel={() => {
+          if (window && document) {
+            setPixelSize(
+              Math.round(
+                Math.max(
+                  (window.scrollY / document.documentElement.scrollHeight) *
+                    maxPixelSize,
+                  1,
+                ),
+              ),
+            );
+          }
+        }}
+      >
         <HomeHero />
         <HomeWorkExperienceSection
           workExperiences={data.sectionWorkExperiences.workExperiences}
