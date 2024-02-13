@@ -56,7 +56,7 @@ const Stars = ({ count }: StarsProps) => {
   });
   return (
     <>
-      <instancedMesh ref={mesh} args={[null, null, count]}>
+      <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
         <dodecahedronBufferGeometry attach="geometry" args={[0.25, 0]} />
         <MaterialGlass.White />
       </instancedMesh>

@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useRef } from "react";
+import React, { Suspense, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -11,22 +11,24 @@ const transitionSpeed = 0.1;
 const PlanetsAndStars = () => {
   const [scrollPositionY, setScrollPositionY] = useState(0);
 
-  useScrollPosition(({ _, currPos }) => {
+  useScrollPosition(({ currPos }) => {
     setScrollPositionY(currPos.y * -0.01);
   });
 
-  const groupRef: null | { current: THREE.Mesh } = useRef();
+  const [groupRef, setGroupRef] = useState<THREE.Group | null>(null);
 
   useFrame(() => {
-    groupRef.current.position.y = THREE.MathUtils.lerp(
-      groupRef.current.position.y,
-      scrollPositionY,
-      transitionSpeed,
-    );
+    if (groupRef) {
+      groupRef.position.y = THREE.MathUtils.lerp(
+        groupRef.position.y,
+        scrollPositionY,
+        transitionSpeed,
+      );
+    }
   });
 
   return (
-    <group ref={groupRef}>
+    <group ref={(e) => setGroupRef(e)}>
       <Stars count={250} />
       <Suspense fallback={null}>
         <Sintra />
