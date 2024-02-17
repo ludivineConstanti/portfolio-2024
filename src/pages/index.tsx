@@ -146,7 +146,7 @@ const maxPixelSize = 250;
 const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [pixelSize, setPixelSize] = useState(1);
   return (
-    <Layout title={data.title}>
+    <Layout title="Home">
       <Menu
         internalLinks={data.menu.internalLinks}
         socialMedias={data.menu.socialMedias}

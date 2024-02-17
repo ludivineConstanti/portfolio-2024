@@ -1,5 +1,7 @@
 import type { TypedObject } from "sanity";
 
+export * from "./constants";
+
 export type SkillBadgeSizeOptions = "small" | "medium" | "big";
 
 interface SVGData {
