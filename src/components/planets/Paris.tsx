@@ -11,6 +11,7 @@ import {
   MaterialGreen,
   MaterialPink,
 } from "../materials";
+import { rotatePlanetOrStar } from "./constants";
 
 const Paris = () => {
   const { nodes } = useGLTF("/planets/paris.gltf") as unknown as {
@@ -27,14 +28,12 @@ const Paris = () => {
     };
   };
   const [ref, setRef] = useState<THREE.Group | null>(null);
-
   useFrame(() => {
-    if (ref) {
-      const x = ref.rotation.x + 0.001;
-      const y = ref.rotation.y + 0.002;
-      const z = ref.rotation.z + 0.003;
-      ref.rotation.set(x, y, z);
-    }
+    rotatePlanetOrStar(ref, {
+      x: 0.001,
+      y: 0.002,
+      z: 0.003,
+    });
   });
 
   return (

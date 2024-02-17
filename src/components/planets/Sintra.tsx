@@ -16,6 +16,7 @@ import {
   MaterialWater,
   MaterialWhite,
 } from "../materials";
+import { rotatePlanetOrStar } from "./constants";
 
 const Sintra = () => {
   const { nodes } = useGLTF("/planets/sintra.gltf") as unknown as {
@@ -36,12 +37,11 @@ const Sintra = () => {
   const [ref, setRef] = useState<THREE.Group | null>(null);
 
   useFrame(() => {
-    if (ref) {
-      const x = ref.rotation.x + 0.0005;
-      const y = ref.rotation.y + 0.002;
-      const z = ref.rotation.z + 0.0005;
-      ref.rotation.set(x, y, z);
-    }
+    rotatePlanetOrStar(ref, {
+      x: 0.0005,
+      y: 0.002,
+      z: 0.0005,
+    });
   });
   return (
     <group dispose={null}>

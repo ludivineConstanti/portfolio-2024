@@ -1,29 +1,18 @@
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
 import clsx from "clsx";
-import { client, queryProjectLink, queryMenu } from "@/sanity/utils";
-import type { ProjectData, InternalLinkData } from "@/models";
+import { client, queryProjectLink } from "@/sanity/utils";
+import type { ProjectData } from "@/models";
 import {
   Layout,
   TitlePage,
   AllProjectsProjectListsWithTitle,
   Menu,
 } from "@/components";
+import { internalLinks, InternalLinksIds } from "@/models";
 import { returnProjectOrArticleYear } from "@/utils";
 
-// is used to get the title of the page
-// if nothing is returned, it means that the path in the CMS is wrong
-const pageHref = "/all-projects";
-
 export const getStaticProps = async () => {
-  const dataMenu = await client.fetch(groq`*[_type == "componentMenu"]{
-    ${queryMenu}
-  }`);
-
-  const dataTitle = dataMenu[0].internalLinks.find(
-    (internalLink: InternalLinkData) => internalLink.href === pageHref,
-  );
-
   const data =
     await client.fetch(groq`*[_type == "project"] | order(dateEnd desc){
     ${queryProjectLink}  
@@ -49,13 +38,6 @@ export const getStaticProps = async () => {
   return {
     props: {
       data: {
-        menu: {
-          ...dataMenu[0],
-          internalLinks: dataMenu[0].internalLinks.filter(
-            (link: InternalLinkData) => link.href !== pageHref,
-          ),
-        },
-        title: dataTitle,
         projects: sortedData,
       },
     },
@@ -68,18 +50,19 @@ const colorSecondary = "bg-blue-800";
 const AllProjectsPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const pageId = InternalLinksIds.allProjects;
+  const pageData = internalLinks[pageId];
   return (
-    <Layout title={data.title.text}>
+    <Layout title={pageData.text}>
       <Menu
-        internalLinks={data.menu.internalLinks}
-        socialMedias={data.menu.socialMedias}
         colorPrimary={colorPrimary}
         colorSecondary={colorSecondary}
+        pageId={pageId}
       />
       <main className={clsx(colorPrimary, "all-projects-all-articles-pb")}>
         <TitlePage
-          emoji={data.title.emoji}
-          text={data.title.text}
+          emoji={pageData.emoji}
+          text={pageData.text}
           color={colorSecondary}
         />
         <AllProjectsProjectListsWithTitle

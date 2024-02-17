@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { NoToneMapping } from "three";
 

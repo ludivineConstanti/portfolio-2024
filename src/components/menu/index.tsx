@@ -1,18 +1,26 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
-import { MenuComponentProps } from "@/models";
 import InternalLink from "./InternalLink";
 import SocialMedia from "./SocialMedia";
 import ButtonClose from "./ButtonClose";
+import {
+  internalLinks,
+  InternalLinksIds,
+  socialMedias,
+  SocialMediaIds,
+} from "@/models";
 
 const Menu = ({
-  internalLinks,
-  socialMedias,
   colorPrimary,
   colorSecondary,
-}: MenuComponentProps) => {
+  pageId,
+}: {
+  colorPrimary: string;
+  colorSecondary: string;
+  pageId?: InternalLinksIds;
+}) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   /* useEffect(() => {
     if (document && window) {
@@ -23,6 +31,9 @@ const Menu = ({
       }
     }
   }, [menuIsOpen]); */
+
+  const internalLinksKeys = Object.keys(internalLinks) as InternalLinksIds[];
+  const socialMediasKeys = Object.keys(socialMedias) as SocialMediaIds[];
   return (
     <header className="pointer-events-none fixed z-10 grid h-full w-full grid-rows-[1fr_auto] sm:mt-6 sm:block xl:mt-7">
       <ButtonClose
@@ -38,13 +49,15 @@ const Menu = ({
         )}
       >
         <ul className="flex flex-col items-center justify-center gap-8 p-16 sm:flex-row sm:p-0">
-          {internalLinks.map((data) => (
-            <InternalLink
-              color={colorPrimary}
-              key={`internal-link-${data._id}`}
-              {...data}
-            />
-          ))}
+          {internalLinksKeys
+            .filter((internalLinkKey) => internalLinkKey !== pageId)
+            .map((internalLinkKey) => (
+              <InternalLink
+                color={colorPrimary}
+                key={`internal-link-${internalLinkKey}`}
+                {...internalLinks[internalLinkKey]}
+              />
+            ))}
         </ul>
       </nav>
       <ul
@@ -54,11 +67,11 @@ const Menu = ({
           "flex h-full flex-wrap justify-center gap-6 px-12 py-16 sm:absolute sm:right-6 sm:top-0 sm:flex-col sm:bg-[rgba(255,255,255,0)] sm:p-0 xl:right-7",
         )}
       >
-        {socialMedias.map((data) => (
+        {socialMediasKeys.map((socialMediaKey) => (
           <SocialMedia
-            key={`social-media-${data._id}`}
+            key={`social-media-${socialMediaKey}`}
             color={colorPrimary}
-            {...data}
+            {...socialMedias[socialMediaKey]}
           />
         ))}
       </ul>

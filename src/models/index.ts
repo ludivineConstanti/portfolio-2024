@@ -1,6 +1,7 @@
 import type { TypedObject } from "sanity";
 
 export * from "./constants";
+export * from "./constantsMenu";
 
 export type SkillBadgeSizeOptions = "small" | "medium" | "big";
 
@@ -30,13 +31,6 @@ export interface SlugProps {
   current: string;
 }
 
-export interface MenuComponentProps {
-  internalLinks: InternalLinkData[];
-  socialMedias: SocialMediaData[];
-  colorPrimary: string;
-  colorSecondary: string;
-}
-
 export interface WorkExperienceData {
   _id: string;
   href: string;
@@ -53,20 +47,6 @@ export interface WorkExperienceData {
   colorLogo?: string;
   colorSkillBadge?: string;
   logo: SVGData;
-}
-
-export interface SocialMediaData {
-  _id: string;
-  text: string;
-  href: string;
-  icon: SVGData;
-}
-
-export interface InternalLinkData {
-  _id: string;
-  emoji: string;
-  text: string;
-  href: string;
 }
 
 export interface ProjectData {

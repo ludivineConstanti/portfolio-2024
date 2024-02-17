@@ -1,12 +1,7 @@
 import { useState } from "react";
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
-import {
-  client,
-  queryProjectLink,
-  queryArticleLink,
-  queryMenu,
-} from "@/sanity/utils";
+import { client, queryProjectLink, queryArticleLink } from "@/sanity/utils";
 import { sortAlphabetically } from "@/utils";
 import {
   Layout,
@@ -22,19 +17,11 @@ import type {
   ArticleData,
   WorkExperienceData,
   ProjectTeaserData,
-  InternalLinkData,
 } from "@/models";
+import { internalLinks, InternalLinksIds } from "@/models";
 import { querySkillBadges } from "@/sanity/utils";
 
-// is used to get the title of the page
-// if nothing is returned, it means that the path in the CMS is wrong
-const pageHref = "/";
-
 export const getStaticProps = async () => {
-  const dataMenu = await client.fetch(groq`*[_type == "componentMenu"]{
-    ${queryMenu}
-  }`);
-
   const dataHomePage = await client.fetch(groq`*[_type == "pageHome"]{
       title,
       sectionProjects{emoji,title,projects[]->{${queryProjectLink}}},
@@ -118,12 +105,6 @@ export const getStaticProps = async () => {
   );
 
   const data = {
-    menu: {
-      ...dataMenu[0],
-      internalLinks: dataMenu[0].internalLinks.filter(
-        (link: InternalLinkData) => link.href !== pageHref,
-      ),
-    },
     ...dataHomePage[0],
     ...sectionProjects,
     ...sectionArticles,
@@ -145,13 +126,14 @@ const maxPixelSize = 250;
 
 const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [pixelSize, setPixelSize] = useState(1);
+  const pageId = InternalLinksIds.home;
+  const pageData = internalLinks[pageId];
   return (
-    <Layout title="Home">
+    <Layout title={pageData.text}>
       <Menu
-        internalLinks={data.menu.internalLinks}
-        socialMedias={data.menu.socialMedias}
         colorPrimary={colorPrimary}
         colorSecondary={colorSecondary}
+        pageId={pageId}
       />
       <Canvas pixelSize={pixelSize} />
       <main

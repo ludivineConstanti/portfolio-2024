@@ -1,6 +1,6 @@
 import Link from "next/link";
 import clsx from "clsx";
-import { ArrowForward } from "@/components";
+import { ArrowForward, LinkCTA } from "@/components";
 
 const classNameMarginTitle = "py-8 xl:py-16";
 
@@ -44,22 +44,7 @@ const Section = ({
       >
         {children}
       </div>
-      {link && (
-        <Link
-          href={link.href}
-          className="text-h3 align-center text-link-interactive group pointer-events-auto mb-16 flex max-w-fit items-center justify-center gap-3 self-center underline-offset-8 outline-offset-4 hover:underline hover:decoration-1 sm:mb-20 sm:gap-4 xl:mb-32 xl:gap-6"
-        >
-          {link.text}
-          <span
-            className={clsx(
-              color,
-              "flex h-8 w-8 origin-[center_left] rounded-full border-[2px] border-solid border-white p-2 transition-transform group-hover:scale-125 group-active:scale-150 sm:h-12 sm:w-12 sm:p-3 xl:h-14 xl:w-14 xl:border-2 xl:p-3.5",
-            )}
-          >
-            <ArrowForward />
-          </span>
-        </Link>
-      )}
+      {link && <LinkCTA href={link.href} text={link.text} color={color} />}
     </section>
   );
 };

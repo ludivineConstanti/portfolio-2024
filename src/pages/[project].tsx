@@ -11,9 +11,9 @@ import {
   ProjectBlockLinkList,
   Menu,
 } from "@/components";
-import { SlugProps, SkillBadgeData, MenuComponentProps } from "@/models";
+import { SlugProps, SkillBadgeData } from "@/models";
 import { groq } from "next-sanity";
-import { client, querySkillBadges, queryMenu } from "@/sanity/utils";
+import { client, querySkillBadges } from "@/sanity/utils";
 import { sortAlphabetically, returnProjectOrArticleYear } from "@/utils";
 
 // Returns a list of possible value for the projects id
@@ -34,10 +34,6 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({
   params,
 }: InferGetStaticPropsType<typeof getStaticPaths>) => {
-  const dataMenu = await client.fetch(groq`*[_type == "componentMenu"]{
-    ${queryMenu}
-  }`);
-
   const { project } = params;
   const data = await client.fetch(
     groq`*[_type == "project" && slug.current == $project]{
@@ -224,7 +220,6 @@ export const getStaticProps = async ({
   return {
     props: {
       data: {
-        menu: dataMenu[0],
         ...data[0],
         dateStart: new Date(data[0].dateStart).getFullYear(),
         dateEnd: returnProjectOrArticleYear(data[0].dateEnd, true),
@@ -252,7 +247,6 @@ type ExternalLinksProps =
 interface ProjectPageProps {
   colorSkillBadge: string;
   data: {
-    menu: MenuComponentProps;
     emoji: string;
     title: string;
     colorPrimary: string;
@@ -277,8 +271,6 @@ const ProjectPage = ({ data }: ProjectPageProps) => {
   return (
     <Layout title={data.title}>
       <Menu
-        internalLinks={data.menu.internalLinks}
-        socialMedias={data.menu.socialMedias}
         colorPrimary={data.colorPrimary}
         colorSecondary={data.colorSecondary}
       />
