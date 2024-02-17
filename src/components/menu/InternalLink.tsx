@@ -1,13 +1,16 @@
 import Link from "next/link";
 import clsx from "clsx";
 import React from "react";
-import { InternalLinkData } from "@/models";
 
-interface InternalLinkProps extends InternalLinkData {
+const InternalLink = ({
+  text,
+  href,
+  color,
+}: {
+  text: string;
+  href: string;
   color: string;
-}
-
-const InternalLink = ({ text, href, color }: InternalLinkProps) => {
+}) => {
   return (
     <li className="transition-transform hover:scale-110 active:scale-125">
       <Link

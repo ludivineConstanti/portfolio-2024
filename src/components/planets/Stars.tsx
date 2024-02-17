@@ -3,6 +3,7 @@ import React, { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 
 import { MaterialGlass } from "../materials";
+import { rotatePlanetOrStar } from "./constants";
 
 // source => https://codesandbox.io/s/react-three-fiber-particles-ii-moio2?file=/src/index.js:0-9198
 
@@ -44,8 +45,8 @@ const Stars = ({ count }: StarsProps) => {
         particle.my / 10 + zFactor,
       );
 
-      const rotation = Math.cos(t) * 3;
-      dummy.rotation.set(rotation, rotation, rotation);
+      const rotation = Math.cos(t) * 0.001;
+      rotatePlanetOrStar(dummy, { x: 0.00005, y: rotation, z: 0.00005 });
 
       dummy.updateMatrix();
       // And apply the matrix to the instanced item
