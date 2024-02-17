@@ -6,6 +6,8 @@
 
 Its structure was very simple: a landing page with a button that leads to 1 of the projects and a menu with 4 links (the home page and the 3 projects). This was great at the time, and successfully helped me to get a job, but does not corresponds to my new needs. After working multiple years as a developer, I now have a lot more projects I can show. I also wanted to add links to articles in it, since I've heard that it's difficult to understand what I've done on the project, just by looking at them. Now that I gained more professional experience as a developer, and have a lot more projects to show, I feel more confident to include the previous work I did as an Art Director, which increases the number of projects.
 
+![portfolio__2021](https://github.com/ludivineConstanti/portfolio-2024/assets/24965333/0f81b308-0c72-4074-8ad0-afa64976147d)
+
 Since my new portfolio does not have much in common with the previous one, it made no sense to try to update it. Especially since I wanted to use a new tech-stack. I therefore started a new one from scratch.
 
 ## ✅ Requirements for my new portfolio
@@ -24,9 +26,13 @@ Not every skill I gained is relevant to my portfolio's users. But since I am qui
 
 I think the skill badges are also a great opportunity to communicate my level on the skills that I feature. I've heard a lot of criticism about candidates who show a progress bar on skills like TypeScript and Figma (since it doesn't mean much). I think being able to see in how many projects I used the tech-stack/software/skill that I am talking about help giving an idea of how often I use it during my work, and therefore the familiarity that I have with it.
 
+![projects](https://github.com/ludivineConstanti/portfolio-2024/assets/24965333/523432fa-998c-4c53-b36c-e0282fcafcea)
+
 ### 📰 Plenty of articles
 
 Over the years, I wrote some articles to document my learning journey. I heard that it's quite interesting to read, since it helps people understand my role in the project (and which parts were challenging). Those articles are unfortunately difficult to find, since they're inside of [multiple GitHub repositories](https://github.com/ludivineConstanti), as well as on [Medium](https://medium.com/@ludivine.constanti) and [Hashnode](https://ludivine-constanti.hashnode.dev/). Regrouping them in one place makes things easier.
+
+![articles](https://github.com/ludivineConstanti/portfolio-2024/assets/24965333/94ebf384-d775-4b07-9b60-3dda1fed7810)
 
 ### 🗂️ Highlight projects & articles
 
