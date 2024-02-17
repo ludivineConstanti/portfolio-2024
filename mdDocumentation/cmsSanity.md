@@ -12,6 +12,8 @@ The editing experience in Sanity is quite nice, as it has multiple features to i
 - It signals you if you can use the current text as a slug or not (having 2 identical slugs in the data would cause issues on the website).
 - It's able to hot reload.
 
+![sanity](https://github.com/ludivineConstanti/portfolio-2024/assets/24965333/a7d5d211-27e3-4811-94bf-623aa95666f6)
+
 ## ✅ TypeScript
 
 I like that it’s possible to create the schemas, for the CMS, in TypeScript. I am used to Decap CMS, where it is necessary to define the fields in a YAML or JSON file, which I find a lot less convenient (since the risk of making a typo or forgetting a field is higher, without the static type checking, I spend a lot more time double-checking and debugging the configuration).
