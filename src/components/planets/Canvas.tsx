@@ -7,14 +7,8 @@ import Composer from "./Composer";
 import PlanetsAndStars from "./PlanetsAndStars";
 import Camera from "./Camera";
 
-interface CanvasProps {
-  pixelSize?: number;
-}
-
-const CanvasComponent = ({ pixelSize = 100 }: CanvasProps) => {
+const CanvasComponent = () => {
   const [scrollPositionY, setScrollPositionY] = useState(0);
-
-  console.log("scrollPositionY", scrollPositionY);
 
   useScrollPosition(({ currPos }) => {
     setScrollPositionY(currPos.y);
