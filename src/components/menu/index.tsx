@@ -28,7 +28,7 @@ const Menu = ({
   const ref = React.useRef<HTMLDivElement>(null);
 
   useResizeObserver(ref.current, ({ clientWidth }) => {
-    setWidth(clientWidth);
+    setWidth(window ? window.innerWidth : clientWidth);
   });
 
   useEffect(() => {

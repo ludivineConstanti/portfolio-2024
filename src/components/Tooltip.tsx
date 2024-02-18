@@ -17,7 +17,7 @@ const Tooltip = ({
           "sm:left-0 sm:top-2/4 sm:-translate-y-2/4 sm:translate-x-[calc(-100%-1rem)]":
             side === "left",
         },
-        "text-label pointer-events-none absolute whitespace-nowrap rounded-full bg-white px-3 py-1 text-black opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 group-active:opacity-100",
+        "text-label pointer-events-none absolute block rounded-xl bg-white px-3 py-1 text-black opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100 group-active:opacity-100 sm:whitespace-nowrap",
       )}
     >
       <span

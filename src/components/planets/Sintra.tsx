@@ -17,8 +17,9 @@ import {
   MaterialWhite,
 } from "../materials";
 import { rotatePlanetOrStar } from "./constants";
+import { breakpoints } from "@/models";
 
-const Sintra = () => {
+const Sintra = ({ width }: { width: number }) => {
   const { nodes } = useGLTF("/planets/sintra.gltf") as unknown as {
     nodes: {
       glassDarkBlue: THREE.Mesh;
@@ -45,7 +46,11 @@ const Sintra = () => {
   });
   return (
     <group dispose={null}>
-      <group position={[-45, -40, -45]} scale={12} ref={(e) => setRef(e)}>
+      <group
+        position={width >= breakpoints.sm ? [-45, -40, -45] : [-20, -45, -80]}
+        scale={12}
+        ref={(e) => setRef(e)}
+      >
         <mesh geometry={nodes.glassDarkBlue.geometry}>
           <MaterialGlass.BlueDark />
         </mesh>

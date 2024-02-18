@@ -9,8 +9,9 @@ import * as THREE from "three";
 
 import { MaterialGreen, MaterialRed, MaterialWater } from "../materials";
 import { rotatePlanetOrStar } from "./constants";
+import { breakpoints } from "@/models";
 
-const Miyajima = () => {
+const Miyajima = ({ width }: { width: number }) => {
   const { nodes } = useGLTF("/planets/miyajima.gltf") as unknown as {
     nodes: {
       water: THREE.Mesh;
@@ -29,7 +30,11 @@ const Miyajima = () => {
     });
   });
   return (
-    <group scale={8} position={[-66.5, 28, -50]} ref={(e) => setRef(e)}>
+    <group
+      scale={8}
+      position={width >= breakpoints.sm ? [-66.5, 28, -50] : [-10.5, 40, -60]}
+      ref={(e) => setRef(e)}
+    >
       <mesh geometry={nodes.water.geometry}>
         <MaterialWater />
       </mesh>

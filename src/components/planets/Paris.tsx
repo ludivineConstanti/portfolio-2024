@@ -12,8 +12,9 @@ import {
   MaterialPink,
 } from "../materials";
 import { rotatePlanetOrStar } from "./constants";
+import { breakpoints } from "@/models";
 
-const Paris = () => {
+const Paris = ({ width }: { width: number }) => {
   const { nodes } = useGLTF("/planets/paris.gltf") as unknown as {
     nodes: {
       Sphere006: THREE.Mesh;
@@ -37,7 +38,11 @@ const Paris = () => {
   });
 
   return (
-    <group ref={(e) => setRef(e)} scale={12} position={[-17.7, 0, -30]}>
+    <group
+      ref={(e) => setRef(e)}
+      scale={12}
+      position={width >= breakpoints.sm ? [-17.7, 0, -30] : [2.5, -5, -50]}
+    >
       <mesh geometry={nodes.Sphere006.geometry}>
         <MaterialWhite />
       </mesh>
