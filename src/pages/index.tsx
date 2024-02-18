@@ -164,10 +164,8 @@ export const getStaticProps = async () => {
 
 const colorPrimary = "bg-blue-950";
 const colorSecondary = "bg-blue-800";
-const maxPixelSize = 200;
 
 const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const [pixelSize, setPixelSize] = useState(1);
   const pageId = InternalLinksIds.home;
   const pageData = internalLinks[pageId];
 
@@ -178,23 +176,8 @@ const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
         colorSecondary={colorSecondary}
         pageId={pageId}
       />
-      <Canvas pixelSize={pixelSize} />
-      <main
-        className="z-1 pointer-events-none relative"
-        onWheel={() => {
-          if (window && document) {
-            setPixelSize(
-              Math.round(
-                Math.max(
-                  (window.scrollY / document.documentElement.scrollHeight) *
-                    maxPixelSize,
-                  1,
-                ),
-              ),
-            );
-          }
-        }}
-      >
+      <Canvas />
+      <main className="z-1 pointer-events-none relative">
         <HomeHero />
         <HomeWorkExperienceSection
           workExperiences={data.sectionWorkExperiences.workExperiences}

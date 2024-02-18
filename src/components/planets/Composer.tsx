@@ -6,11 +6,13 @@ import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass";
 import { PixelShader } from "three/examples/jsm/shaders/PixelShader.js";
 import * as THREE from "three";
 
+const maxPixelSize = 100;
+
 interface ComposerProps {
-  pixelSize: number;
+  scrollPositionY: number;
 }
 
-const Composer = ({ pixelSize }: ComposerProps) => {
+const Composer = ({ scrollPositionY }: ComposerProps) => {
   const { gl, scene, camera, size } = useThree();
 
   const shaders = useMemo(() => {
@@ -35,8 +37,20 @@ const Composer = ({ pixelSize }: ComposerProps) => {
   }, []);
 
   useEffect(() => {
-    shaders.pixel.uniforms["pixelSize"].value = pixelSize;
-  }, [pixelSize]);
+    if (window && document) {
+      const pixelSize =
+        window.scrollY > 50
+          ? Math.round(
+              Math.max(
+                (window.scrollY / document.documentElement.scrollHeight) *
+                  maxPixelSize,
+                1,
+              ),
+            )
+          : 1;
+      shaders.pixel.uniforms["pixelSize"].value = pixelSize;
+    }
+  }, [scrollPositionY]);
 
   useEffect(() => {
     shaders.pixel.uniforms["resolution"].value = new THREE.Vector2(

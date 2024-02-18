@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { NoToneMapping } from "three";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
 import Composer from "./Composer";
 import PlanetsAndStars from "./PlanetsAndStars";
 import Camera from "./Camera";
 
-interface CanvasProps {
-  pixelSize?: number;
-}
+const CanvasComponent = () => {
+  const [scrollPositionY, setScrollPositionY] = useState(0);
 
-const CanvasComponent = ({ pixelSize = 100 }: CanvasProps) => {
+  useScrollPosition(({ currPos }) => {
+    setScrollPositionY(currPos.y);
+  });
+
   return (
     <div className="fixed top-0 h-full w-full">
       <Canvas
@@ -22,9 +25,9 @@ const CanvasComponent = ({ pixelSize = 100 }: CanvasProps) => {
         }}
         linear
       >
-        <Composer pixelSize={pixelSize} />
+        <Composer scrollPositionY={scrollPositionY} />
         <Camera />
-        <PlanetsAndStars />
+        <PlanetsAndStars scrollPositionY={scrollPositionY} />
       </Canvas>
     </div>
   );
