@@ -2,6 +2,7 @@ import type { TypedObject } from "sanity";
 
 export * from "./constants";
 export * from "./constantsMenu";
+export * from "./constantsClients";
 
 export type SkillBadgeSizeOptions = "small" | "medium" | "big";
 

@@ -9,6 +9,7 @@ import {
   HomeWorkExperienceSection,
   HomeProjectSection,
   HomeArticleSection,
+  HomeClientSection,
   Menu,
   Canvas,
 } from "@/components";
@@ -74,6 +75,7 @@ export const getStaticProps = async () => {
     await client.fetch(groq`*[_type == "project"] | order(dateEnd desc){
   _id,
   workExperience,
+  client,
   title,
   dateEnd,
   slug,
@@ -104,6 +106,45 @@ export const getStaticProps = async () => {
     }),
   );
 
+  const dataClients = await client.fetch(groq`*[_type == "client"]{
+    _id,
+    id,
+    text,
+    href,
+    developer,
+    role->{text},
+    workExperience->{emoji, title},
+    colorPrimary,
+  }`);
+
+  const clientsWithProjects = dataClients.map((client: any) => {
+    const hasProject =
+      dataProjects.filter(
+        (e: { client?: { _ref: string } }) =>
+          e.client && e.client._ref === client._id,
+      ).length > 0;
+    return { ...client, hasProject: hasProject || null };
+  });
+
+  interface ClientSortingProps {
+    hasProject: true | null;
+    developer: true | null;
+  }
+
+  const clients = clientsWithProjects.sort(
+    (a: ClientSortingProps, b: ClientSortingProps) => {
+      // clients with no projects should be at the end
+      if (a.hasProject && b.hasProject === null) return -1;
+      if (a.hasProject === null && b.hasProject) return 1;
+
+      // developer experience should be at the beginning
+      if (a.developer && b.developer === null) return -1;
+      if (a.developer === null && b.developer) return 1;
+
+      return 0;
+    },
+  );
+
   const data = {
     ...dataHomePage[0],
     ...sectionProjects,
@@ -111,6 +152,7 @@ export const getStaticProps = async () => {
     sectionWorkExperiences: {
       workExperiences: dataWorkExperiencesWithProjects,
     },
+    clients,
   };
 
   return {
@@ -122,12 +164,13 @@ export const getStaticProps = async () => {
 
 const colorPrimary = "bg-blue-950";
 const colorSecondary = "bg-blue-800";
-const maxPixelSize = 250;
+const maxPixelSize = 200;
 
 const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [pixelSize, setPixelSize] = useState(1);
   const pageId = InternalLinksIds.home;
   const pageData = internalLinks[pageId];
+
   return (
     <Layout title={pageData.text}>
       <Menu
@@ -166,6 +209,7 @@ const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
           title={data.sectionArticles.title}
           articles={data.sectionArticles.articles}
         />
+        <HomeClientSection clients={data.clients} />
       </main>
     </Layout>
   );
