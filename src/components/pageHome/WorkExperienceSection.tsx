@@ -8,7 +8,7 @@ const WorkExperienceSection = ({
   workExperiences: WorkExperienceData[];
 }) => {
   return (
-    <Section emoji="🗃️" title="Work experience" color="bg-blue-800">
+    <Section emoji="🗃️" title="Work experience & courses" color="bg-blue-800">
       {workExperiences.map((workExperience) => (
         <WorkExperience
           {...workExperience}

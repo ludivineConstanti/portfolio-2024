@@ -71,13 +71,14 @@ const WorkExperience = ({
             {role} {title}
           </h3>
           <p className="text-h6">
-            📆 {yearStart} - {yearEnd} ({period}) 📆 {location}
+            📆 {yearStart} {yearStart !== yearEnd ? `- ${yearEnd} ` : ""}(
+            {period}) 📆 {location}
           </p>
         </div>
       </header>
       <div className="home-article-padding-x home-article-padding-b pt-4 sm:pt-8">
         <div className="[&>section>h4]:text-h5 [&>section>p]:text-body home-article-padding-small-b grid gap-[var(--home-article-padding-small-base)] sm:gap-[var(--home-article-padding-small-sm)] xl:grid-cols-2 xl:gap-[var(--home-article-padding-small-xl)] [&>section>h4]:mb-3 xl:[&>section>h4]:mb-4 [&>section>p:not(:last-child)]:mb-6">
-          <section>
+          <section className="[&>p>a]:text-link">
             <PortableText value={text} />
           </section>
           <section>

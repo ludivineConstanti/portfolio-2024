@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
 import { client, queryProjectLink, queryArticleLink } from "@/sanity/utils";
-import { sortAlphabetically } from "@/utils";
+import { sortAlphabetically, sortByDateEnd } from "@/utils";
 import {
   Layout,
   HomeHero,
@@ -50,7 +50,7 @@ export const getStaticProps = async () => {
   };
 
   const dataWorkExperiences =
-    await client.fetch(groq`*[_type == "workExperience"]{
+    await client.fetch(groq`*[_type == "workExperience"] | order(dateEnd desc){
     _id,
     title,
     role,
@@ -86,24 +86,18 @@ export const getStaticProps = async () => {
 }`);
 
   const dataWorkExperiencesWithProjects = dataWorkExperiences.map(
-    (workExperience: WorkExperienceData) => ({
-      ...workExperience,
-      skillBadges: sortAlphabetically(workExperience.skillBadges),
-      projects: dataProjects
-        .filter(
-          (project: ProjectTeaserData) =>
-            project.workExperience &&
-            project.workExperience._ref === workExperience._id,
-        )
-        .sort((a: ProjectTeaserData, b: ProjectTeaserData) => {
-          if (a.dateEnd === undefined && b.dateEnd !== undefined) {
-            return -1;
-          } else if (a.dateEnd !== undefined && b.dateEnd === undefined) {
-            return 1;
-          }
-          return 0;
-        }),
-    }),
+    (workExperience: WorkExperienceData) => {
+      const workExperienceProjects = dataProjects.filter(
+        (project: ProjectTeaserData) =>
+          project.workExperience &&
+          project.workExperience._ref === workExperience._id,
+      );
+      return {
+        ...workExperience,
+        skillBadges: sortAlphabetically(workExperience.skillBadges),
+        projects: sortByDateEnd(workExperienceProjects),
+      };
+    },
   );
 
   const dataClients = await client.fetch(groq`*[_type == "client"]{
@@ -145,13 +139,14 @@ export const getStaticProps = async () => {
     },
   );
 
+  const workExperiences = sortByDateEnd(dataWorkExperiencesWithProjects);
   const data = {
     ...dataHomePage[0],
+    sectionWorkExperiences: {
+      workExperiences,
+    },
     ...sectionProjects,
     ...sectionArticles,
-    sectionWorkExperiences: {
-      workExperiences: dataWorkExperiencesWithProjects,
-    },
     clients,
   };
 
