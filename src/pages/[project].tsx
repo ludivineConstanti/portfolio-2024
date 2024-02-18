@@ -167,14 +167,14 @@ export const getStaticProps = async ({
   const posts = postsData
     .sort((a, b) => {
       // INSTAGRAM post get at the bottom
-      if (a.instagramPost === null && b.instagramPost !== null) return -1;
-      if (a.instagramPost !== null && b.instagramPost === null) return 1;
+      if (a.instagramPost === null && b.instagramPost) return -1;
+      if (a.instagramPost && b.instagramPost === null) return 1;
       // YOUTUBE
-      if (a.youtubePost === null && b.youtubePost !== null) return -1;
-      if (a.youtubePost !== null && b.youtubePost === null) return 1;
+      if (a.youtubePost === null && b.youtubePost) return -1;
+      if (a.youtubePost && b.youtubePost === null) return 1;
       // LINKEDIN
-      if (a.linkedinPost === null && b.linkedinPost !== null) return -1;
-      if (a.linkedinPost !== null && b.linkedinPost === null) return 1;
+      if (a.linkedinPost === null && b.linkedinPost) return -1;
+      if (a.linkedinPost && b.linkedinPost === null) return 1;
 
       return 0;
     })
