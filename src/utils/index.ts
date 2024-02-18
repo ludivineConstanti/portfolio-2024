@@ -46,3 +46,14 @@ export const sortAlphabetically = <T extends { text: string }[]>(
 ): T => {
   return data.sort((a, b) => (a.text > b.text ? 1 : -1));
 };
+
+export const sortByDateEnd = <T extends { dateEnd: Date }[]>(data: T): T => {
+  return data.sort((a, b) => {
+    if (a.dateEnd === undefined && b.dateEnd !== undefined) {
+      return -1;
+    } else if (a.dateEnd !== undefined && b.dateEnd === undefined) {
+      return 1;
+    }
+    return 0;
+  });
+};

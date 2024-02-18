@@ -32,4 +32,8 @@ This was a bit disappointing, but since creating a single entry in the collectio
 
 ## 💾 Storage
 
-Sanity stores data on the cloud only. I would have preferred to have it stored in my GitHub repository, alongside my code, especially since it would make data versioning more convenient. I am not sure if there is any possibility of accessing backup data or versioning with Sanity.
+Sanity stores data on the cloud only. I would have preferred to have it stored in my GitHub repository, alongside my code, especially since it would make data versioning more convenient. I am not sure if there is any possibility of accessing backup data or versioning with Sanity. Being able to store data on your GitHub repository offers multiple advantages:
+
+- Backup data: the data is stored on GitHub, but also on your local repository, so if you don't have access to one data source, you can always use the other one.
+- Versioning: since GitHub uses branches to merge your new code modification only when they're ready, you can do the same with new content, start adding an article, switch to another task, and then merge it in next week when it is ready. With the data stored in the cloud, every change you make is instant, and not wanting things to be published immediately will require extra set-up.
+- Debugging: the versioning possibilities from Github are also useful for debugging, since changes are made in isolation, you can make sure that the data you added does not cause any issue before merging it into the main branch.

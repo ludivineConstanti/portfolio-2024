@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import InternalLink from "./InternalLink";
 import SocialMedia from "./SocialMedia";
@@ -10,7 +10,9 @@ import {
   InternalLinksIds,
   socialMedias,
   SocialMediaIds,
+  breakpoints,
 } from "@/models";
+import { useResizeObserver } from "@/hooks";
 
 const Menu = ({
   colorPrimary,
@@ -21,21 +23,34 @@ const Menu = ({
   colorSecondary: string;
   pageId?: InternalLinksIds;
 }) => {
+  const [width, setWidth] = useState(0);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  /* useEffect(() => {
-    if (document && window) {
-      if (menuIsOpen && window.innerWidth > 640) {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  useResizeObserver(ref.current, ({ clientWidth }) => {
+    setWidth(clientWidth);
+  });
+
+  useEffect(() => {
+    if (document) {
+      if (menuIsOpen && width < breakpoints.sm) {
         document.body.style.overflow = "hidden";
       } else {
+        if (width >= breakpoints.sm) {
+          setMenuIsOpen(false);
+        }
         document.body.style.overflow = "auto";
       }
     }
-  }, [menuIsOpen]); */
+  }, [menuIsOpen, width]);
 
   const internalLinksKeys = Object.keys(internalLinks) as InternalLinksIds[];
   const socialMediasKeys = Object.keys(socialMedias) as SocialMediaIds[];
   return (
-    <header className="pointer-events-none fixed z-10 grid h-full w-full grid-rows-[1fr_auto] sm:mt-6 sm:block xl:mt-7">
+    <header
+      className="pointer-events-none fixed z-10 grid h-full w-full grid-rows-[1fr_auto] sm:mt-6 sm:block xl:mt-7"
+      ref={ref}
+    >
       <ButtonClose
         menuIsOpen={menuIsOpen}
         setMenuIsOpen={setMenuIsOpen}
