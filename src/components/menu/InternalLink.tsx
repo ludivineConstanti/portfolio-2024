@@ -16,7 +16,7 @@ const InternalLink = ({
       <Link
         className={clsx(
           color,
-          "text-link-interactive text-body pointer-events-auto rounded-full border-2 border-solid border-white px-2 py-1 underline-offset-[3px] outline-offset-4 hover:underline hover:decoration-1 focus-visible:outline-1 focus-visible:outline-white",
+          "text-link-interactive text-body pointer-events-auto rounded-full border-2 border-solid border-current px-2 py-1 underline-offset-[3px] outline-offset-4 hover:underline hover:decoration-1 focus-visible:outline-1 focus-visible:outline-current",
         )}
         href={href}
       >

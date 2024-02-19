@@ -19,6 +19,7 @@ export { default as HomeHero } from "./pageHome/Hero";
 export { default as HomeWorkExperienceSection } from "./pageHome/WorkExperienceSection";
 export { default as HomeProjectSection } from "./pageHome/ProjectSection";
 export { default as HomeArticleSection } from "./pageHome/ArticleSection";
+export { default as HomeAwardSection } from "./pageHome/AwardSection";
 export { default as HomeClientSection } from "./pageHome/ClientSection";
 
 /* all projects */

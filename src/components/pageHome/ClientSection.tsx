@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import Section from "./Section";
 import { Tooltip } from "@/components";
-import type { ProjectData } from "@/models";
 import ClientLogo from "./ClientLogo";
 
 const ClientSection = ({
@@ -20,7 +19,7 @@ const ClientSection = ({
       emoji="📔"
       title="Clients"
       color="bg-blue-800"
-      customClass="bg-blue-950"
+      customClass="bg-blue-950 pointer-events-auto"
     >
       <ul className="home-max-w flex flex-wrap justify-center gap-4 sm:gap-8 xl:gap-10">
         {clients.map((client) => (

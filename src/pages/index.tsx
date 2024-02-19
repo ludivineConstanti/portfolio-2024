@@ -9,6 +9,7 @@ import {
   HomeWorkExperienceSection,
   HomeProjectSection,
   HomeArticleSection,
+  HomeAwardSection,
   HomeClientSection,
   Menu,
   Canvas,
@@ -187,6 +188,7 @@ const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
           title={data.sectionArticles.title}
           articles={data.sectionArticles.articles}
         />
+        <HomeAwardSection />
         <HomeClientSection clients={data.clients} />
       </main>
     </Layout>

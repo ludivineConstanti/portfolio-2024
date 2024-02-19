@@ -52,7 +52,7 @@ const WorkExperience = ({
           <span
             className={clsx(
               colorLogo,
-              "border-3 block rounded-full border-2 border-solid border-current outline-offset-2 group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-white sm:flex sm:h-19 sm:w-19 sm:p-4",
+              "border-3 block rounded-full border-2 border-solid border-current outline-offset-2 group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-current sm:flex sm:h-19 sm:w-19 sm:p-4",
             )}
           >
             <img

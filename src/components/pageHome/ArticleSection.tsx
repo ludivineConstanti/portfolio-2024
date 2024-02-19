@@ -1,6 +1,6 @@
 import Section from "./Section";
 import { ArticleList } from "@/components";
-import { ArticleData } from "@/models";
+import { ArticleData, internalLinks } from "@/models";
 
 const colorTitle = "bg-blue-800";
 
@@ -19,7 +19,7 @@ const ArticleSection = ({
       title={title}
       color={colorTitle}
       margin="medium"
-      link={{ href: "/all-articles", text: "See all articles" }}
+      link={{ href: internalLinks.allArticles.href, text: "See all articles" }}
       customClass="bg-blue-950 pointer-events-auto"
     >
       <ArticleList color={colorTitle} articles={articles} />
