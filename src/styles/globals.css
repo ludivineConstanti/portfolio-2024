@@ -175,6 +175,12 @@
     @apply xl:gap-[var(--all-projects-all-articles-margin-xl)];
   }
 
+  .all-projects-all-articles-pt {
+    @apply pt-[var(--all-projects-all-articles-margin-base)];
+    @apply sm:pt-[var(--all-projects-all-articles-margin-sm)];
+    @apply xl:pt-[var(--all-projects-all-articles-margin-xl)];
+  }
+
   .all-projects-all-articles-pb {
     @apply pb-[var(--all-projects-all-articles-margin-base)];
     @apply sm:pb-[var(--all-projects-all-articles-margin-sm)];

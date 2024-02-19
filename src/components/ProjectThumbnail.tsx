@@ -16,7 +16,7 @@ const ProjectThumbnail = ({
     <li className="relative rounded-lg outline outline-2 outline-current transition-transform hover:scale-110 active:scale-125 xl:h-16">
       <a
         target="_blank"
-        className="group outline-offset-4 focus-visible:outline-2 focus-visible:outline-white"
+        className="group outline-offset-4 focus-visible:outline-2 focus-visible:outline-current"
         href={href}
       >
         {image && (

@@ -26,7 +26,7 @@ const LinkCTA = ({
         className={clsx(
           color,
 
-          "flex h-8 w-8 origin-[center_left] rounded-full border-[2px] border-solid border-white p-2 transition-transform group-hover:scale-125 group-active:scale-150 sm:h-12 sm:w-12 sm:p-3 xl:h-14 xl:w-14 xl:border-2 xl:p-3.5",
+          "flex h-8 w-8 origin-[center_left] rounded-full border-[2px] border-solid border-current p-2 transition-transform group-hover:scale-125 group-active:scale-150 sm:h-12 sm:w-12 sm:p-3 xl:h-14 xl:w-14 xl:border-2 xl:p-3.5",
         )}
       >
         <ArrowForward />

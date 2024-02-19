@@ -1,24 +1,26 @@
 import { clientIds } from "@/models";
-import Adidas from "@/content/clients/Adidas";
-import Bahlsen from "@/content/clients/Bahlsen";
-import BSR from "@/content/clients/BSR";
-import Bundesliga from "@/content/clients/Bundesliga";
-import BVR from "@/content/clients/BVR";
-import Carlsen from "@/content/clients/Carlsen";
-import EBay from "@/content/clients/EBay";
-import Ferrero from "@/content/clients/Ferrero";
-import ForumNewEconomy from "@/content/clients/ForumNewEconomy";
-import Fraunhofer from "@/content/clients/Fraunhofer";
-import Leopoldina from "@/content/clients/Leopoldina";
-import MateMate from "@/content/clients/MateMate";
-import MDR from "@/content/clients/MDR";
-import Netflix from "@/content/clients/Netflix";
-import Qi2 from "@/content/clients/Qi2";
-import Rundfunk from "@/content/clients/Rundfunk";
-import Swatch from "@/content/clients/Swatch";
-import Stiftung from "@/content/clients/Stiftung";
-import ThomasHenry from "@/content/clients/ThomasHenry";
-import Zalando from "@/content/clients/Zalando";
+import {
+  Adidas,
+  Bahlsen,
+  BSR,
+  Bundesliga,
+  BVR,
+  Carlsen,
+  EBay,
+  Ferrero,
+  ForumNewEconomy,
+  Fraunhofer,
+  Leopoldina,
+  MateMate,
+  MDR,
+  Netflix,
+  Qi2,
+  Rundfunk,
+  Swatch,
+  Stiftung,
+  ThomasHenry,
+  Zalando,
+} from "@/content";
 
 const ClientLogo = ({ id }: { id: string }) => {
   if (id === clientIds.adidas) {
