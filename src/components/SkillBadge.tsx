@@ -27,9 +27,9 @@ const SkillBadge = ({
     >
       {emoji && (
         <span
-          className={clsx("mr-1", {
-            "text-[1.5em]": size !== "big",
-            "text-[1.8em]": size === "big",
+          className={clsx("mr-1 text-[1em]", {
+            "sm:text-[1.5em]": size !== "big",
+            "sm:text-[1.8em]": size === "big",
           })}
         >
           {emoji}
