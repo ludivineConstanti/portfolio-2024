@@ -30,7 +30,7 @@ const TitlePage = ({
     >
       <Emoji emoji={emoji} />
       {text}
-      {doubleEmoji && <Emoji emoji={emoji} customClass="hidden sm:block" />}
+      {doubleEmoji && <Emoji emoji={emoji} customClass="hidden sm:inline" />}
     </h1>
   );
 };
