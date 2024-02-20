@@ -290,7 +290,7 @@ const ProjectPage = ({ data }: ProjectPageProps) => {
         />
         <SkillBadgeList
           size="big"
-          customClass={`justify-center p-16 xl:px-12 xl:py-15 ${data.colorSecondary}`}
+          customClass={`justify-center p-8 sm:p-16 xl:px-12 xl:py-15 ${data.colorSecondary}`}
           color={data.colorSkillBadge}
           skillBadges={data.skillBadges}
         />

@@ -14,11 +14,12 @@ const ExternalLink = ({
       <a
         href={href}
         target="_blank"
-        className="text-body grid grid-cols-[2.6rem_auto] items-center"
+        className="text-body grid grid-cols-[2rem_auto] items-center sm:grid-cols-[2.6rem_auto]"
       >
-        <span className="text-[1.75em]">{emoji}</span>{" "}
+        <span className="text-[1.25em] sm:text-[1.75em]">{emoji}</span>{" "}
         <span>
-          <span className="text-link">{text}</span> ↗️
+          <span className="text-link">{text}</span>{" "}
+          <span className="external-link-emoji-cta">↗️</span>
         </span>
       </a>
     </li>

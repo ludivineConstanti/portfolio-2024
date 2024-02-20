@@ -26,8 +26,8 @@
 
     /* all articles and all projects page */
 
-    --all-projects-all-articles-margin-base: 2rem;
-    --all-projects-all-articles-margin-sm: 4rem;
+    --all-projects-all-articles-margin-base: 5rem;
+    --all-projects-all-articles-margin-sm: 5rem;
     --all-projects-all-articles-margin-xl: 8rem;
   }
 }
@@ -37,7 +37,7 @@
 
   /* fonts */
   .text-h1 {
-    @apply text-[1.8rem] font-extralight;
+    @apply text-[1.8rem] font-extralight leading-none;
     @apply sm:text-[3rem];
     @apply xl:text-[3.8rem];
   }
@@ -85,6 +85,10 @@
   .text-link {
     @apply underline decoration-1 underline-offset-4;
     @apply text-link-interactive;
+  }
+
+  .external-link-emoji-cta {
+    @apply text-[0.6em] sm:text-[1em];
   }
 
   /* margins */

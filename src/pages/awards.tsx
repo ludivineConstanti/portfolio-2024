@@ -77,7 +77,7 @@ const AllProjectsPage = ({
                     <span className="text-body">{award.category.text}:</span>
                     <a className="text-h5" href={award.href} target="_blank">
                       <span className="text-link">{award.project.title}</span>{" "}
-                      ↗️
+                      <span className="external-link-emoji-cta">↗️</span>
                     </a>
                   </span>
                 </li>

@@ -1,9 +1,9 @@
 const Hero = () => {
   return (
-    <section className="mx-custom grid h-screen sm:grid-cols-2 sm:items-center">
+    <div className="mx-sm mx-xl grid h-screen sm:grid-cols-2 sm:items-center">
       <div className="col-end-[-1] flex justify-center">
-        <div>
-          <h1 className="text-h4 pointer-events-auto mt-40 font-light sm:mt-0">
+        <section className="mt-40 h-fit bg-blue-950 p-2 px-8 sm:mt-0 sm:px-2">
+          <h1 className="text-h4 pointer-events-auto font-light">
             Ludivine Constanti
           </h1>
           <h2 className="text-h2 pointer-events-auto mb-2 leading-none">
@@ -15,9 +15,9 @@ const Hero = () => {
             Creating digital experiences for award-winning agencies since 2017
             🏆
           </p>
-        </div>
+        </section>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -26,7 +26,7 @@ const Section = ({
       <h2
         className={clsx(
           classNameMarginTitle,
-          "text-h1 pointer-events-auto flex items-center justify-center",
+          "text-h1 pointer-events-auto flex justify-center gap-2 px-8 sm:items-center",
           color,
         )}
       >
