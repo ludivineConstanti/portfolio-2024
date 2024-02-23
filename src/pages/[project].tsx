@@ -9,7 +9,6 @@ import {
   SkillBadgeList,
   ProjectBlockBase,
   ProjectBlockLinkList,
-  Menu,
 } from "@/components";
 import { SlugProps, SkillBadgeData } from "@/models";
 import { groq } from "next-sanity";
@@ -269,11 +268,11 @@ interface ProjectPageProps {
 
 const ProjectPage = ({ data }: ProjectPageProps) => {
   return (
-    <Layout title={data.title}>
-      <Menu
-        colorPrimary={data.colorPrimary}
-        colorSecondary={data.colorSecondary}
-      />
+    <Layout
+      title={data.title}
+      colorPrimary={data.colorPrimary}
+      colorSecondary={data.colorSecondary}
+    >
       <main className={clsx(data.colorPrimary, "flex flex-col")}>
         <TitlePage
           emoji={data.emoji}

@@ -22,6 +22,10 @@ export { default as HomeArticleSection } from "./pageHome/ArticleSection";
 export { default as HomeAwardSection } from "./pageHome/AwardSection";
 export { default as HomeClientSection } from "./pageHome/ClientSection";
 
+/* sitemap */
+
+export { default as SitemapListOfLinks } from "./pageSitemap/ListOfLinks";
+
 /* all projects */
 
 export { default as AllProjectsProjectListsWithTitle } from "./pageAllProjects/ProjectListsWithTitle";
