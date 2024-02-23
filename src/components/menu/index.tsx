@@ -5,6 +5,7 @@ import clsx from "clsx";
 import InternalLink from "./InternalLink";
 import SocialMedia from "./SocialMedia";
 import ButtonClose from "./ButtonClose";
+import { ArrowDownload } from "..";
 import {
   internalLinks,
   InternalLinksIds,
@@ -78,6 +79,16 @@ const Menu = ({
                 {...internalLinks[internalLinkKey]}
               />
             ))}
+          <a
+            href="/resume_Ludivine_Constanti.pdf"
+            className={clsx(colorPrimary, "menu-link")}
+            download
+          >
+            Resume
+            <span className="w-[0.55rem]">
+              <ArrowDownload />
+            </span>
+          </a>
         </ul>
       </nav>
       <ul

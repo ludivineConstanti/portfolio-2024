@@ -87,6 +87,20 @@
     @apply text-link-interactive;
   }
 
+  .menu-link {
+    @apply text-link-interactive;
+    @apply text-body pointer-events-auto;
+    @apply flex gap-2;
+    @apply rounded-full;
+    @apply border-2 border-solid border-current;
+    @apply px-2 py-1;
+    @apply underline-offset-[3px] outline-offset-4;
+    @apply hover:underline;
+    @apply hover:decoration-1;
+    @apply focus-visible:outline-1;
+    @apply focus-visible:outline-current;
+  }
+
   .external-link-emoji-cta {
     @apply text-[0.6em] sm:text-[1em];
   }
