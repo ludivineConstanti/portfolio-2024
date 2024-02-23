@@ -81,7 +81,7 @@ const Menu = ({
             ))}
           <a
             href="/resume_Ludivine_Constanti.pdf"
-            className={clsx(colorPrimary, "menu-link")}
+            className={clsx(colorPrimary, "menu-link gap-1.5")}
             download
           >
             Resume

@@ -13,8 +13,14 @@ const InternalLink = ({
   color: string;
 }) => {
   return (
-    <li className=" transition-transform hover:scale-110 active:scale-125">
-      <Link className={clsx(color, "menu-link")} href={href}>
+    <li>
+      <Link
+        className={clsx(
+          color,
+          "menu-link text-link-interactive gap-2 underline-offset-[3px] outline-offset-4 hover:underline hover:decoration-1",
+        )}
+        href={href}
+      >
         {text}
         <span className="w-3.5">
           <ArrowForward />
