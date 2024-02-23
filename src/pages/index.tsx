@@ -11,7 +11,6 @@ import {
   HomeArticleSection,
   HomeAwardSection,
   HomeClientSection,
-  Menu,
   Canvas,
 } from "@/components";
 import type {
@@ -166,12 +165,12 @@ const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const pageData = internalLinks[pageId];
 
   return (
-    <Layout title={pageData.text}>
-      <Menu
-        colorPrimary={colorPrimary}
-        colorSecondary={colorSecondary}
-        pageId={pageId}
-      />
+    <Layout
+      title={pageData.text}
+      colorPrimary={colorPrimary}
+      colorSecondary={colorSecondary}
+      pageId={pageId}
+    >
       <Canvas />
       <main className="z-1 pointer-events-none relative">
         <HomeHero />

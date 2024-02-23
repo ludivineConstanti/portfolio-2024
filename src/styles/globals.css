@@ -133,6 +133,12 @@
     @apply xl:px-[var(--home-article-padding-xl)];
   }
 
+  .home-article-padding-y {
+    @apply py-[var(--home-article-padding-base)];
+    @apply sm:py-[var(--home-article-padding-sm)];
+    @apply xl:py-[var(--home-article-padding-xl)];
+  }
+
   .home-article-padding-t {
     @apply pt-[var(--home-article-padding-base)];
     @apply sm:pt-[var(--home-article-padding-sm)];

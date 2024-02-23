@@ -7,18 +7,24 @@ const LinkCTA = ({
   text,
   color,
   alignCenter = true,
+  marginBottom = "big",
 }: {
   href: string;
   text: string;
   color: string;
   alignCenter?: boolean;
+  marginBottom?: "small" | "big" | "none";
 }) => {
   return (
     <Link
       href={href}
       className={clsx(
-        { "self-center": alignCenter },
-        "text-h3 text-link-interactive group pointer-events-auto mb-16 flex max-w-fit items-center justify-center  gap-3 underline-offset-8 outline-offset-4 hover:underline hover:decoration-1 sm:mb-20 sm:gap-4 xl:mb-32 xl:gap-6",
+        {
+          "self-center": alignCenter,
+          "mb-16 sm:mb-20 xl:mb-32": marginBottom === "big",
+          "mb-4 xl:mb-8": marginBottom === "small",
+        },
+        "text-h3 text-link-interactive group pointer-events-auto flex max-w-fit items-center justify-center  gap-3 underline-offset-8 outline-offset-4 hover:underline hover:decoration-1 sm:gap-4 xl:gap-6",
       )}
     >
       {text}

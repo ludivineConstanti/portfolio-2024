@@ -3,27 +3,40 @@ export enum InternalLinksIds {
   allProjects = "allProjects",
   allArticles = "allArticles",
   awards = "awards",
+  sitemap = "sitemap",
 }
 
 export const internalLinks: Record<
   InternalLinksIds,
-  { emoji: string; text: string; href: string }
+  { emoji: string; text: string; href: string; showInMenu?: boolean }
 > = {
-  [InternalLinksIds.home]: { emoji: "🚀", text: "Home", href: "/" },
+  [InternalLinksIds.home]: {
+    emoji: "🚀",
+    text: "Home",
+    href: "/",
+    showInMenu: true,
+  },
   [InternalLinksIds.allProjects]: {
     emoji: "⚗️",
     text: "All Projects",
     href: "/all-projects",
+    showInMenu: true,
   },
   [InternalLinksIds.allArticles]: {
     emoji: "📰",
     text: "All Articles",
     href: "/all-articles",
+    showInMenu: true,
   },
   [InternalLinksIds.awards]: {
     emoji: "✨",
     text: "Awards",
     href: "/awards",
+  },
+  [InternalLinksIds.sitemap]: {
+    emoji: "🗺️",
+    text: "Sitemap",
+    href: "/sitemap",
   },
 };
 

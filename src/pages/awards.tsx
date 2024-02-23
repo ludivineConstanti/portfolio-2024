@@ -2,7 +2,7 @@ import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
 import clsx from "clsx";
 import { client } from "@/sanity/utils";
-import { Layout, TitlePage, Menu } from "@/components";
+import { Layout, TitlePage } from "@/components";
 import { internalLinks, InternalLinksIds } from "@/models";
 
 interface AwardData {
@@ -54,12 +54,12 @@ const AllProjectsPage = ({
   const pageId = InternalLinksIds.awards;
   const pageData = internalLinks[pageId];
   return (
-    <Layout title={pageData.text}>
-      <Menu
-        colorPrimary={colorPrimary}
-        colorSecondary={colorSecondary}
-        pageId={pageId}
-      />
+    <Layout
+      title={pageData.text}
+      colorPrimary={colorPrimary}
+      colorSecondary={colorSecondary}
+      pageId={pageId}
+    >
       <main className={clsx(colorPrimary, "all-projects-all-articles-pb")}>
         <TitlePage emoji="✨" text="Awards" color={colorSecondary} />
         <div className="all-projects-all-articles-pt flex justify-center">

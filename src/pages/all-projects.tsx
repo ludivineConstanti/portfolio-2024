@@ -7,7 +7,6 @@ import {
   Layout,
   TitlePage,
   AllProjectsProjectListsWithTitle,
-  Menu,
 } from "@/components";
 import { internalLinks, InternalLinksIds } from "@/models";
 import { returnProjectOrArticleYear } from "@/utils";
@@ -53,12 +52,12 @@ const AllProjectsPage = ({
   const pageId = InternalLinksIds.allProjects;
   const pageData = internalLinks[pageId];
   return (
-    <Layout title={pageData.text}>
-      <Menu
-        colorPrimary={colorPrimary}
-        colorSecondary={colorSecondary}
-        pageId={pageId}
-      />
+    <Layout
+      title={pageData.text}
+      colorPrimary={colorPrimary}
+      colorSecondary={colorSecondary}
+      pageId={pageId}
+    >
       <main className={clsx(colorPrimary, "all-projects-all-articles-pb")}>
         <TitlePage
           emoji={pageData.emoji}

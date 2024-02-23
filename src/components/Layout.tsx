@@ -2,8 +2,10 @@ import Head from "next/head";
 import { Lexend } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { metadata as metaDataConstants } from "@/models/constants";
+import { metadata as metaDataConstants, InternalLinksIds } from "@/models";
 import "@/styles/globals.css";
+import { Menu } from "@/components";
+import Footer from "./Footer";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -12,9 +14,15 @@ export const metadata = metaDataConstants;
 const RootLayout = ({
   children,
   title,
+  colorPrimary,
+  colorSecondary,
+  pageId,
 }: {
   children: React.ReactNode;
   title: string;
+  colorPrimary: string;
+  colorSecondary: string;
+  pageId?: InternalLinksIds;
 }) => {
   return (
     <div className={lexend.className}>
@@ -47,7 +55,13 @@ const RootLayout = ({
         />
         <meta property="twitter:image" content="/opengraph-image.jpg" />
       </Head>
+      <Menu
+        colorPrimary={colorPrimary}
+        colorSecondary={colorSecondary}
+        pageId={pageId}
+      />
       {children}
+      <Footer colorSecondary={colorSecondary} />
       <Analytics />
       <SpeedInsights />
     </div>

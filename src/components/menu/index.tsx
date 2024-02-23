@@ -14,6 +14,13 @@ import {
 } from "@/models";
 import { useResizeObserver } from "@/hooks";
 
+const internalLinksKeys = Object.keys(internalLinks) as InternalLinksIds[];
+const socialMediasKeys = Object.keys(socialMedias) as SocialMediaIds[];
+
+const menuLinksKeys = internalLinksKeys.filter(
+  (e) => internalLinks[e].showInMenu,
+);
+
 const Menu = ({
   colorPrimary,
   colorSecondary,
@@ -44,8 +51,6 @@ const Menu = ({
     }
   }, [menuIsOpen, width]);
 
-  const internalLinksKeys = Object.keys(internalLinks) as InternalLinksIds[];
-  const socialMediasKeys = Object.keys(socialMedias) as SocialMediaIds[];
   return (
     <header
       className="pointer-events-none fixed z-10 grid h-full w-full grid-rows-[1fr_auto] sm:mt-6 sm:block xl:mt-7"
@@ -64,7 +69,7 @@ const Menu = ({
         )}
       >
         <ul className="flex flex-col items-center justify-center gap-8 p-16 sm:flex-row sm:p-0">
-          {internalLinksKeys
+          {menuLinksKeys
             .filter((internalLinkKey) => internalLinkKey !== pageId)
             .map((internalLinkKey) => (
               <InternalLink

@@ -5,12 +5,7 @@ import { client, queryArticleLink } from "@/sanity/utils";
 import { sortAlphabetically, returnProjectOrArticleYear } from "@/utils";
 import type { ArticleData } from "@/models";
 import { internalLinks, InternalLinksIds } from "@/models";
-import {
-  TitlePage,
-  AllArticlesArticleListPerYear,
-  Layout,
-  Menu,
-} from "@/components";
+import { TitlePage, AllArticlesArticleListPerYear, Layout } from "@/components";
 
 export const getStaticProps = async () => {
   const data = await client.fetch(groq`*[_type == "article"] | order(date desc){
@@ -64,12 +59,12 @@ const AllArticlesPage = ({
   const pageId = InternalLinksIds.allArticles;
   const pageData = internalLinks[InternalLinksIds.allArticles];
   return (
-    <Layout title={pageData.text}>
-      <Menu
-        colorPrimary={colorPrimary}
-        colorSecondary={colorSecondary}
-        pageId={pageId}
-      />
+    <Layout
+      title={pageData.text}
+      colorPrimary={colorPrimary}
+      colorSecondary={colorSecondary}
+      pageId={pageId}
+    >
       <main className={clsx(colorPrimary, "all-projects-all-articles-pb")}>
         <TitlePage
           emoji={pageData.emoji}
