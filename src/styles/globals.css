@@ -87,6 +87,19 @@
     @apply text-link-interactive;
   }
 
+  .menu-link {
+    @apply text-link-interactive;
+    @apply underline-offset-[3px] outline-offset-4;
+    @apply hover:underline hover:decoration-1;
+    @apply border-2 border-solid border-current;
+    @apply text-body pointer-events-auto;
+    @apply flex rounded-full;
+    @apply px-2 py-1;
+    @apply focus-visible:outline-1;
+    @apply focus-visible:outline-current;
+    @apply transition-transform hover:scale-110 active:scale-125;
+  }
+
   .external-link-emoji-cta {
     @apply text-[0.6em] sm:text-[1em];
   }
