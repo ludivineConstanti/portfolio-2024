@@ -14,13 +14,7 @@ const InternalLink = ({
 }) => {
   return (
     <li>
-      <Link
-        className={clsx(
-          color,
-          "menu-link text-link-interactive gap-2 underline-offset-[3px] outline-offset-4 hover:underline hover:decoration-1",
-        )}
-        href={href}
-      >
+      <Link className={clsx(color, "menu-link gap-2")} href={href}>
         {text}
         <span className="w-3.5">
           <ArrowForward />
