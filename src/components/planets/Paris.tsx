@@ -13,8 +13,9 @@ import {
 } from "../materials";
 import { rotatePlanetOrStar } from "./constants";
 import { breakpoints } from "@/models";
+import { useAppSelector } from "@/store";
 
-const Paris = ({ width }: { width: number }) => {
+const Paris = () => {
   const { nodes } = useGLTF("/planets/paris.gltf") as unknown as {
     nodes: {
       Sphere006: THREE.Mesh;
@@ -36,6 +37,7 @@ const Paris = ({ width }: { width: number }) => {
       z: 0.003,
     });
   });
+  const { width } = useAppSelector((state) => state.system);
 
   return (
     <group
