@@ -223,6 +223,7 @@ body {
   margin: 0;
   color: white;
   background: #172554;
+  scroll-behavior: smooth;
 }
 a {
   color: white;

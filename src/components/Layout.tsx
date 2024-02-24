@@ -2,7 +2,11 @@ import Head from "next/head";
 import { Lexend } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { metadata as metaDataConstants, InternalLinksIds } from "@/models";
+import {
+  metadata as metaDataConstants,
+  InternalLinksIds,
+  MenuComponentProps,
+} from "@/models";
 import "@/styles/globals.css";
 import { Menu } from "@/components";
 import Footer from "./Footer";
@@ -11,19 +15,21 @@ const lexend = Lexend({ subsets: ["latin"] });
 
 export const metadata = metaDataConstants;
 
-const RootLayout = ({
+interface LayoutProps extends MenuComponentProps {
+  children: React.ReactNode;
+  title: string;
+  colorPrimary: string;
+  colorSecondary: string;
+}
+
+const Layout = ({
   children,
   title,
   colorPrimary,
   colorSecondary,
   pageId,
-}: {
-  children: React.ReactNode;
-  title: string;
-  colorPrimary: string;
-  colorSecondary: string;
-  pageId?: InternalLinksIds;
-}) => {
+  bottomNavigationLinks,
+}: LayoutProps) => {
   return (
     <div className={lexend.className}>
       <Head>
@@ -59,6 +65,7 @@ const RootLayout = ({
         colorPrimary={colorPrimary}
         colorSecondary={colorSecondary}
         pageId={pageId}
+        bottomNavigationLinks={bottomNavigationLinks}
       />
       {children}
       <Footer colorSecondary={colorSecondary} />
@@ -68,4 +75,4 @@ const RootLayout = ({
   );
 };
 
-export default RootLayout;
+export default Layout;

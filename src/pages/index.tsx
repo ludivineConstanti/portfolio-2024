@@ -25,8 +25,8 @@ import { querySkillBadges } from "@/sanity/utils";
 export const getStaticProps = async () => {
   const dataHomePage = await client.fetch(groq`*[_type == "pageHome"]{
       title,
-      sectionProjects{emoji,title,projects[]->{${queryProjectLink}}},
-      sectionArticles{emoji,title,articles[]->{${queryArticleLink}}},
+      sectionProjects{projects[]->{${queryProjectLink}}},
+      sectionArticles{articles[]->{${queryArticleLink}}},
     }`);
 
   const sectionProjects = {
@@ -157,6 +157,41 @@ export const getStaticProps = async () => {
   };
 };
 
+// CONSTANTS
+
+const workExperienceLink = {
+  emoji: "🗃️",
+  text: "Work experience & courses",
+  href: "workExperience",
+};
+const projectsLink = {
+  emoji: "⚗️",
+  text: "Projects",
+  href: "projects",
+};
+const articlesLink = {
+  emoji: "📰",
+  text: "Articles",
+  href: "articles",
+};
+const awardsLink = {
+  emoji: "✨",
+  text: "Awards",
+  href: "awards",
+};
+const clientsLink = {
+  emoji: "📔",
+  text: "Clients",
+  href: "clients",
+};
+const bottomNavigationLinks = [
+  workExperienceLink,
+  projectsLink,
+  articlesLink,
+  awardsLink,
+  clientsLink,
+];
+
 const colorPrimary = "bg-blue-950";
 const colorSecondary = "bg-blue-800";
 
@@ -170,25 +205,45 @@ const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
       colorPrimary={colorPrimary}
       colorSecondary={colorSecondary}
       pageId={pageId}
+      bottomNavigationLinks={bottomNavigationLinks}
     >
       <Canvas />
       <main className="z-1 pointer-events-none relative">
         <HomeHero />
         <HomeWorkExperienceSection
+          emoji={workExperienceLink.emoji}
+          title={workExperienceLink.text}
+          id={workExperienceLink.href}
+          colorSecondary={colorSecondary}
           workExperiences={data.sectionWorkExperiences.workExperiences}
         />
         <HomeProjectSection
-          emoji={data.sectionProjects.emoji}
-          title={data.sectionProjects.title}
+          emoji={projectsLink.emoji}
+          title={projectsLink.text}
+          id={projectsLink.href}
+          colorSecondary={colorSecondary}
           projects={data.sectionProjects.projects}
         />
         <HomeArticleSection
-          emoji={data.sectionArticles.emoji}
-          title={data.sectionArticles.title}
+          emoji={articlesLink.emoji}
+          title={articlesLink.text}
+          id={articlesLink.href}
+          colorSecondary={colorSecondary}
           articles={data.sectionArticles.articles}
         />
-        <HomeAwardSection />
-        <HomeClientSection clients={data.clients} />
+        <HomeAwardSection
+          emoji={awardsLink.emoji}
+          title={awardsLink.text}
+          id={awardsLink.href}
+          colorSecondary={colorSecondary}
+        />
+        <HomeClientSection
+          emoji={clientsLink.emoji}
+          title={clientsLink.text}
+          id={clientsLink.href}
+          colorSecondary={colorSecondary}
+          clients={data.clients}
+        />
       </main>
     </Layout>
   );

@@ -5,6 +5,7 @@ import { ArrowForward, LinkCTA } from "@/components";
 const classNameMarginTitle = "py-8 xl:py-16";
 
 const Section = ({
+  id,
   emoji,
   title,
   color,
@@ -13,6 +14,7 @@ const Section = ({
   link,
   customClass,
 }: {
+  id: string;
   emoji: string;
   title: string;
   color: string;
@@ -22,7 +24,7 @@ const Section = ({
   customClass?: string;
 }) => {
   return (
-    <section className={clsx(customClass, "flex flex-col")}>
+    <section id={id} className={clsx(customClass, "flex flex-col")}>
       <h2
         className={clsx(
           classNameMarginTitle,

@@ -20,12 +20,23 @@ const AwardWrapper = ({
   );
 };
 
-const AwardSection = () => {
+const AwardSection = ({
+  emoji,
+  title,
+  id,
+  colorSecondary,
+}: {
+  emoji: string;
+  title: string;
+  id: string;
+  colorSecondary: string;
+}) => {
   return (
     <Section
-      emoji="✨"
-      title="Awards"
-      color="bg-blue-800"
+      emoji={emoji}
+      title={title}
+      id={id}
+      color={colorSecondary}
       customClass="bg-blue-950 pointer-events-auto"
       link={{ href: internalLinks.awards.href, text: "See all Awards" }}
     >

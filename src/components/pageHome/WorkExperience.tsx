@@ -91,6 +91,7 @@ const WorkExperience = ({
                   image={project.image}
                   href={project.slug.current}
                   title={project.title}
+                  color={colorPrimary}
                 />
               ))}
             </ul>
