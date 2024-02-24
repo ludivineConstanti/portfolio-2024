@@ -1,10 +1,12 @@
 "use client";
 
+import { Provider } from "react-redux";
+import store from "@/store";
 import { Menu, LinkCTA } from "@/components";
 
 const Page404 = () => {
   return (
-    <>
+    <Provider store={store}>
       <Menu colorPrimary="bg-blue-950" colorSecondary="bg-blue-800" />
       <main className="mx-custom flex min-h-[100vh] flex-col items-center justify-center">
         <div className="relative flex flex-col justify-start sm:top-10">
@@ -22,7 +24,7 @@ const Page404 = () => {
           />
         </div>
       </main>
-    </>
+    </Provider>
   );
 };
 
