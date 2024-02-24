@@ -8,13 +8,7 @@ import { updateDelta } from "./constants";
 
 const transitionSpeed = 0.1;
 
-const PlanetsAndStars = ({
-  scrollPositionY,
-  width,
-}: {
-  scrollPositionY: number;
-  width: number;
-}) => {
+const PlanetsAndStars = ({ scrollPositionY }: { scrollPositionY: number }) => {
   const [groupRef, setGroupRef] = useState<THREE.Group | null>(null);
 
   useFrame(() => {
@@ -34,13 +28,13 @@ const PlanetsAndStars = ({
     <group ref={(e) => setGroupRef(e)}>
       <Stars count={250} />
       <Suspense fallback={null}>
-        <Sintra width={width} />
+        <Sintra />
       </Suspense>
       <Suspense fallback={null}>
-        <Paris width={width} />
+        <Paris />
       </Suspense>
       <Suspense fallback={null}>
-        <Miyajima width={width} />
+        <Miyajima />
       </Suspense>
     </group>
   );

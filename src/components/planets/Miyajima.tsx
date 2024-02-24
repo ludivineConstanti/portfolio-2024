@@ -10,8 +10,9 @@ import * as THREE from "three";
 import { MaterialGreen, MaterialRed, MaterialWater } from "../materials";
 import { rotatePlanetOrStar } from "./constants";
 import { breakpoints } from "@/models";
+import { useAppSelector } from "@/store";
 
-const Miyajima = ({ width }: { width: number }) => {
+const Miyajima = () => {
   const { nodes } = useGLTF("/planets/miyajima.gltf") as unknown as {
     nodes: {
       water: THREE.Mesh;
@@ -21,7 +22,7 @@ const Miyajima = ({ width }: { width: number }) => {
   };
 
   const [ref, setRef] = useState<THREE.Group | null>(null);
-
+  const { width } = useAppSelector((state) => state.system);
   useFrame(() => {
     rotatePlanetOrStar(ref, {
       x: 0.0005,

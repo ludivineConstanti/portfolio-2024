@@ -18,8 +18,9 @@ import {
 } from "../materials";
 import { rotatePlanetOrStar } from "./constants";
 import { breakpoints } from "@/models";
+import { useAppSelector } from "@/store";
 
-const Sintra = ({ width }: { width: number }) => {
+const Sintra = () => {
   const { nodes } = useGLTF("/planets/sintra.gltf") as unknown as {
     nodes: {
       glassDarkBlue: THREE.Mesh;
@@ -44,6 +45,8 @@ const Sintra = ({ width }: { width: number }) => {
       z: 0.0005,
     });
   });
+
+  const { width } = useAppSelector((state) => state.system);
   return (
     <group dispose={null}>
       <group

@@ -16,6 +16,8 @@ import {
 } from "@/models";
 import { useResizeObserver } from "@/hooks";
 import BottomNavigation from "./BottomNavigation";
+import { setWidthAndHeight } from "@/store/slices/system";
+import { useAppDispatch } from "@/store";
 
 const internalLinksKeys = Object.keys(internalLinks) as InternalLinksIds[];
 const socialMediasKeys = Object.keys(socialMedias) as SocialMediaIds[];
@@ -30,12 +32,22 @@ const Menu = ({
   pageId,
   bottomNavigationLinks,
 }: MenuComponentProps) => {
-  const [width, setWidth] = useState(0);
+  const dispatch = useAppDispatch();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [width, setWidth] = useState(0);
   const ref = React.useRef<HTMLDivElement>(null);
 
-  useResizeObserver(ref.current, ({ clientWidth }) => {
-    setWidth(window ? window.innerWidth : clientWidth);
+  useResizeObserver(ref.current, ({ clientWidth, clientHeight }) => {
+    if (window) {
+      const width = clientWidth || window.innerWidth;
+      setWidth(width);
+      dispatch(
+        setWidthAndHeight({
+          width,
+          height: clientHeight || window.innerHeight,
+        }),
+      );
+    }
   });
 
   useEffect(() => {
