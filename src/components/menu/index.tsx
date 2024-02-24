@@ -12,8 +12,10 @@ import {
   socialMedias,
   SocialMediaIds,
   breakpoints,
+  MenuComponentProps,
 } from "@/models";
 import { useResizeObserver } from "@/hooks";
+import BottomNavigation from "./BottomNavigation";
 
 const internalLinksKeys = Object.keys(internalLinks) as InternalLinksIds[];
 const socialMediasKeys = Object.keys(socialMedias) as SocialMediaIds[];
@@ -26,11 +28,8 @@ const Menu = ({
   colorPrimary,
   colorSecondary,
   pageId,
-}: {
-  colorPrimary: string;
-  colorSecondary: string;
-  pageId?: InternalLinksIds;
-}) => {
+  bottomNavigationLinks,
+}: MenuComponentProps) => {
   const [width, setWidth] = useState(0);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
@@ -54,7 +53,7 @@ const Menu = ({
 
   return (
     <header
-      className="pointer-events-none fixed z-10 grid h-full w-full grid-rows-[1fr_auto] sm:mt-6 sm:block xl:mt-7"
+      className="pointer-events-none fixed z-10 grid h-full w-full grid-rows-[1fr_auto]"
       ref={ref}
     >
       <ButtonClose
@@ -66,7 +65,7 @@ const Menu = ({
         className={clsx(
           { "hidden sm:flex": !menuIsOpen },
           colorPrimary,
-          "flex w-full justify-center sm:bg-[rgba(255,255,255,0)]",
+          "flex w-full justify-center sm:absolute sm:top-6 sm:block sm:bg-[rgba(255,255,255,0)] xl:top-7",
         )}
       >
         <ul className="flex flex-col items-center justify-center gap-8 p-16 sm:flex-row sm:p-0">
@@ -106,6 +105,14 @@ const Menu = ({
           />
         ))}
       </ul>
+      {bottomNavigationLinks && menuIsOpen === false && (
+        <nav className="absolute bottom-0 left-0 w-full">
+          <BottomNavigation
+            colorPrimary={colorPrimary}
+            bottomNavigationLinks={bottomNavigationLinks}
+          />
+        </nav>
+      )}
     </header>
   );
 };

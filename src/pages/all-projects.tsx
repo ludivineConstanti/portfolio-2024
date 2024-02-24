@@ -51,12 +51,19 @@ const AllProjectsPage = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const pageId = InternalLinksIds.allProjects;
   const pageData = internalLinks[pageId];
+
   return (
     <Layout
       title={pageData.text}
       colorPrimary={colorPrimary}
       colorSecondary={colorSecondary}
       pageId={pageId}
+      bottomNavigationLinks={Object.keys(data.projects)
+        .reverse()
+        .map((year) => ({
+          href: year,
+          text: year,
+        }))}
     >
       <main className={clsx(colorPrimary, "all-projects-all-articles-pb")}>
         <TitlePage

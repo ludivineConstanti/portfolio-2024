@@ -16,16 +16,6 @@ export default defineType({
       type: "object",
       fields: [
         {
-          name: "emoji",
-          title: "Emoji",
-          type: "string",
-        },
-        {
-          name: "title",
-          title: "Title",
-          type: "string",
-        },
-        {
           name: "projects",
           title: "Projects",
           type: "array",
@@ -45,16 +35,6 @@ export default defineType({
       title: "Section Articles",
       type: "object",
       fields: [
-        {
-          name: "emoji",
-          title: "Emoji",
-          type: "string",
-        },
-        {
-          name: "title",
-          title: "Title",
-          type: "string",
-        },
         {
           name: "articles",
           title: "Articles",

@@ -4,19 +4,24 @@ import type { ProjectData } from "@/models";
 import { internalLinks } from "@/models";
 
 const ProjectSection = ({
+  id,
   emoji,
   title,
   projects,
+  colorSecondary,
 }: {
+  id: string;
   emoji: string;
   title: string;
+  colorSecondary: string;
   projects: ProjectData[];
 }) => {
   return (
     <Section
+      id={id}
       emoji={emoji}
       title={title}
-      color="bg-blue-800"
+      color={colorSecondary}
       link={{ href: internalLinks.allProjects.href, text: "See all projects" }}
     >
       <ProjectLinkList projects={projects} />

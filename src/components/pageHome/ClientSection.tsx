@@ -4,8 +4,16 @@ import { Tooltip } from "@/components";
 import ClientLogo from "./ClientLogo";
 
 const ClientSection = ({
+  emoji,
+  title,
+  id,
+  colorSecondary,
   clients,
 }: {
+  emoji: string;
+  title: string;
+  id: string;
+  colorSecondary: string;
   clients: {
     id: string;
     colorPrimary: string;
@@ -16,9 +24,10 @@ const ClientSection = ({
 }) => {
   return (
     <Section
-      emoji="📔"
-      title="Clients"
-      color="bg-blue-800"
+      emoji={emoji}
+      title={title}
+      id={id}
+      color={colorSecondary}
       customClass="bg-blue-950 pointer-events-auto"
     >
       <ul className="home-max-w flex flex-wrap justify-center gap-4 sm:gap-8 xl:gap-10">

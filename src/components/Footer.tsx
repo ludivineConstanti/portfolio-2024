@@ -11,9 +11,9 @@ const footerLinksKeys = internalLinksKeys.filter(
 const Footer = ({ colorSecondary }: { colorSecondary: string }) => {
   return (
     <footer
-      className={clsx(colorSecondary, "pointer-events-auto relative z-10")}
+      className={clsx(colorSecondary, "z-9 pointer-events-auto relative")}
     >
-      <ul className="flex justify-center gap-8 p-8 xl:p-12">
+      <ul className="flex justify-center gap-8 p-8 pb-16 xl:p-12 xl:pb-16">
         {footerLinksKeys.map((e) => (
           <li
             key={`footer-link-${internalLinks[e].text}`}

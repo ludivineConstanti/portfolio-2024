@@ -1,21 +1,23 @@
 import Image from "next/image";
-import { Tooltip } from "@/components";
+import Link from "next/link";
+import clsx from "clsx";
+import { Tooltip, ArrowForward } from "@/components";
 
 const ProjectThumbnail = ({
-  _id,
   image,
   href,
   title,
+  color,
 }: {
   _id: string;
   image: { url: string };
   href: string;
   title: string;
+  color: string;
 }) => {
   return (
     <li className="relative rounded-lg outline outline-2 outline-current transition-transform hover:scale-110 active:scale-125 xl:h-16">
-      <a
-        target="_blank"
+      <Link
         className="group outline-offset-4 focus-visible:outline-2 focus-visible:outline-current"
         href={href}
       >
@@ -28,11 +30,16 @@ const ProjectThumbnail = ({
             height={189}
           />
         )}
-        <div className="absolute bottom-1 right-1 flex origin-bottom-right rounded-sm text-[1.25rem] transition-transform group-hover:scale-125">
-          ↗️
+        <div
+          className={clsx(
+            color,
+            "absolute bottom-1.5 right-1.5 flex h-6 w-6 origin-bottom-right rounded-full border-2 border-current p-1 transition-transform group-hover:scale-125",
+          )}
+        >
+          <ArrowForward />
         </div>
         <Tooltip text={title} />
-      </a>
+      </Link>
     </li>
   );
 };

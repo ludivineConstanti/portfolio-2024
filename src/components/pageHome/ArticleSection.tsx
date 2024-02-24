@@ -2,27 +2,30 @@ import Section from "./Section";
 import { ArticleList } from "@/components";
 import { ArticleData, internalLinks } from "@/models";
 
-const colorTitle = "bg-blue-800";
-
 const ArticleSection = ({
   emoji,
   title,
   articles,
+  id,
+  colorSecondary,
 }: {
   emoji: string;
   title: string;
   articles: ArticleData[];
+  id: string;
+  colorSecondary: string;
 }) => {
   return (
     <Section
       emoji={emoji}
       title={title}
-      color={colorTitle}
+      color={colorSecondary}
+      id={id}
       margin="medium"
       link={{ href: internalLinks.allArticles.href, text: "See all articles" }}
       customClass="bg-blue-950 pointer-events-auto"
     >
-      <ArticleList color={colorTitle} articles={articles} />
+      <ArticleList color={colorSecondary} articles={articles} />
     </Section>
   );
 };

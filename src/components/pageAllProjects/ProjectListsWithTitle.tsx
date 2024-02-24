@@ -16,7 +16,7 @@ const ProjectListsWithTitle = ({
           .reverse()
           .map((key) => (
             <React.Fragment key={`project-section-${key}`}>
-              <TitleYear text={key} color={color} />
+              <TitleYear text={key} color={color} id={key} />
               <ProjectLinkList projects={projects[key]} />
             </React.Fragment>
           ))}

@@ -3,12 +3,20 @@ import WorkExperience from "./WorkExperience";
 import { WorkExperienceData } from "@/models";
 
 const WorkExperienceSection = ({
+  emoji,
+  title,
+  id,
+  colorSecondary,
   workExperiences,
 }: {
+  emoji: string;
+  title: string;
+  colorSecondary: string;
+  id: string;
   workExperiences: WorkExperienceData[];
 }) => {
   return (
-    <Section emoji="🗃️" title="Work experience & courses" color="bg-blue-800">
+    <Section id={id} emoji={emoji} title={title} color={colorSecondary}>
       {workExperiences.map((workExperience) => (
         <WorkExperience
           {...workExperience}

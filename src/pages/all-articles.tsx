@@ -64,6 +64,12 @@ const AllArticlesPage = ({
       colorPrimary={colorPrimary}
       colorSecondary={colorSecondary}
       pageId={pageId}
+      bottomNavigationLinks={Object.keys(data.articles)
+        .reverse()
+        .map((year) => ({
+          href: year,
+          text: year,
+        }))}
     >
       <main className={clsx(colorPrimary, "all-projects-all-articles-pb")}>
         <TitlePage
