@@ -1,9 +1,10 @@
+import React from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import type { ProjectData } from "@/models";
 import { SkillBadgeList, ArrowForward } from "@/components";
-import { returnProjectOrArticleYear } from "@/utils";
+import { returnProjectOrArticleYear, returnVisibleSkillBadges } from "@/utils";
 
 const Project = ({
   workExperience,
@@ -21,6 +22,8 @@ const Project = ({
   const start = new Date(dateStart).getFullYear();
   const end = returnProjectOrArticleYear(dateEnd, true);
 
+  const visibleSkillBadges = returnVisibleSkillBadges(skillBadges);
+
   return (
     <li>
       <Link
@@ -31,7 +34,7 @@ const Project = ({
         )}
       >
         {image && (
-          <div className="flex w-full flex-shrink-0 overflow-hidden rounded-lg xl:w-[33%]">
+          <div className="flex h-fit w-full flex-shrink-0 overflow-hidden rounded-lg xl:w-[33%]">
             <Image
               className="h-full w-full object-cover"
               src={image.url}
@@ -56,7 +59,7 @@ const Project = ({
           <SkillBadgeList
             size="small"
             color={colorSkillBadge}
-            skillBadges={skillBadges}
+            skillBadges={visibleSkillBadges}
           />
         </div>
         <div
@@ -72,4 +75,4 @@ const Project = ({
   );
 };
 
-export default Project;
+export default React.memo(Project);

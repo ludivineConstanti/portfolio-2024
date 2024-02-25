@@ -15,6 +15,8 @@ export interface SkillBadgeData {
   _id: string;
   emoji: string;
   text: string;
+  techStack: true | null;
+  highlighted: true | null;
 }
 
 interface ArticleCategoryData {

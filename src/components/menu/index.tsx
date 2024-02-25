@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
+
 import InternalLink from "./InternalLink";
 import SocialMedia from "./SocialMedia";
 import ButtonClose from "./ButtonClose";
+import SearchBar from "./SearchBar";
 import { ArrowDownload } from "..";
 import {
   internalLinks,
@@ -26,11 +28,14 @@ const menuLinksKeys = internalLinksKeys.filter(
   (e) => internalLinks[e].showInMenu,
 );
 
+const classNameMenuGap = "gap-8 sm:gap-4 xl:gap-8";
+
 const Menu = ({
   colorPrimary,
   colorSecondary,
   pageId,
   bottomNavigationLinks,
+  skillsFilter,
 }: MenuComponentProps) => {
   const dispatch = useAppDispatch();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -73,23 +78,38 @@ const Menu = ({
         setMenuIsOpen={setMenuIsOpen}
         color={colorPrimary}
       />
-      <nav
+      <div
         className={clsx(
-          { "hidden sm:flex": !menuIsOpen },
-          colorPrimary,
-          "flex w-full justify-center sm:absolute sm:top-6 sm:block sm:bg-[rgba(255,255,255,0)] xl:top-7",
+          classNameMenuGap,
+          "z-10 flex w-full justify-center sm:absolute sm:top-6 sm:mx-4 sm:items-start xl:top-7",
         )}
       >
-        <ul className="flex flex-col items-center justify-center gap-8 p-16 sm:flex-row sm:p-0">
-          {menuLinksKeys
-            .filter((internalLinkKey) => internalLinkKey !== pageId)
-            .map((internalLinkKey) => (
-              <InternalLink
-                color={colorPrimary}
-                key={`internal-link-${internalLinkKey}`}
-                {...internalLinks[internalLinkKey]}
-              />
-            ))}
+        <div
+          className={clsx(
+            { hidden: !menuIsOpen },
+            colorPrimary,
+            classNameMenuGap,
+            "flex w-full flex-col items-center justify-center p-16 sm:flex sm:w-fit sm:flex-row sm:bg-[rgba(255,255,255,0)] sm:p-0",
+          )}
+        >
+          <nav>
+            <ul
+              className={clsx(
+                classNameMenuGap,
+                "flex flex-col items-center justify-center sm:flex-row",
+              )}
+            >
+              {menuLinksKeys
+                .filter((internalLinkKey) => internalLinkKey !== pageId)
+                .map((internalLinkKey) => (
+                  <InternalLink
+                    color={colorPrimary}
+                    key={`internal-link-${internalLinkKey}`}
+                    {...internalLinks[internalLinkKey]}
+                  />
+                ))}
+            </ul>
+          </nav>
           <a
             href="/resume_Ludivine_Constanti.pdf"
             className={clsx(colorPrimary, "menu-link gap-1.5")}
@@ -100,8 +120,13 @@ const Menu = ({
               <ArrowDownload />
             </span>
           </a>
-        </ul>
-      </nav>
+        </div>
+        {skillsFilter && menuIsOpen === false && (
+          <div className="relative top-5 sm:top-0">
+            <SearchBar skillsFilter={skillsFilter} />
+          </div>
+        )}
+      </div>
       <ul
         className={clsx(
           { "hidden sm:flex": !menuIsOpen },

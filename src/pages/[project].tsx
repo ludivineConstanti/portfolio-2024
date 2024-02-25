@@ -13,7 +13,11 @@ import {
 import { SlugProps, SkillBadgeData } from "@/models";
 import { groq } from "next-sanity";
 import { client, querySkillBadges } from "@/sanity/utils";
-import { sortAlphabetically, returnProjectOrArticleYear } from "@/utils";
+import {
+  sortAlphabetically,
+  returnProjectOrArticleYear,
+  returnVisibleSkillBadges,
+} from "@/utils";
 
 // Returns a list of possible value for the projects id
 export const getStaticPaths = async () => {
@@ -222,7 +226,7 @@ export const getStaticProps = async ({
         ...data[0],
         dateStart: new Date(data[0].dateStart).getFullYear(),
         dateEnd: returnProjectOrArticleYear(data[0].dateEnd, true),
-        skillBadges,
+        skillBadges: returnVisibleSkillBadges(skillBadges, 15),
         role: role[0],
         client: projectClient,
         projectLinks: projectLinks.length ? projectLinks : null,

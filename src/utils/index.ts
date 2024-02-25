@@ -1,3 +1,5 @@
+import { SkillBadgeData } from "@/models";
+
 export const returnProjectOrArticleYear = (
   year?: Date | string,
   shouldReturnPresent = false,
@@ -56,4 +58,67 @@ export const sortByDateEnd = <T extends { dateEnd: Date }[]>(data: T): T => {
     }
     return 0;
   });
+};
+
+export const returnDataBasedOnFilterState = <
+  T extends { skillBadges: { _id: string }[] }[],
+>(
+  data: T,
+  selectedSkillsFilter: { value: string }[],
+): T => {
+  const selectedSkillsFilterIds = selectedSkillsFilter.map((e) => e.value);
+  const newData = data.filter((item) => {
+    return item.skillBadges.some((skillBadge) => {
+      return selectedSkillsFilterIds.includes(skillBadge._id);
+    });
+  }) as T;
+  return newData;
+};
+
+export const returnSkillsForFilter = ({
+  data,
+  projects,
+  articles,
+}: {
+  data: { _id: string; text: string }[];
+  projects: { skillBadges: { _id: string }[] }[];
+  articles: { skillBadges: { _id: string }[] }[];
+}) => {
+  return data
+    .filter((skill) => {
+      const projectsHaveSkill = projects.some((project) => {
+        return project.skillBadges.some((projectSkill) => {
+          return projectSkill._id === skill._id;
+        });
+      });
+      const articlesHaveSkill = articles.some((article) => {
+        return article.skillBadges.some((articleSkill) => {
+          return articleSkill._id === skill._id;
+        });
+      });
+      return projectsHaveSkill || articlesHaveSkill;
+    })
+    .map((skill) => ({
+      value: skill._id,
+      label: skill.text,
+    }));
+};
+
+export const returnVisibleSkillBadges = (
+  skillBadges: SkillBadgeData[],
+  maxNumber?: number,
+) => {
+  const max = maxNumber || 10;
+  const filteredSkillBadges = skillBadges.filter(
+    (skillBadge) => skillBadge.techStack || skillBadge.highlighted,
+  );
+
+  let visibleSkillBadges = skillBadges;
+  if (visibleSkillBadges.length > max) {
+    visibleSkillBadges =
+      filteredSkillBadges.length <= max
+        ? filteredSkillBadges
+        : skillBadges.filter((skillBadge) => skillBadge.techStack);
+  }
+  return visibleSkillBadges;
 };
