@@ -15,6 +15,16 @@ export default defineType({
       title: "Text",
       type: "string",
     }),
+    defineField({
+      name: "techStack",
+      title: "Tech stack",
+      type: "boolean",
+    }),
+    defineField({
+      name: "highlighted",
+      title: "highlighted",
+      type: "boolean",
+    }),
   ],
   preview: {
     select: {
