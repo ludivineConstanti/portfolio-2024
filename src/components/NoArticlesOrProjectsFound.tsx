@@ -5,8 +5,10 @@ import { useAppSelector } from "@/store";
 
 const NoArticlesOrProjectsFound = ({
   linksToArticlesOrProjects,
+  color,
 }: {
   linksToArticlesOrProjects: "articles" | "projects";
+  color: string;
 }) => {
   const {
     selectedSkillsFilter,
@@ -40,7 +42,7 @@ const NoArticlesOrProjectsFound = ({
               : internalLinks.allArticles.href
           }
           text={`${number} ${text}`}
-          color="bg-blue-800"
+          color={color}
           alignCenter={false}
           marginBottom="none"
         />

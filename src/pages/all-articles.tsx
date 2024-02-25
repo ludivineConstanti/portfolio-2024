@@ -147,7 +147,10 @@ const AllArticlesPage = ({
             color={colorSecondary}
           />
         ) : (
-          <NoArticlesOrProjectsFound linksToArticlesOrProjects="projects" />
+          <NoArticlesOrProjectsFound
+            linksToArticlesOrProjects="projects"
+            color={colorSecondary}
+          />
         )}
       </main>
     </Layout>

@@ -134,7 +134,10 @@ const AllProjectsPage = ({
             projects={projects}
           />
         ) : (
-          <NoArticlesOrProjectsFound linksToArticlesOrProjects="articles" />
+          <NoArticlesOrProjectsFound
+            linksToArticlesOrProjects="articles"
+            color={colorSecondary}
+          />
         )}
       </main>
     </Layout>
