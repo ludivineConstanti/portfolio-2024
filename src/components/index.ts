@@ -22,6 +22,7 @@ export { default as HomeProjectSection } from "./pageHome/ProjectSection";
 export { default as HomeArticleSection } from "./pageHome/ArticleSection";
 export { default as HomeAwardSection } from "./pageHome/AwardSection";
 export { default as HomeClientSection } from "./pageHome/ClientSection";
+export { default as HomeTestimoniesSection } from "./pageHome/TestimoniesSection";
 
 /* sitemap */
 

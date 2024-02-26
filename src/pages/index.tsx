@@ -12,6 +12,7 @@ import {
   HomeAwardSection,
   HomeClientSection,
   Canvas,
+  HomeTestimoniesSection,
 } from "@/components";
 import type {
   ProjectData,
@@ -184,12 +185,18 @@ const clientsLink = {
   text: "Clients",
   href: "clients",
 };
+const testimoniesLink = {
+  emoji: "📖",
+  text: "Testimonial",
+  href: "testimonial",
+};
 const bottomNavigationLinks = [
   workExperienceLink,
   projectsLink,
   articlesLink,
   awardsLink,
   clientsLink,
+  testimoniesLink,
 ];
 
 const colorPrimary = "bg-blue-950";
@@ -243,6 +250,12 @@ const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
           id={clientsLink.href}
           colorSecondary={colorSecondary}
           clients={data.clients}
+        />
+        <HomeTestimoniesSection
+          emoji={testimoniesLink.emoji}
+          title={testimoniesLink.text}
+          id={testimoniesLink.href}
+          colorSecondary={colorSecondary}
         />
       </main>
     </Layout>

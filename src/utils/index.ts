@@ -108,17 +108,44 @@ export const returnVisibleSkillBadges = (
   skillBadges: SkillBadgeData[],
   maxNumber?: number,
 ) => {
-  const max = maxNumber || 10;
-  const filteredSkillBadges = skillBadges.filter(
-    (skillBadge) => skillBadge.techStack || skillBadge.highlighted,
-  );
+  const max = maxNumber || 12;
 
-  let visibleSkillBadges = skillBadges;
-  if (visibleSkillBadges.length > max) {
-    visibleSkillBadges =
-      filteredSkillBadges.length <= max
-        ? filteredSkillBadges
-        : skillBadges.filter((skillBadge) => skillBadge.techStack);
-  }
-  return visibleSkillBadges;
+  const sortedSkillBadges = skillBadges.sort((a, b) => {
+    // Check if both properties are null or undefined for both objects
+    const aBothUndefined =
+      (a.highlighted === null || a.highlighted === undefined) &&
+      (a.techStack === null || a.techStack === undefined);
+    const bBothUndefined =
+      (b.highlighted === null || b.highlighted === undefined) &&
+      (b.techStack === null || b.techStack === undefined);
+
+    if (aBothUndefined && !bBothUndefined) return 1;
+    if (!aBothUndefined && bBothUndefined) return -1;
+
+    // higlighted skills (prio 2)
+    if (
+      (a.highlighted === null || a.highlighted === undefined) &&
+      b.highlighted
+    )
+      return -1;
+    if (
+      a.highlighted &&
+      (b.highlighted === null || b.highlighted === undefined)
+    )
+      return 1;
+    // Tech stack (prio 1)
+    if ((a.techStack === null || a.techStack === undefined) && b.techStack)
+      return -1;
+    if (a.techStack && (b.techStack === null || b.techStack === undefined))
+      return 1;
+
+    return 0;
+  });
+
+  return sortedSkillBadges.slice(0, max).sort((a, b) => {
+    if (a.text && b.text) {
+      return a.text.localeCompare(b.text);
+    }
+    return 0;
+  });
 };
