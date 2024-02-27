@@ -17,7 +17,7 @@ const ButtonClose = ({
       }}
       className={clsx(
         color,
-        "pointer-events-auto absolute right-4 top-4 h-10 w-10 cursor-pointer rounded-full border-2 border-solid border-current bg-[rgba(255,255,255,0)] p-2.5 transition-transform hover:scale-125 active:scale-150 sm:hidden",
+        "pointer-events-auto absolute right-4 top-4 z-20 h-10 w-10 cursor-pointer rounded-full border-2 border-solid border-current bg-[rgba(255,255,255,0)] p-2.5 transition-transform hover:scale-125 active:scale-150 sm:hidden",
       )}
     >
       {menuIsOpen ? (

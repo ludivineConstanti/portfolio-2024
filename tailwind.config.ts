@@ -19,6 +19,18 @@ const config: Config = {
         "19": "4.75rem",
         "22": "5.5rem",
       },
+      keyframes: {
+        bounce: {
+          "0%, 100%": {
+            transform: "translateY(-25%) translateX(-50%)",
+            animationTimingFunction: "cubic-bezier(0.8, 0, 1, 1)",
+          },
+          "50%": {
+            transform: "translateY(0) translateX(-50%)",
+            animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
+          },
+        },
+      },
     },
   },
   plugins: [],

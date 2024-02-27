@@ -69,88 +69,90 @@ const Menu = ({
   }, [menuIsOpen, width]);
 
   return (
-    <header
-      className="pointer-events-none fixed z-10 grid h-full w-full grid-rows-[1fr_auto]"
-      ref={ref}
-    >
-      <ButtonClose
-        menuIsOpen={menuIsOpen}
-        setMenuIsOpen={setMenuIsOpen}
-        color={colorPrimary}
-      />
-      <div
-        className={clsx(
-          classNameMenuGap,
-          "z-10 flex w-full justify-center sm:absolute sm:top-6 sm:mx-4 sm:items-start xl:top-7",
-        )}
+    <>
+      <header
+        className="pointer-events-none fixed z-10 grid h-full w-full grid-rows-[1fr_auto]"
+        ref={ref}
       >
+        <ButtonClose
+          menuIsOpen={menuIsOpen}
+          setMenuIsOpen={setMenuIsOpen}
+          color={colorPrimary}
+        />
         <div
           className={clsx(
-            { hidden: !menuIsOpen },
-            colorPrimary,
             classNameMenuGap,
-            "flex w-full flex-col items-center justify-center p-16 sm:flex sm:w-fit sm:flex-row sm:bg-[rgba(255,255,255,0)] sm:p-0",
+            "z-10 flex w-full justify-center sm:absolute sm:top-6 sm:mx-4 sm:items-start xl:top-7",
           )}
         >
-          <nav>
-            <ul
-              className={clsx(
-                classNameMenuGap,
-                "flex flex-col items-center justify-center sm:flex-row",
-              )}
-            >
-              {menuLinksKeys
-                .filter((internalLinkKey) => internalLinkKey !== pageId)
-                .map((internalLinkKey) => (
-                  <InternalLink
-                    color={colorPrimary}
-                    key={`internal-link-${internalLinkKey}`}
-                    {...internalLinks[internalLinkKey]}
-                  />
-                ))}
-            </ul>
-          </nav>
-          <a
-            href="/resume_Ludivine_Constanti.pdf"
-            className={clsx(colorPrimary, "menu-link gap-1.5")}
-            download
+          <div
+            className={clsx(
+              { hidden: !menuIsOpen },
+              colorPrimary,
+              classNameMenuGap,
+              "flex w-full flex-col items-center justify-center p-16 sm:flex sm:w-fit sm:flex-row sm:bg-[rgba(255,255,255,0)] sm:p-0",
+            )}
           >
-            Resume
-            <span className="w-[0.55rem]">
-              <ArrowDownload />
-            </span>
-          </a>
-        </div>
-        {skillsFilter && menuIsOpen === false && (
-          <div className="relative top-5 sm:top-0">
-            <SearchBar skillsFilter={skillsFilter} />
+            <nav>
+              <ul
+                className={clsx(
+                  classNameMenuGap,
+                  "flex flex-col items-center justify-center sm:flex-row",
+                )}
+              >
+                {menuLinksKeys
+                  .filter((internalLinkKey) => internalLinkKey !== pageId)
+                  .map((internalLinkKey) => (
+                    <InternalLink
+                      color={colorPrimary}
+                      key={`internal-link-${internalLinkKey}`}
+                      {...internalLinks[internalLinkKey]}
+                    />
+                  ))}
+              </ul>
+            </nav>
+            <a
+              href="/resume_Ludivine_Constanti.pdf"
+              className={clsx(colorPrimary, "menu-link gap-1.5")}
+              download
+            >
+              Resume
+              <span className="w-[0.55rem]">
+                <ArrowDownload />
+              </span>
+            </a>
           </div>
-        )}
-      </div>
-      <ul
-        className={clsx(
-          { "hidden sm:flex": !menuIsOpen },
-          colorSecondary,
-          "flex h-full flex-wrap justify-center gap-6 px-12 py-16 sm:absolute sm:right-6 sm:top-0 sm:flex-col sm:bg-[rgba(255,255,255,0)] sm:p-0 xl:right-7",
-        )}
-      >
-        {socialMediasKeys.map((socialMediaKey) => (
-          <SocialMedia
-            key={`social-media-${socialMediaKey}`}
-            color={colorPrimary}
-            {...socialMedias[socialMediaKey]}
-          />
-        ))}
-      </ul>
+          {skillsFilter && menuIsOpen === false && (
+            <div className="relative top-5 sm:top-0">
+              <SearchBar skillsFilter={skillsFilter} />
+            </div>
+          )}
+        </div>
+        <ul
+          className={clsx(
+            { "hidden sm:flex": !menuIsOpen },
+            colorSecondary,
+            "flex h-full flex-wrap justify-center gap-6 px-12 py-16 sm:absolute sm:right-6 sm:top-0 sm:flex-col sm:bg-[rgba(255,255,255,0)] sm:p-0 xl:right-7",
+          )}
+        >
+          {socialMediasKeys.map((socialMediaKey) => (
+            <SocialMedia
+              key={`social-media-${socialMediaKey}`}
+              color={colorPrimary}
+              {...socialMedias[socialMediaKey]}
+            />
+          ))}
+        </ul>
+      </header>
       {bottomNavigationLinks && menuIsOpen === false && (
-        <nav className="absolute bottom-0 left-0 w-full">
+        <nav className="fixed bottom-0 left-0 z-10 w-full">
           <BottomNavigation
             colorPrimary={colorPrimary}
             bottomNavigationLinks={bottomNavigationLinks}
           />
         </nav>
       )}
-    </header>
+    </>
   );
 };
 
