@@ -65,10 +65,10 @@ const Project = ({
         <div
           className={clsx(
             colorPrimary,
-            "absolute right-8 top-8 flex origin-top-right items-center gap-1 rounded-full border-2 border-solid border-current p-2 transition-transform group-hover:scale-125 sm:gap-2 xl:right-6 xl:top-6",
+            "absolute right-8 top-8 flex origin-top-right items-center gap-1 rounded-full border-2 border-solid border-current px-2 py-1 transition-transform group-hover:scale-125 sm:gap-2 xl:right-6 xl:top-6",
           )}
         >
-          <p className="text-label">See project</p>
+          <p className="text-label-big">See project</p>
           <div className="w-4">
             <ArrowForward />
           </div>
