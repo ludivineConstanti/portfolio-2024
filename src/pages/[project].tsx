@@ -392,7 +392,10 @@ const ProjectPage = ({ data }: ProjectPageProps) => {
           </div>
           <div className="grid grid-cols-1 gap-6  xl:grid-cols-2">
             <div>
-              <ProjectBlockBase color={data.colorSecondary}>
+              <ProjectBlockBase
+                color={data.colorSecondary}
+                customClass="[&>ul>li]:text-body [&>ul]:list-disc [&>ul>li:not(:last-child)]:mb-2 [&>ul:not(:last-child)]:mb-6"
+              >
                 <h3>📖 Overview</h3>
                 <PortableText value={data.text} />
               </ProjectBlockBase>
