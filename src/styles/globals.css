@@ -16,6 +16,8 @@
 
     /* home page */
 
+    --home-max-w-xl: 68.75rem;
+
     --home-article-padding-base: 1rem;
     --home-article-padding-sm: 2rem;
     --home-article-padding-xl: 4rem;
@@ -82,9 +84,18 @@
     @apply hover:decoration-dashed active:decoration-dotted;
   }
 
-  .text-link {
+  .text-link-base {
     @apply underline decoration-1 underline-offset-4;
+  }
+
+  .text-link {
+    @apply text-link-base;
     @apply text-link-interactive;
+  }
+
+  .text-link-group {
+    @apply text-link-base;
+    @apply group-hover:decoration-dashed group-active:decoration-dotted;
   }
 
   .menu-link {
@@ -129,7 +140,7 @@
 
   .home-max-w {
     @apply max-w-[40rem];
-    @apply xl:max-w-[68.75rem];
+    @apply xl:max-w-[var(--home-max-w-xl)];
   }
 
   /* home article padding */
@@ -208,6 +219,13 @@
     @apply pb-[var(--all-projects-all-articles-margin-base)];
     @apply sm:pb-[var(--all-projects-all-articles-margin-sm)];
     @apply xl:pb-[var(--all-projects-all-articles-margin-xl)];
+  }
+
+  /* */
+
+  .project-max-w {
+    @apply sm:max-w-[42rem];
+    @apply xl:max-w-[var(--home-max-w-xl)];
   }
 }
 
