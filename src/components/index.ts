@@ -34,8 +34,11 @@ export { default as AllProjectsProjectListsWithTitle } from "./pageAllProjects/P
 
 /* project */
 
+export { default as ProjectSectionTitle } from "./pageProject/SectionTitle";
 export { default as ProjectBlockBase } from "./pageProject/BlockBase";
-export { default as ProjectBlockLinkList } from "./pageProject/BlockLinkList";
+export { default as ProjectBlocksAllLinks } from "./pageProject/BlocksAllLinks";
+export { default as ProjectNextAndPrevProject } from "./pageProject/NextAndPrevProject";
+export { default as ProjectImage } from "./pageProject/Image";
 
 /* all articles */
 
