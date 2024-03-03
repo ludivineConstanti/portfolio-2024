@@ -1,6 +1,28 @@
 import Image from "next/image";
 import clsx from "clsx";
 
+const ImageFullWidth = ({
+  isInteractive,
+  image,
+}: {
+  isInteractive: boolean;
+  image: { url: string; alt: string };
+}) => {
+  return (
+    <Image
+      className={clsx(
+        { "transition-transform group-hover:scale-105": isInteractive },
+        "h-full w-full object-cover",
+      )}
+      priority={true}
+      src={image.url}
+      alt={image.alt}
+      width={1920}
+      height={1080}
+    />
+  );
+};
+
 const ImageComponent = ({
   imageLinkHref,
   imageLinkText,
@@ -19,13 +41,7 @@ const ImageComponent = ({
         target="_blank"
         href={imageLinkHref}
       >
-        <Image
-          className="h-full w-full object-cover transition-transform group-hover:scale-105"
-          src={image.url}
-          alt={image.alt}
-          width={1920}
-          height={1080}
-        />
+        <ImageFullWidth isInteractive={true} image={image} />
         <div
           className={clsx(
             colorPrimary,
@@ -50,15 +66,7 @@ const ImageComponent = ({
       </a>
     );
   }
-  return (
-    <Image
-      className="h-full w-full object-cover"
-      src={image.url}
-      alt={image.alt}
-      width={1920}
-      height={1080}
-    />
-  );
+  return <ImageFullWidth isInteractive={false} image={image} />;
 };
 
 export default ImageComponent;

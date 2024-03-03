@@ -22,6 +22,11 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      name: "highlightedPost",
+      title: "Highlighted Post",
+      type: "boolean",
+    }),
+    defineField({
       name: "instagramPost",
       title: "Instagram Post",
       type: "boolean",

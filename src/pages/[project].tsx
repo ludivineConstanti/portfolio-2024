@@ -15,11 +15,7 @@ import {
 import { SlugProps, SkillBadgeData } from "@/models";
 import { groq } from "next-sanity";
 import { client, querySkillBadges } from "@/sanity/utils";
-import {
-  sortAlphabetically,
-  returnProjectOrArticleYear,
-  returnVisibleSkillBadges,
-} from "@/utils";
+import { returnProjectOrArticleYear, returnVisibleSkillBadges } from "@/utils";
 
 // Returns a list of possible value for the projects id
 export const getStaticPaths = async () => {
@@ -28,7 +24,7 @@ export const getStaticPaths = async () => {
     }`);
 
   return {
-    paths: data.map((project: { slug: SlugProps }) => ({
+    paths: data.map((project: { slug: SlugProps; _id: string }) => ({
       params: { project: project.slug.current },
     })),
     fallback: false,
@@ -40,31 +36,8 @@ export const getStaticProps = async ({
   params,
 }: InferGetStaticPropsType<typeof getStaticPaths>) => {
   const { project } = params;
-  const projectsData =
-    await client.fetch(groq`*[_type == "project"] | order(dateEnd desc){
-    emoji,
-    title,
-    slug,
-    dateEnd  
-    }`);
 
-  const projects = projectsData.sort(
-    (a: { dateEnd: null | string }, b: { dateEnd: null | string }) => {
-      if (a.dateEnd === null && b.dateEnd) return -1;
-      if (a.dateEnd && b.dateEnd === null) return 1;
-      return 0;
-    },
-  );
-
-  const currentProjectIndex = projects.indexOf(
-    projects.find(
-      (p: { slug: { current: string } }) => p.slug.current === project,
-    ),
-  );
-  const previousProject = projects[currentProjectIndex - 1];
-  const nextProject = projects[currentProjectIndex + 1];
-
-  const data = await client.fetch(
+  const projectData = await client.fetch(
     groq`*[_type == "project" && slug.current == $project]{
         ${querySkillBadges}
         _id,
@@ -86,143 +59,131 @@ export const getStaticProps = async ({
             'url': asset->url,
             alt
         },  
-        }`,
+    }`,
     { project },
   );
 
-  const projectLinks = [];
-  let imageLinkHref;
-  let imageLinkText;
-
-  if (data[0].href) {
-    projectLinks.push({
-      _id: "websiteHref",
-      emoji: "💻",
-      href: data[0].href,
-      text: "Website",
-    });
-    imageLinkHref = data[0].href;
-    imageLinkText = "Go to Website";
-  }
-  if (data[0].hrefGitHub) {
-    projectLinks.push({
-      _id: "hrefGitHub",
-      emoji: "😼",
-      href: data[0].hrefGitHub,
-      text: "GitHub",
-    });
-    if (!imageLinkHref) {
-      imageLinkHref = data[0].hrefGitHub;
-      imageLinkText = "Go to GitHub repository";
-    }
-  }
-  if (data[0].hrefStudyCase) {
-    projectLinks.push({
-      _id: "hrefStudyCase",
-      emoji: "✍️",
-      href: data[0].hrefStudyCase,
-      text: "Go to Study Case",
-    });
-    if (!imageLinkHref) {
-      imageLinkHref = data[0].hrefStudyCase;
-      imageLinkText = "See project Study Case";
-    }
-  }
-
-  /* AWARDS */
-
-  const awardsData: {
-    _id: string;
-    category: { text: string; emoji: string };
-    href: string;
-  }[] = await client.fetch(
-    groq`*[_type == "award" && project._ref == $projectId]{
-    _id,
-    category->{text, emoji},
-    href,
-  }`,
-    { projectId: data[0]._id },
-  );
-
-  const awards = awardsData.map((award) => ({
-    _id: award._id,
-    href: award.href,
-    emoji: award.category.emoji,
-    text: award.category.text,
-  }));
-
-  /* ROLE */
-
-  const role = await client.fetch(
-    groq`*[_id == $role]{
+  const data = await client.fetch(
+    groq`{
+      "projectsData": *[_type == "project"] | order(dateEnd desc){
         emoji,
-        text  
-        }`,
-    { role: data[0].role._ref },
-  );
-
-  /* ARTICLES */
-
-  const articles: {
-    _id: string;
-    emoji: string;
-    text: string;
-    href: string;
-    projects: { _id: string }[];
-  }[] = await client.fetch(
-    groq`*[_type == "article"] | order(text asc){
+        title,
+        slug,
+        dateEnd
+      },
+      "articlesData": *[_type == "article" && $projectId in projects[]->_id] | order(text asc){
         _id,
         emoji,
         text,
         href,
         projects[]->{_id}, 
-        }`,
-  );
-
-  const currentArticles = articles
-    .filter((article) => article.projects)
-    .map((article) => ({
-      ...article,
-      projects: article.projects.map((project) => project._id),
-    }))
-    .filter((article) => article.projects.includes(data[0]._id));
-
-  /* POSTS */
-
-  const postsData: {
-    _id: string;
-    text: string;
-    href: string;
-    youtubePost: true | null;
-    instagramPost: true | null;
-    linkedinPost: true | null;
-  }[] = await client.fetch(
-    groq`*[_type == "post" && project._ref == $projectId]{
+      },
+      "roleData": *[_id == $role]{
+        emoji,
+        text  
+      },
+      "postsData": *[_type == "post" && project._ref == $projectId] | order(highlightedPost asc, linkedinPost asc, youtubePost asc, instagramPost asc) {
         _id,
         text,
         href,
         youtubePost,
         instagramPost,
         linkedinPost, 
-        }`,
-    { projectId: data[0]._id },
+      },
+      "awardsData": *[_type == "award" && project._ref == $projectId] {
+        _id,
+        category->{text, emoji},
+        href,
+      }
+    }`,
+    { role: projectData[0].role._ref, projectId: projectData[0]._id },
   );
 
-  const posts = postsData
-    .sort((a, b) => {
-      // INSTAGRAM post get at the bottom
-      if (a.instagramPost === null && b.instagramPost) return -1;
-      if (a.instagramPost && b.instagramPost === null) return 1;
-      // YOUTUBE
-      if (a.youtubePost === null && b.youtubePost) return -1;
-      if (a.youtubePost && b.youtubePost === null) return 1;
-      // LINKEDIN
-      if (a.linkedinPost === null && b.linkedinPost) return -1;
-      if (a.linkedinPost && b.linkedinPost === null) return 1;
+  const { projectsData, articlesData, postsData, awardsData } = data;
+  const role = data.roleData;
 
+  const projects = projectsData.sort(
+    (a: { dateEnd: null | string }, b: { dateEnd: null | string }) => {
+      if (a.dateEnd === null && b.dateEnd) return -1;
+      if (a.dateEnd && b.dateEnd === null) return 1;
       return 0;
-    })
-    .map((post) => {
+    },
+  );
+
+  const currentProjectIndex = projects.indexOf(
+    projects.find(
+      (p: { slug: { current: string } }) => p.slug.current === project,
+    ),
+  );
+  const previousProject = projects[currentProjectIndex - 1];
+  const nextProject = projects[currentProjectIndex + 1];
+
+  const projectLinks = [];
+
+  let imageLinkHref;
+  let imageLinkText;
+
+  if (projectData[0].href) {
+    projectLinks.push({
+      _id: "websiteHref",
+      emoji: "💻",
+      href: projectData[0].href,
+      text: "Website",
+    });
+    imageLinkHref = projectData[0].href;
+    imageLinkText = "Go to Website";
+  }
+  if (projectData[0].hrefGitHub) {
+    projectLinks.push({
+      _id: "hrefGitHub",
+      emoji: "😼",
+      href: projectData[0].hrefGitHub,
+      text: "GitHub",
+    });
+    if (!imageLinkHref) {
+      imageLinkHref = projectData[0].hrefGitHub;
+      imageLinkText = "Go to GitHub repository";
+    }
+  }
+  if (projectData[0].hrefStudyCase) {
+    projectLinks.push({
+      _id: "hrefStudyCase",
+      emoji: "✍️",
+      href: projectData[0].hrefStudyCase,
+      text: "Go to Study Case",
+    });
+    if (!imageLinkHref) {
+      imageLinkHref = projectData[0].hrefStudyCase;
+      imageLinkText = "See project Study Case";
+    }
+  }
+
+  /* AWARDS */
+
+  const awards = awardsData.map(
+    (award: {
+      _id: string;
+      href: string;
+      category: { emoji: string; text: string };
+    }) => ({
+      _id: award._id,
+      href: award.href,
+      emoji: award.category.emoji,
+      text: award.category.text,
+    }),
+  );
+
+  /* POSTS */
+
+  const posts = postsData.map(
+    (post: {
+      _id: string;
+      href: string;
+      text: string;
+      instagramPost: true | null;
+      youtubePost: true | null;
+      linkedinPost: true | null;
+    }) => {
       let text = post.text;
       let emoji = "📖";
       if (post.instagramPost) {
@@ -241,11 +202,12 @@ export const getStaticProps = async ({
         text,
         href: post.href,
       };
-    });
+    },
+  );
 
   /* PROJECT CLIENT */
 
-  const clientData = data[0].client;
+  const clientData = projectData[0].client;
   const projectClient = clientData
     ? {
         emoji: clientData.emoji,
@@ -259,21 +221,21 @@ export const getStaticProps = async ({
 
   /* SKILL BADGES */
 
-  const skillBadges = sortAlphabetically(data[0].skillBadges);
+  const skillBadges = returnVisibleSkillBadges(projectData[0].skillBadges, 15);
 
   return {
     props: {
       data: {
-        ...data[0],
-        dateStart: new Date(data[0].dateStart).getFullYear(),
-        dateEnd: returnProjectOrArticleYear(data[0].dateEnd, true),
-        skillBadges: returnVisibleSkillBadges(skillBadges, 15),
+        ...projectData[0],
+        dateStart: new Date(projectData[0].dateStart).getFullYear(),
+        dateEnd: returnProjectOrArticleYear(projectData[0].dateEnd, true),
+        skillBadges,
         imageLinkHref,
         imageLinkText,
         role: role[0],
         client: projectClient,
         projectLinks: projectLinks.length ? projectLinks : null,
-        articles: currentArticles.length ? currentArticles : null,
+        articles: articlesData.length ? articlesData : null,
         awards: awards.length ? awards : null,
         posts: posts.length ? posts : null,
         previousProject: previousProject ? previousProject : null,
