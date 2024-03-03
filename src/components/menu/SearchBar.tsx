@@ -37,6 +37,7 @@ const SearchBar = ({
         dispatch(setSelectedSkillsFilter(v));
       }}
       styles={styles}
+      className="z-10"
       classNames={{
         container: () =>
           "outline-2 outline-white text-body min-h-fit text-blue-950 border-solid min-w-44 sm:max-w-52 max-w-[calc(100vw-10rem)] xl:max-w-[40rem] border-2 border-blue-950 min-w-30 px-2 bg-white rounded-2xl pointer-events-auto",
