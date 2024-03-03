@@ -71,19 +71,17 @@ export const getStaticProps = async () => {
 
 const colorPrimary = "bg-green-950";
 const colorSecondary = "bg-green-800";
+const pageId = InternalLinksIds.sitemap;
+const pageData = internalLinks[pageId];
+const pageHomeData = internalLinks[InternalLinksIds.home];
+const pageWorkExperiencesData = internalLinks[InternalLinksIds.workExperiences];
 
 const Sitemap = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const pageId = InternalLinksIds.sitemap;
-  const pageData = internalLinks[pageId];
-
-  const pageHomeData = internalLinks[InternalLinksIds.home];
-
   return (
     <Layout
       title={pageData.text}
       colorPrimary={colorPrimary}
       colorSecondary={colorSecondary}
-      pageId={pageId}
     >
       <main className={clsx(colorPrimary, "all-projects-all-articles-pb")}>
         <TitlePage
@@ -97,7 +95,16 @@ const Sitemap = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
               <LinkCTA
                 text={pageHomeData.text}
                 href={pageHomeData.href}
-                color="bg-green-800"
+                color={colorSecondary}
+                alignCenter={false}
+                marginBottom="none"
+              />
+            </li>
+            <li>
+              <LinkCTA
+                text={pageWorkExperiencesData.text}
+                href={pageWorkExperiencesData.href}
+                color={colorSecondary}
                 alignCenter={false}
                 marginBottom="none"
               />

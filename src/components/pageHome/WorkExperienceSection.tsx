@@ -1,6 +1,6 @@
 import Section from "./Section";
-import WorkExperience from "./WorkExperience";
-import { WorkExperienceData } from "@/models";
+import { WorkExperience } from "..";
+import { WorkExperienceData, internalLinks } from "@/models";
 
 const WorkExperienceSection = ({
   emoji,
@@ -16,13 +16,24 @@ const WorkExperienceSection = ({
   workExperiences: WorkExperienceData[];
 }) => {
   return (
-    <Section id={id} emoji={emoji} title={title} color={colorSecondary}>
-      {workExperiences.map((workExperience) => (
-        <WorkExperience
-          {...workExperience}
-          key={`work-experience-${workExperience._id}`}
-        />
-      ))}
+    <Section
+      id={id}
+      emoji={emoji}
+      title={title}
+      color={colorSecondary}
+      link={{
+        href: internalLinks.workExperiences.href,
+        text: "See all Work Experiences",
+      }}
+    >
+      <ul className="flex flex-col gap-8 xl:gap-16">
+        {workExperiences.map((workExperience) => (
+          <WorkExperience
+            {...workExperience}
+            key={`work-experience-${workExperience._id}`}
+          />
+        ))}
+      </ul>
     </Section>
   );
 };

@@ -10,6 +10,7 @@ export { default as ProjectLinkList } from "./ProjectLinkList";
 export { default as ArticleList } from "./ArticleList";
 export { default as Tooltip } from "./Tooltip";
 export { default as NoArticlesOrProjectsFound } from "./NoArticlesOrProjectsFound";
+export { default as WorkExperience } from "./WorkExperience";
 export * from "./planets";
 
 /* PAGES */

@@ -11,42 +11,41 @@ export default defineType({
       type: "string",
     }),
     defineField({
-      name: "sectionProjects",
-      title: "Section Projects",
-      type: "object",
-      fields: [
+      name: "workExperiences",
+      title: "Work Experiences",
+      type: "array",
+      of: [
         {
-          name: "projects",
-          title: "Projects",
-          type: "array",
-          of: [
-            {
-              name: "project",
-              title: "Project",
-              type: "reference",
-              to: [{ type: "project" }],
-            },
-          ],
+          name: "workExperience",
+          title: "Work Experience",
+          type: "reference",
+          to: [{ type: "workExperience" }],
         },
       ],
     }),
     defineField({
-      name: "sectionArticles",
-      title: "Section Articles",
-      type: "object",
-      fields: [
+      name: "projects",
+      title: "Projects",
+      type: "array",
+      of: [
         {
-          name: "articles",
-          title: "Articles",
-          type: "array",
-          of: [
-            {
-              name: "article",
-              title: "Article",
-              type: "reference",
-              to: [{ type: "article" }],
-            },
-          ],
+          name: "project",
+          title: "Project",
+          type: "reference",
+          to: [{ type: "project" }],
+        },
+      ],
+    }),
+    defineField({
+      name: "articles",
+      title: "Articles",
+      type: "array",
+      of: [
+        {
+          name: "article",
+          title: "Article",
+          type: "reference",
+          to: [{ type: "article" }],
         },
       ],
     }),

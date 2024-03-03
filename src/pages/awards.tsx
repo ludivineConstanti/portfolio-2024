@@ -47,12 +47,12 @@ export const getStaticProps = async () => {
 
 const colorPrimary = "bg-fuchsia-950";
 const colorSecondary = "bg-fuchsia-800";
+const pageId = InternalLinksIds.awards;
+const pageData = internalLinks[pageId];
 
 const AllProjectsPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const pageId = InternalLinksIds.awards;
-  const pageData = internalLinks[pageId];
   return (
     <Layout
       title={pageData.text}
@@ -61,7 +61,11 @@ const AllProjectsPage = ({
       pageId={pageId}
     >
       <main className={clsx(colorPrimary, "all-projects-all-articles-pb")}>
-        <TitlePage emoji="✨" text="Awards" color={colorSecondary} />
+        <TitlePage
+          emoji={pageData.emoji}
+          text={pageData.text}
+          color={colorSecondary}
+        />
         <div className="all-projects-all-articles-pt flex justify-center">
           <ul className="flex flex-col gap-2 sm:gap-0.5">
             {data.awards.map((award: AwardData) => {

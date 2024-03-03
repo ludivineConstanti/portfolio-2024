@@ -119,16 +119,30 @@
   .mx-base {
     @apply mx-8;
   }
+  .px-base {
+    @apply px-8;
+  }
   .mx-sm {
     @apply sm:mx-22;
   }
+  .px-sm {
+    @apply sm:px-22;
+  }
   .mx-xl {
     @apply xl:mx-22;
+  }
+  .px-xl {
+    @apply xl:px-22;
   }
   .mx-custom {
     @apply mx-base;
     @apply mx-sm;
     @apply mx-xl;
+  }
+  .px-custom {
+    @apply px-base;
+    @apply px-sm;
+    @apply px-xl;
   }
   .mx-section {
     @apply mx-4;
