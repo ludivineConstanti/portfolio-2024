@@ -40,7 +40,7 @@ export const getStaticProps = async () => {
     data: skills,
     projects,
     articles,
-    showEmoji: true,
+    showEmoji: false,
   });
 
   return {
