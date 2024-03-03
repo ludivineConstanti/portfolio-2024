@@ -20,6 +20,7 @@ import { useResizeObserver } from "@/hooks";
 import BottomNavigation from "./BottomNavigation";
 import { setWidthAndHeight } from "@/store/slices/system";
 import { useAppDispatch } from "@/store";
+import SearchBarFeedback from "./SearchBarFeedback";
 
 const internalLinksKeys = Object.keys(internalLinks) as InternalLinksIds[];
 const socialMediasKeys = Object.keys(socialMedias) as SocialMediaIds[];
@@ -90,14 +91,14 @@ const Menu = ({
               { hidden: !menuIsOpen },
               colorPrimary,
               classNameMenuGap,
-              "flex w-full flex-col items-center justify-center p-16 sm:flex sm:w-fit sm:flex-row sm:bg-[rgba(255,255,255,0)] sm:p-0",
+              "flex w-full flex-col flex-wrap items-center justify-center p-16 sm:flex sm:w-fit sm:flex-row sm:bg-[rgba(255,255,255,0)] sm:p-0",
             )}
           >
             <nav>
               <ul
                 className={clsx(
                   classNameMenuGap,
-                  "flex flex-col items-center justify-center sm:flex-row",
+                  "flex flex-col flex-wrap items-center justify-center sm:flex-row",
                 )}
               >
                 {menuLinksKeys
@@ -123,8 +124,9 @@ const Menu = ({
             </a>
           </div>
           {skillsFilter && menuIsOpen === false && (
-            <div className="relative top-5 sm:top-0">
+            <div className="relative top-5 flex flex-col flex-wrap items-center gap-2 sm:top-0 sm:flex-row sm:items-start ">
               <SearchBar skillsFilter={skillsFilter} />
+              <SearchBarFeedback pageId={pageId} color={colorSecondary} />
             </div>
           )}
         </div>
