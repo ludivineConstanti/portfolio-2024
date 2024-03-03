@@ -79,10 +79,12 @@ export const returnSkillsForFilter = ({
   data,
   projects,
   articles,
+  showEmoji,
 }: {
-  data: { _id: string; text: string }[];
+  data: { _id: string; text: string; emoji: string }[];
   projects: { skillBadges: { _id: string }[] }[];
   articles: { skillBadges: { _id: string }[] }[];
+  showEmoji?: boolean;
 }) => {
   return data
     .filter((skill) => {
@@ -100,7 +102,7 @@ export const returnSkillsForFilter = ({
     })
     .map((skill) => ({
       value: skill._id,
-      label: skill.text,
+      label: showEmoji ? `${skill.emoji} ${skill.text}` : skill.text,
     }));
 };
 

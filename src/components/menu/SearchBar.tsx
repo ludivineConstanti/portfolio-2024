@@ -4,12 +4,12 @@ import dynamic from "next/dynamic";
 import React from "react";
 import { SearchBarComponentProps } from "@/models";
 import type { CSSObjectWithLabel } from "react-select";
-import { useAppDispatch } from "@/store";
+import { useAppDispatch, useAppSelector } from "@/store";
 import { setSelectedSkillsFilter } from "@/store/slices/system";
-import { useAppSelector } from "@/store";
 
 const Select = dynamic(() => import("react-select"));
 
+// has to be set with JavaScript to override the default styles
 const styles = {
   control: (baseStyles: CSSObjectWithLabel) => ({
     ...baseStyles,

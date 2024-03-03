@@ -21,25 +21,26 @@ import { useAppSelector, useAppDispatch } from "@/store";
 import { setHowManyArticlesAndProjectsAreVisible } from "@/store/slices/system";
 
 export const getStaticProps = async () => {
-  const projects =
-    await client.fetch(groq`*[_type == "project"] | order(dateEnd desc){
-    skillBadges[]->{_id}  
+  const data = await client.fetch(groq`{
+      "projects": *[_type == "project"] | order(dateEnd desc){
+        skillBadges[]->{_id}  
+      },
+      "articles": *[_type == "article"] | order(date desc){
+        ${queryArticleLink}
+      },
+      "skills": *[_type == "skillBadge"] | order(text asc){
+        _id,
+        text,
+      }
     }`);
-  const articles =
-    await client.fetch(groq`*[_type == "article"] | order(date desc){
-    ${queryArticleLink}
-  }`);
 
-  const dataSkills =
-    (await client.fetch(groq`*[_type == "skillBadge"] | order(text asc){
-  _id,
-  text,
-}`)) as { _id: string; text: string }[];
+  const { projects, skills, articles } = data;
 
   const skillsFilter = returnSkillsForFilter({
-    data: dataSkills,
+    data: skills,
     projects,
     articles,
+    showEmoji: false,
   });
 
   return {

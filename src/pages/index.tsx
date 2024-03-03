@@ -12,18 +12,22 @@ import {
   HomeClientSection,
   Canvas,
   HomeTestimoniesSection,
+  HomeSkillsSearchSection,
 } from "@/components";
 import type {
   ProjectData,
   ArticleData,
   WorkExperienceData,
   ProjectTeaserData,
+  SkillBadgeData,
 } from "@/models";
 import { internalLinks, InternalLinksIds } from "@/models";
 import { querySkillBadges } from "@/sanity/utils";
+import { returnSkillsForFilter } from "@/utils";
 
 export const getStaticProps = async () => {
-  const dataHomePage = await client.fetch(groq`*[_type == "pageHome"]{
+  const data = await client.fetch(groq`{
+    "dataHomePage": *[_type == "pageHome"] {
       title,
       workExperiences[]->{
         _id,
@@ -47,7 +51,46 @@ export const getStaticProps = async () => {
       },
       projects[]->{${queryProjectLink}},
       articles[]->{${queryArticleLink}},
-    }`);
+    },
+    "dataClients": *[_type == "client"] {
+      _id,
+      id,
+      text,
+      href,
+      developer,
+      role->{text},
+      workExperience->{emoji, title},
+      colorPrimary,
+    },
+    "dataProjects": *[_type == "project"] | order(dateEnd desc) {
+      _id,
+      workExperience,
+      client,
+      title,
+      dateEnd,
+      slug,
+      image{
+        'url': asset->url,
+        alt
+      },
+      skillBadges[]->{
+        _id,
+      }
+    },
+    "dataArticles": *[_type == "article"] {
+      skillBadges[]->{
+        _id,
+      }
+    },
+    "dataSkills": *[_type == "skillBadge"] | order(text asc){
+        _id,
+        emoji,
+        text,
+      }
+  }`);
+
+  const { dataHomePage, dataClients, dataProjects, dataSkills, dataArticles } =
+    data;
 
   const projects = dataHomePage[0].projects.map((project: ProjectData) => ({
     ...project,
@@ -59,41 +102,15 @@ export const getStaticProps = async () => {
     skillBadges: sortAlphabetically(article.skillBadges),
   }));
 
-  const dataWorkExperiences =
-    await client.fetch(groq`*[_type == "workExperience"] | order(dateEnd desc){
-    _id,
-    title,
-    role,
-    text,
-    location,
-    dateStart,
-    dateEnd,
-    href,
-    colorPrimary,
-    colorSecondary,
-    colorLogo,
-    colorSkillBadge,
-    logo {
-      asset->{
-        url
-      }
+  const allProjects = dataProjects.map(
+    (e: { skillBadges: SkillBadgeData[] }) => {
+      return {
+        skillBadges: e.skillBadges.map((e) => {
+          return { _id: e._id };
+        }),
+      };
     },
-    ${querySkillBadges}
-  }`);
-
-  const dataProjects =
-    await client.fetch(groq`*[_type == "project"] | order(dateEnd desc){
-  _id,
-  workExperience,
-  client,
-  title,
-  dateEnd,
-  slug,
-  image{
-    'url': asset->url,
-    alt
-  },
-}`);
+  );
 
   const dataWorkExperiencesWithProjects = dataHomePage[0].workExperiences.map(
     (workExperience: WorkExperienceData) => {
@@ -110,16 +127,12 @@ export const getStaticProps = async () => {
     },
   );
 
-  const dataClients = await client.fetch(groq`*[_type == "client"]{
-    _id,
-    id,
-    text,
-    href,
-    developer,
-    role->{text},
-    workExperience->{emoji, title},
-    colorPrimary,
-  }`);
+  const skillsFilter = returnSkillsForFilter({
+    data: dataSkills,
+    projects,
+    articles,
+    showEmoji: true,
+  });
 
   const clientsWithProjects = dataClients.map((client: any) => {
     const hasProject =
@@ -150,17 +163,19 @@ export const getStaticProps = async () => {
   );
 
   const workExperiences = sortByDateEnd(dataWorkExperiencesWithProjects);
-  const data = {
-    ...dataHomePage[0],
-    workExperiences,
-    projects,
-    articles,
-    clients,
-  };
 
   return {
     props: {
-      data,
+      data: {
+        ...dataHomePage[0],
+        workExperiences,
+        skillsFilter,
+        projects,
+        allProjects,
+        articles,
+        allArticles: dataArticles,
+        clients,
+      },
     },
   };
 };
@@ -171,6 +186,11 @@ const workExperienceLink = {
   emoji: internalLinks.workExperiences.emoji,
   text: internalLinks.workExperiences.text,
   href: "workExperience",
+};
+const skillsFilterLink = {
+  emoji: "⭐",
+  text: "Skills",
+  href: "skills",
 };
 const projectsLink = {
   emoji: internalLinks.allProjects.emoji,
@@ -199,6 +219,7 @@ const testimoniesLink = {
 };
 const bottomNavigationLinks = [
   workExperienceLink,
+  skillsFilterLink,
   projectsLink,
   articlesLink,
   awardsLink,
@@ -229,6 +250,15 @@ const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
           id={workExperienceLink.href}
           colorSecondary={colorSecondary}
           workExperiences={data.workExperiences}
+        />
+        <HomeSkillsSearchSection
+          emoji={skillsFilterLink.emoji}
+          title={skillsFilterLink.text}
+          id={skillsFilterLink.href}
+          allProjects={data.allProjects}
+          allArticles={data.allArticles}
+          colorSecondary={colorSecondary}
+          skillsFilter={data.skillsFilter}
         />
         <HomeProjectSection
           emoji={projectsLink.emoji}

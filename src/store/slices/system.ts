@@ -29,12 +29,18 @@ const systemSlice = createSlice({
       state.howManyArticlesAreVisible = action.payload.articles;
       state.howManyProjectsAreVisible = action.payload.projects;
     },
+    setSkillsFilterSettings: (state, action) => {
+      state.selectedSkillsFilter = action.payload.selectedSkills;
+      state.howManyArticlesAreVisible = action.payload.articles;
+      state.howManyProjectsAreVisible = action.payload.projects;
+    },
   },
 });
 
 export const {
   setWidthAndHeight,
   setSelectedSkillsFilter,
+  setSkillsFilterSettings,
   setHowManyArticlesAndProjectsAreVisible,
 } = systemSlice.actions;
 
