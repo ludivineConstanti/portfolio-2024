@@ -55,14 +55,13 @@ export const getStaticProps = async () => {
 
 const colorPrimary = "bg-violet-950";
 const colorSecondary = "bg-violet-800";
+const pageId = InternalLinksIds.allArticles;
+const pageData = internalLinks[InternalLinksIds.allArticles];
 
 const AllArticlesPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const dispatch = useAppDispatch();
-
-  const pageId = InternalLinksIds.allArticles;
-  const pageData = internalLinks[InternalLinksIds.allArticles];
 
   const { selectedSkillsFilter } = useAppSelector((state) => state.system);
 

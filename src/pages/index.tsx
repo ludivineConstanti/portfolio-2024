@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
 import { client, queryProjectLink, queryArticleLink } from "@/sanity/utils";
@@ -26,29 +25,39 @@ import { querySkillBadges } from "@/sanity/utils";
 export const getStaticProps = async () => {
   const dataHomePage = await client.fetch(groq`*[_type == "pageHome"]{
       title,
-      sectionProjects{projects[]->{${queryProjectLink}}},
-      sectionArticles{articles[]->{${queryArticleLink}}},
+      workExperiences[]->{
+        _id,
+        title,
+        role,
+        text,
+        location,
+        dateStart,
+        dateEnd,
+        href,
+        colorPrimary,
+        colorSecondary,
+        colorLogo,
+        colorSkillBadge,
+        logo {
+          asset->{
+            url
+      }   
+        },
+        ${querySkillBadges}
+      },
+      projects[]->{${queryProjectLink}},
+      articles[]->{${queryArticleLink}},
     }`);
 
-  const sectionProjects = {
-    ...dataHomePage[0].sectionProjects,
-    projects: dataHomePage[0].sectionProjects.projects.map(
-      (project: ProjectData) => ({
-        ...project,
-        skillBadges: sortAlphabetically(project.skillBadges),
-      }),
-    ),
-  };
+  const projects = dataHomePage[0].projects.map((project: ProjectData) => ({
+    ...project,
+    skillBadges: sortAlphabetically(project.skillBadges),
+  }));
 
-  const sectionArticles = {
-    ...dataHomePage[0].sectionArticles,
-    articles: dataHomePage[0].sectionArticles.articles.map(
-      (article: ArticleData) => ({
-        ...article,
-        skillBadges: sortAlphabetically(article.skillBadges),
-      }),
-    ),
-  };
+  const articles = dataHomePage[0].articles.map((article: ArticleData) => ({
+    ...article,
+    skillBadges: sortAlphabetically(article.skillBadges),
+  }));
 
   const dataWorkExperiences =
     await client.fetch(groq`*[_type == "workExperience"] | order(dateEnd desc){
@@ -86,7 +95,7 @@ export const getStaticProps = async () => {
   },
 }`);
 
-  const dataWorkExperiencesWithProjects = dataWorkExperiences.map(
+  const dataWorkExperiencesWithProjects = dataHomePage[0].workExperiences.map(
     (workExperience: WorkExperienceData) => {
       const workExperienceProjects = dataProjects.filter(
         (project: ProjectTeaserData) =>
@@ -143,11 +152,9 @@ export const getStaticProps = async () => {
   const workExperiences = sortByDateEnd(dataWorkExperiencesWithProjects);
   const data = {
     ...dataHomePage[0],
-    sectionWorkExperiences: {
-      workExperiences,
-    },
-    ...sectionProjects,
-    ...sectionArticles,
+    workExperiences,
+    projects,
+    articles,
     clients,
   };
 
@@ -161,23 +168,23 @@ export const getStaticProps = async () => {
 // CONSTANTS
 
 const workExperienceLink = {
-  emoji: "🗃️",
-  text: "Work experience & courses",
+  emoji: internalLinks.workExperiences.emoji,
+  text: internalLinks.workExperiences.text,
   href: "workExperience",
 };
 const projectsLink = {
-  emoji: "⚗️",
+  emoji: internalLinks.allProjects.emoji,
   text: "Projects",
   href: "projects",
 };
 const articlesLink = {
-  emoji: "📰",
+  emoji: internalLinks.allArticles.emoji,
   text: "Articles",
   href: "articles",
 };
 const awardsLink = {
-  emoji: "✨",
-  text: "Awards",
+  emoji: internalLinks.awards.emoji,
+  text: internalLinks.awards.text,
   href: "awards",
 };
 const clientsLink = {
@@ -201,11 +208,10 @@ const bottomNavigationLinks = [
 
 const colorPrimary = "bg-blue-950";
 const colorSecondary = "bg-blue-800";
+const pageId = InternalLinksIds.home;
+const pageData = internalLinks[pageId];
 
 const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const pageId = InternalLinksIds.home;
-  const pageData = internalLinks[pageId];
-
   return (
     <Layout
       title={pageData.text}
@@ -222,21 +228,21 @@ const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
           title={workExperienceLink.text}
           id={workExperienceLink.href}
           colorSecondary={colorSecondary}
-          workExperiences={data.sectionWorkExperiences.workExperiences}
+          workExperiences={data.workExperiences}
         />
         <HomeProjectSection
           emoji={projectsLink.emoji}
           title={projectsLink.text}
           id={projectsLink.href}
           colorSecondary={colorSecondary}
-          projects={data.sectionProjects.projects}
+          projects={data.projects}
         />
         <HomeArticleSection
           emoji={articlesLink.emoji}
           title={articlesLink.text}
           id={articlesLink.href}
           colorSecondary={colorSecondary}
-          articles={data.sectionArticles.articles}
+          articles={data.articles}
         />
         <HomeAwardSection
           emoji={awardsLink.emoji}
