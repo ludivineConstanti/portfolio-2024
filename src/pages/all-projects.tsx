@@ -20,26 +20,26 @@ import { useAppSelector, useAppDispatch } from "@/store";
 import { setHowManyArticlesAndProjectsAreVisible } from "@/store/slices/system";
 
 export const getStaticProps = async () => {
-  const projects: ProjectData[] =
-    await client.fetch(groq`*[_type == "project"] | order(dateEnd desc){
-    ${queryProjectLink}  
+  const data = await client.fetch(groq`{
+      "projects": *[_type == "project"] | order(dateEnd desc) {
+        ${queryProjectLink}  
+      },
+      "articles": *[_type == "article"] {
+        skillBadges[]->{_id} 
+      },
+      "skills": *[_type == "skillBadge"] | order(text asc){
+        _id,
+        text,
+      }
     }`);
 
-  const articles: ArticleData[] =
-    await client.fetch(groq`*[_type == "article"] {
-  skillBadges[]->{_id} 
-  }`);
-
-  const dataSkills =
-    (await client.fetch(groq`*[_type == "skillBadge"] | order(text asc){
-    _id,
-    text,
-  }`)) as { _id: string; text: string }[];
+  const { projects, skills, articles } = data;
 
   const skillsFilter = returnSkillsForFilter({
-    data: dataSkills,
+    data: skills,
     projects,
     articles,
+    showEmoji: true,
   });
 
   return {
@@ -77,7 +77,7 @@ const AllProjectsPage = ({
       ? data.projects
       : returnDataBasedOnFilterState(data.projects, selectedSkillsFilter);
 
-  initialProjectsData.forEach((project) => {
+  initialProjectsData.forEach((project: ProjectData) => {
     const year = returnProjectOrArticleYear(project.dateEnd);
 
     const skillBadges = project.skillBadges
