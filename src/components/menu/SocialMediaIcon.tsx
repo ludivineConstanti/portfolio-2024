@@ -3,7 +3,13 @@ import { SocialMediaIds } from "@/models";
 const SocialMediaIcon = ({ id }: { id: SocialMediaIds }) => {
   if (id === SocialMediaIds.email) {
     return (
-      <svg viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        height="100%"
+        width="100%"
+        viewBox="0 0 18 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="M9.00065 7.51494L0.344818 0.5H17.6572L9.00065 7.51494ZM5.08259 6.19906L0.333984 2.35033V11.3788L5.08259 6.19906ZM12.9187 6.19906L17.6673 11.3788V2.35033L12.9187 6.19906ZM11.7942 7.10978L9.00065 9.37394L6.20709 7.10978L0.349873 13.5H17.6514L11.7942 7.10978Z"
           fill="currentColor"
@@ -12,7 +18,13 @@ const SocialMediaIcon = ({ id }: { id: SocialMediaIds }) => {
     );
   } else if (id === SocialMediaIds.gitHub) {
     return (
-      <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        height="100%"
+        width="100%"
+        viewBox="0 0 18 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -23,7 +35,13 @@ const SocialMediaIcon = ({ id }: { id: SocialMediaIds }) => {
     );
   } else if (id === SocialMediaIds.linkedin) {
     return (
-      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        height="100%"
+        width="100%"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="M2.21225 0.5C1.26057 0.5 0.486328 1.2734 0.486328 2.22403C0.486328 3.17508 1.26057 3.94877 2.21225 3.94877C3.16317 3.94877 3.93678 3.17504 3.93678 2.22403C3.93682 1.2734 3.16317 0.5 2.21225 0.5Z"
           fill="currentColor"
@@ -40,7 +58,13 @@ const SocialMediaIcon = ({ id }: { id: SocialMediaIds }) => {
     );
   } else if (id === SocialMediaIds.hashnode) {
     return (
-      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        height="100%"
+        width="100%"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -52,8 +76,8 @@ const SocialMediaIcon = ({ id }: { id: SocialMediaIds }) => {
   } else if (id === SocialMediaIds.medium) {
     return (
       <svg
-        width="16"
-        height="12"
+        height="100%"
+        width="100%"
         viewBox="0 0 16 12"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +92,13 @@ const SocialMediaIcon = ({ id }: { id: SocialMediaIds }) => {
     );
   } else if (id === SocialMediaIds.instagram) {
     return (
-      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        height="100%"
+        width="100%"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="M8 1.85188C10.0025 1.85188 10.24 1.85938 11.0312 1.89562C13.0638 1.98813 14.0131 2.9525 14.1056 4.97C14.1419 5.76062 14.1487 5.99813 14.1487 8.00063C14.1487 10.0037 14.1412 10.2406 14.1056 11.0312C14.0125 13.0469 13.0656 14.0131 11.0312 14.1056C10.24 14.1419 10.0037 14.1494 8 14.1494C5.9975 14.1494 5.76 14.1419 4.96938 14.1056C2.93187 14.0125 1.9875 13.0438 1.895 11.0306C1.85875 10.24 1.85125 10.0031 1.85125 8C1.85125 5.9975 1.85938 5.76062 1.895 4.96938C1.98813 2.9525 2.935 1.9875 4.96938 1.895C5.76062 1.85938 5.9975 1.85188 8 1.85188ZM8 0.5C5.96312 0.5 5.70813 0.50875 4.90812 0.545C2.18438 0.67 0.670625 2.18125 0.545625 4.9075C0.50875 5.70813 0.5 5.96312 0.5 8C0.5 10.0369 0.50875 10.2925 0.545 11.0925C0.67 13.8162 2.18125 15.33 4.9075 15.455C5.70813 15.4913 5.96312 15.5 8 15.5C10.0369 15.5 10.2925 15.4913 11.0925 15.455C13.8138 15.33 15.3313 13.8188 15.4544 11.0925C15.4913 10.2925 15.5 10.0369 15.5 8C15.5 5.96312 15.4913 5.70813 15.455 4.90812C15.3325 2.18687 13.8194 0.670625 11.0931 0.545625C10.2925 0.50875 10.0369 0.5 8 0.5ZM8 4.14875C5.87313 4.14875 4.14875 5.87313 4.14875 8C4.14875 10.1269 5.87313 11.8519 8 11.8519C10.1269 11.8519 11.8513 10.1275 11.8513 8C11.8513 5.87313 10.1269 4.14875 8 4.14875ZM8 10.5C6.61937 10.5 5.5 9.38125 5.5 8C5.5 6.61937 6.61937 5.5 8 5.5C9.38062 5.5 10.5 6.61937 10.5 8C10.5 9.38125 9.38062 10.5 8 10.5ZM12.0037 3.09688C11.5063 3.09688 11.1031 3.5 11.1031 3.99687C11.1031 4.49375 11.5063 4.89687 12.0037 4.89687C12.5006 4.89687 12.9031 4.49375 12.9031 3.99687C12.9031 3.5 12.5006 3.09688 12.0037 3.09688Z"
           fill="currentColor"
@@ -77,7 +107,13 @@ const SocialMediaIcon = ({ id }: { id: SocialMediaIds }) => {
     );
   } else if (id === SocialMediaIds.behance) {
     return (
-      <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        height="100%"
+        width="100%"
+        viewBox="0 0 16 10"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="M14.6667 1.33333H10V0H14.6667V1.33333ZM15.8173 8C15.5227 8.86467 14.4647 10 12.4167 10C10.3673 10 8.70733 8.84733 8.70733 6.21667C8.70733 3.61 10.2573 2.27 12.3513 2.27C14.406 2.27 15.6607 3.458 15.9347 5.22067C15.9867 5.558 16.0073 6.01267 15.998 6.64733H10.6467C10.7333 8.788 12.9687 8.85533 13.7053 8H15.8173ZM10.6933 5.33333H14.0033C13.9333 4.302 13.246 3.854 12.352 3.854C11.3747 3.854 10.834 4.366 10.6933 5.33333ZM4.31067 9.992H0V0.0139999H4.63533C8.286 0.0679999 8.35533 3.64333 6.44867 4.618C8.756 5.458 8.83333 9.992 4.31067 9.992ZM2 4H4.38933C6.06133 4 6.32667 2 4.18133 2H2V4ZM4.26067 6H2V8.01067H4.22733C6.264 8.01067 6.13933 6 4.26067 6Z"
           fill="currentColor"
