@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <div className="mx-sm mx-xl relative grid h-[100dvh] sm:grid-cols-2 sm:items-center">
+    <div className="mx-sm mx-xl relative grid h-[100dvh] pb-[45vh] sm:grid-cols-2 sm:items-center sm:pb-0">
       <div className="col-end-[-1] flex justify-center">
         <section className="mt-40 h-fit bg-[rgba(23,37,84,0.75)] p-2 px-8 sm:mt-0 sm:px-2">
           <h1 className="text-h4 pointer-events-auto font-light">
