@@ -35,7 +35,7 @@ const ClientSection = ({
           <li
             className={clsx(
               client.colorPrimary,
-              "group pointer-events-auto relative flex h-16 w-16 flex-col items-center justify-center rounded-xl transition-transform hover:scale-[1.3] sm:h-24 sm:w-24 xl:h-[7.5rem] xl:w-[7.5rem]",
+              "group pointer-events-auto relative flex h-16 w-16 flex-col items-center justify-center rounded-xl transition-transform hover:z-10 hover:scale-[1.75] sm:h-24 sm:w-24 sm:hover:scale-[1.3] xl:h-[7.5rem] xl:w-[7.5rem]",
             )}
             key={`client-${client.id}`}
           >

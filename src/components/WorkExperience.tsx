@@ -48,12 +48,12 @@ const WorkExperience = ({
           <a
             href={href}
             target="_blank"
-            className="group relative hidden shrink-0 outline-none transition-transform hover:scale-110 active:scale-125 sm:block"
+            className="group relative hidden shrink-0 rounded-full outline-none transition-transform hover:scale-110 active:scale-125 sm:block"
           >
             <span
               className={clsx(
                 colorLogo,
-                "border-3 block rounded-full border-2 border-solid border-current outline-offset-2 group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-current sm:flex sm:h-19 sm:w-19 sm:p-4",
+                "block rounded-full border-2 border-solid border-current outline-offset-2 group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-current sm:flex sm:h-19 sm:w-19 sm:p-4",
               )}
             >
               <img

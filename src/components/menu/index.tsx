@@ -72,7 +72,7 @@ const Menu = ({
   return (
     <>
       <header
-        className="pointer-events-none fixed z-10 grid h-full w-full grid-rows-[1fr_auto]"
+        className="pointer-events-none fixed z-20 grid h-full w-full grid-rows-[1fr_auto]"
         ref={ref}
       >
         <ButtonClose
@@ -147,7 +147,7 @@ const Menu = ({
         </ul>
       </header>
       {bottomNavigationLinks && menuIsOpen === false && (
-        <nav className="fixed bottom-0 left-0 z-10 w-full">
+        <nav className="fixed bottom-0 left-0 z-20 w-full">
           <BottomNavigation
             colorPrimary={colorPrimary}
             bottomNavigationLinks={bottomNavigationLinks}
