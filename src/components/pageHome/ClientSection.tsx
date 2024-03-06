@@ -30,7 +30,7 @@ const ClientSection = ({
       color={colorSecondary}
       customClass="bg-blue-950 pointer-events-auto"
     >
-      <ul className="home-max-w flex flex-wrap justify-center gap-4 sm:gap-8 xl:gap-10">
+      <ul className="max-w-home xl:max-w-home-xl flex flex-wrap justify-center gap-4 sm:gap-8 xl:gap-10">
         {clients.map((client) => (
           <li
             className={clsx(

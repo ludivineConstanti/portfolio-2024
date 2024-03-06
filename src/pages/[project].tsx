@@ -349,7 +349,7 @@ const ProjectPage = ({ data }: ProjectPageProps) => {
           color={data.colorSkillBadge}
           skillBadges={data.skillBadges}
         />
-        <section className="project-max-w mx-custom flex flex-col self-center pb-8 xl:pb-20">
+        <section className="max-w-project xl:max-w-home-xl mx-custom flex flex-col self-center pb-8 xl:pb-20">
           <ProjectSectionTitle
             role={data.role}
             workExperience={data.workExperience}

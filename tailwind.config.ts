@@ -14,10 +14,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        home: "40rem",
+        "home-xl": "68.75rem",
+        project: "42rem",
+      },
+      padding: {
+        "home-article": "1rem",
+        "home-article-sm": "2rem",
+        "home-article-xl": "4rem",
+      },
       spacing: {
         "18": "4.5rem",
         "19": "4.75rem",
         "22": "5.5rem",
+        "individual-page": "5rem",
+        "individual-page-xl": "8rem",
       },
       keyframes: {
         bounce: {

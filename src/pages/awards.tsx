@@ -60,13 +60,18 @@ const AllProjectsPage = ({
       colorSecondary={colorSecondary}
       pageId={pageId}
     >
-      <main className={clsx(colorPrimary, "all-projects-all-articles-pb")}>
+      <main
+        className={clsx(
+          colorPrimary,
+          "pb-individual-page xl:pb-individual-page-xl",
+        )}
+      >
         <TitlePage
           emoji={pageData.emoji}
           text={pageData.text}
           color={colorSecondary}
         />
-        <div className="all-projects-all-articles-pt flex justify-center">
+        <div className="pt-individual-page xl:pt-individual-page-xl flex justify-center">
           <ul className="flex flex-col gap-2 sm:gap-0.5">
             {data.awards.map((award: AwardData) => {
               return (

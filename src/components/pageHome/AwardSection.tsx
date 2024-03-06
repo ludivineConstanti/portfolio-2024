@@ -41,7 +41,7 @@ const AwardSection = ({
       link={{ href: internalLinks.awards.href, text: "See all Awards" }}
     >
       <div className="flex w-full justify-center">
-        <ul className="home-max-w grid flex-wrap items-center justify-start gap-2 gap-y-10 sm:flex sm:justify-center sm:gap-x-20">
+        <ul className="max-w-home xl:max-w-home-xl grid flex-wrap items-center justify-start gap-2 gap-y-10 sm:flex sm:justify-center sm:gap-x-20">
           <AwardWrapper logoWidth="w-[10rem] sm:w-[12rem] xl:w-[18.5rem]">
             <GrimmeOnlineAward />
           </AwardWrapper>

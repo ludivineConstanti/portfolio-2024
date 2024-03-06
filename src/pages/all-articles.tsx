@@ -133,7 +133,7 @@ const AllArticlesPage = ({
       <main
         className={clsx(
           colorPrimary,
-          "all-projects-all-articles-pb min-h-[100vh]",
+          "pb-individual-page xl:pb-individual-page-xl min-h-[100vh]",
         )}
       >
         <TitlePage

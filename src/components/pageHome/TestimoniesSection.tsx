@@ -20,7 +20,7 @@ const TestimoniesSection = ({
       color={colorSecondary}
       customClass="bg-blue-950 pointer-events-auto"
     >
-      <div className="home-max-w flex w-full flex-col items-center">
+      <div className="max-w-home xl:max-w-home-xl flex w-full flex-col items-center">
         <blockquote
           className="text-h4 relative px-8 sm:px-0 xl:max-w-[50rem]"
           cite="https://www.linkedin.com/in/ludivine-constanti"

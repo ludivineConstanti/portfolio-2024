@@ -35,13 +35,13 @@ const WorkExperience = ({
     <li>
       <article
         className={clsx(
-          "home-max-w pointer-events-auto rounded-2xl xl:rounded-[2rem]",
+          "max-w-home xl:max-w-home-xl pointer-events-auto rounded-2xl xl:rounded-[2rem]",
           colorPrimary,
         )}
       >
         <header
           className={clsx(
-            "home-article-padding-x home-article-padding-t flex gap-4 rounded-t-2xl pb-4 sm:pb-8 xl:rounded-t-[2rem]",
+            "px-home-article sm:px-home-article-sm xl:px-home-article-xl pt-home-article sm:pt-home-article-sm xl:pt-home-article-xl flex gap-4 rounded-t-2xl pb-4 sm:pb-8 xl:rounded-t-[2rem]",
             colorSecondary,
           )}
         >
@@ -77,8 +77,8 @@ const WorkExperience = ({
             </p>
           </div>
         </header>
-        <div className="home-article-padding-x home-article-padding-b pt-4 sm:pt-8">
-          <div className="[&>section>h4]:text-h5 [&>section>p]:text-body home-article-padding-small-b grid gap-[var(--home-article-padding-small-base)] sm:gap-[var(--home-article-padding-small-sm)] xl:grid-cols-2 xl:gap-[var(--home-article-padding-small-xl)] [&>section>h4]:mb-3 xl:[&>section>h4]:mb-4 [&>section>p:not(:last-child)]:mb-6">
+        <div className="px-home-article sm:px-home-article-sm xl:px-home-article-xl pb-home-article sm:pb-home-article-sm xl:pb-home-article-xl pt-4 sm:pt-8">
+          <div className="[&>section>h4]:text-h5 [&>section>p]:text-body grid gap-4 pb-4 sm:gap-8 sm:pb-8 xl:grid-cols-2 [&>section>h4]:mb-3 xl:[&>section>h4]:mb-4 [&>section>p:not(:last-child)]:mb-6">
             <section className="[&>p>a]:text-link">
               <PortableText value={text} />
             </section>
