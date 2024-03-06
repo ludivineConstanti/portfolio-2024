@@ -83,13 +83,18 @@ const WorkExperiencesPage = ({
       colorPrimary={colorPrimary}
       colorSecondary={colorSecondary}
     >
-      <main className={clsx(colorPrimary, "all-projects-all-articles-pb")}>
+      <main
+        className={clsx(
+          colorPrimary,
+          "pb-individual-page xl:pb-individual-page-xl",
+        )}
+      >
         <TitlePage
           emoji={pageData.emoji}
           text={pageData.text}
           color={colorSecondary}
         />
-        <ul className="px-custom all-projects-all-articles-pt flex w-full flex-col items-center gap-8 xl:gap-16">
+        <ul className="px-custom pt-individual-page xl:pt-individual-page-xl flex w-full flex-col items-center gap-8 xl:gap-16">
           {data.workExperiences.map((workExperience: WorkExperienceData) => (
             <WorkExperience
               key={`work-experience-${workExperience._id}`}

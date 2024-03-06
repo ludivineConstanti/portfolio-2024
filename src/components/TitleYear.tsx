@@ -15,7 +15,7 @@ const TitleYear = ({
     <h2
       className={clsx(
         customClass,
-        "text-h2 all-projects-all-articles-my inline-block rounded-2xl px-10 py-5",
+        "text-h2 my-individual-page xl:my-individual-page-xl inline-block rounded-2xl px-10 py-5",
         color,
       )}
       id={id}

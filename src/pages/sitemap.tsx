@@ -83,13 +83,18 @@ const Sitemap = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
       colorPrimary={colorPrimary}
       colorSecondary={colorSecondary}
     >
-      <main className={clsx(colorPrimary, "all-projects-all-articles-pb")}>
+      <main
+        className={clsx(
+          colorPrimary,
+          "pb-individual-page xl:pb-individual-page-xl",
+        )}
+      >
         <TitlePage
           emoji={pageData.emoji}
           text={pageData.text}
           color={colorSecondary}
         />
-        <div className="mx-custom home-article-padding-y flex justify-center">
+        <div className="mx-custom flex justify-center py-4 sm:py-8 xl:py-16">
           <ul className="max-width-home flex flex-col gap-8 xl:gap-16">
             <li>
               <LinkCTA

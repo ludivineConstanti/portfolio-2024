@@ -120,7 +120,7 @@ const AllProjectsPage = ({
       <main
         className={clsx(
           colorPrimary,
-          "all-projects-all-articles-pb flex min-h-[100vh] flex-col",
+          "pb-individual-page xl:pb-individual-page-xl flex min-h-[100vh] flex-col",
         )}
       >
         <TitlePage

@@ -30,7 +30,7 @@ const Project = ({
         href={`/${slug.current}`}
         className={clsx(
           colorPrimary,
-          "home-max-w group pointer-events-auto relative flex flex-col gap-6 rounded-2xl p-4 outline-offset-4 transition-transform hover:scale-[1.03] active:scale-105 sm:hover:scale-105 sm:active:scale-110 xl:flex-row xl:gap-8 xl:p-6",
+          "max-w-home xl:max-w-home-xl group pointer-events-auto relative flex flex-col gap-6 rounded-2xl p-4 outline-offset-4 transition-transform hover:scale-[1.03] active:scale-105 sm:hover:scale-105 sm:active:scale-110 xl:flex-row xl:gap-8 xl:p-6",
         )}
       >
         {image && (

@@ -24,7 +24,7 @@ const NoArticlesOrProjectsFound = ({
       ? `Project${howManyProjectsAreVisible > 1 ? "s" : ""}`
       : `Article${howManyArticlesAreVisible > 1 ? "s" : ""}`;
   return (
-    <div className="mx-custom all-projects-all-articles-pt flex h-full grow items-center justify-center">
+    <div className="mx-custom pt-individual-page xl:pt-individual-page-xl flex h-full grow items-center justify-center">
       <div className="flex max-w-[50rem] flex-col gap-16">
         <p className="text-h3">
           There are currently no{" "}

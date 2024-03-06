@@ -73,7 +73,7 @@ const NextAndPrevProject = ({
 }) => {
   return (
     <nav className="flex w-full  justify-center pb-8 xl:pb-20">
-      <ul className="mx-custom project-max-w flex w-full flex-col flex-wrap gap-8 sm:flex-row">
+      <ul className="mx-custom max-w-project xl:max-w-home-xl flex w-full flex-col flex-wrap gap-8 sm:flex-row">
         {previousProject && (
           <ProjectLink
             project={previousProject}
