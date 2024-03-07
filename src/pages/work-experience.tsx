@@ -9,47 +9,47 @@ import { internalLinks, InternalLinksIds } from "@/models";
 import { querySkillBadges } from "@/sanity/utils";
 
 export const getStaticProps = async () => {
-  const dataWorkExperiences =
-    await client.fetch(groq`*[_type == "workExperience"] | order(dateEnd desc){
-    _id,
-    title,
-    role,
-    text,
-    location,
-    dateStart,
-    dateEnd,
-    href,
-    colorPrimary,
-    colorSecondary,
-    colorLogo,
-    colorSkillBadge,
-    logo {
-      asset->{
-        url
+  const data = await client.fetch(groq`{
+      "dataWorkExperiences": *[_type == "workExperience"] | order(dateEnd desc){
+        _id,
+        title,
+        role,
+        text,
+        location,
+        dateStart,
+        dateEnd,
+        href,
+        colorPrimary,
+        colorSecondary,
+        colorLogo,
+        colorSkillBadge,
+        logo {
+          asset->{
+            url
+          }
+        },
+        ${querySkillBadges}
+      },
+      "dataProjects": *[_type == "project" && workExperience != null] | order(dateEnd desc){
+        _id,
+        workExperience,
+        client,
+        title,
+        dateEnd,
+        slug,
+        image{
+          'url': asset->url,
+          alt
+        },
       }
-    },
-    ${querySkillBadges}
-  }`);
+    }`);
 
-  const dataProjects =
-    await client.fetch(groq`*[_type == "project"] | order(dateEnd desc){
-  _id,
-  workExperience,
-  client,
-  title,
-  dateEnd,
-  slug,
-  image{
-    'url': asset->url,
-    alt
-  },
-}`);
+  const { dataWorkExperiences, dataProjects } = data;
 
   const dataWorkExperiencesWithProjects = dataWorkExperiences.map(
     (workExperience: WorkExperienceData) => {
       const workExperienceProjects = dataProjects.filter(
         (project: ProjectTeaserData) =>
-          project.workExperience &&
           project.workExperience._ref === workExperience._id,
       );
       return {
@@ -94,7 +94,7 @@ const WorkExperiencesPage = ({
           text={pageData.text}
           color={colorSecondary}
         />
-        <ul className="px-custom pt-individual-page xl:pt-individual-page-xl flex w-full flex-col items-center gap-8 xl:gap-16">
+        <ul className="px-custom flex w-full flex-col items-center gap-8 pt-individual-page xl:gap-16 xl:pt-individual-page-xl">
           {data.workExperiences.map((workExperience: WorkExperienceData) => (
             <WorkExperience
               key={`work-experience-${workExperience._id}`}
