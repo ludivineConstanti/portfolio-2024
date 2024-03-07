@@ -6,22 +6,29 @@ import { Layout, TitlePage, SitemapListOfLinks, LinkCTA } from "@/components";
 import { internalLinks, InternalLinksIds } from "@/models";
 
 export const getStaticProps = async () => {
-  const projects =
-    await client.fetch(groq`*[_type == "project"] | order(dateEnd desc){
-    _id,
-    emoji,
-    title,
-    slug,  
-    }`);
+  const data = await client.fetch(groq`{
+    "projectsData": *[_type == "project"] | order(dateEnd desc){
+      _id,
+      emoji,
+      title,
+      slug,  
+    },
+    "articlesData": *[_type == "article"] | order(date desc){
+      _id,
+      emoji,
+      category->{text, title},
+      text,
+      href,  
+    },
+    "awardsData": *[_type == "award"] | order(dateEnd desc){
+      _id,
+      category->{emoji,text},
+      project->{title},
+      href,  
+    }
+  }`);
 
-  const articlesData =
-    await client.fetch(groq`*[_type == "article"] | order(date desc){
-  _id,
-  emoji,
-  category->{text, title},
-  text,
-  href,  
-}`);
+  const { projectsData, articlesData, awardsData } = data;
 
   const articles = articlesData.map(
     (article: {
@@ -38,14 +45,6 @@ export const getStaticProps = async () => {
     }),
   );
 
-  const awardsData =
-    await client.fetch(groq`*[_type == "award"] | order(dateEnd desc){
-    _id,
-    category->{emoji,text},
-    project->{title},
-    href,  
-}`);
-
   const awards = awardsData.map(
     (award: {
       category: { emoji: string; text: string };
@@ -61,7 +60,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       data: {
-        projects,
+        projects: projectsData,
         articles,
         awards,
       },

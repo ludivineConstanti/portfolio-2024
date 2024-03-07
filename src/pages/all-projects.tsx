@@ -3,7 +3,7 @@ import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
 import clsx from "clsx";
 import { client, queryProjectLink } from "@/sanity/utils";
-import type { ProjectData, ArticleData } from "@/models";
+import type { ProjectData } from "@/models";
 import {
   Layout,
   TitlePage,
@@ -120,7 +120,7 @@ const AllProjectsPage = ({
       <main
         className={clsx(
           colorPrimary,
-          "pb-individual-page xl:pb-individual-page-xl flex min-h-[100vh] flex-col",
+          "flex min-h-[100vh] flex-col pb-individual-page xl:pb-individual-page-xl",
         )}
       >
         <TitlePage
