@@ -26,6 +26,8 @@ const Layout = ({
   pageId,
   bottomNavigationLinks,
   skillsFilter,
+  projects,
+  articles,
 }: LayoutProps) => {
   return (
     <div className={lexend.className}>
@@ -64,6 +66,8 @@ const Layout = ({
         pageId={pageId}
         bottomNavigationLinks={bottomNavigationLinks}
         skillsFilter={skillsFilter}
+        projects={projects}
+        articles={articles}
       />
       {children}
       <Footer colorSecondary={colorSecondary} />

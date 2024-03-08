@@ -1,6 +1,9 @@
 import dynamic from "next/dynamic";
 import Section from "./Section";
-import type { SearchBarComponentProps } from "@/models";
+import type {
+  SearchBarComponentProps,
+  SelectedSkillsFilterProps,
+} from "@/models";
 import { LinkCTA } from "..";
 import { internalLinks } from "@/models";
 import { returnDataBasedOnFilterState } from "@/utils";
@@ -51,18 +54,19 @@ const SkillsSearchSection = ({
           unstyled={true}
           value={selectedSkillsFilter}
           onChange={(v) => {
+            const selectedSkills = v as SelectedSkillsFilterProps;
             const numberOfProjects = returnDataBasedOnFilterState(
               allProjects,
-              v as { value: string }[],
+              selectedSkills,
             ).length;
             const numberOfArticles = returnDataBasedOnFilterState(
               allArticles,
-              v as { value: string }[],
+              selectedSkills,
             ).length;
 
             dispatch(
               setSkillsFilterSettings({
-                selectedSkills: v,
+                selectedSkills,
                 projects: numberOfProjects,
                 articles: numberOfArticles,
               }),

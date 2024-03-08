@@ -37,6 +37,8 @@ const Menu = ({
   pageId,
   bottomNavigationLinks,
   skillsFilter,
+  projects,
+  articles,
 }: MenuComponentProps) => {
   const dispatch = useAppDispatch();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -123,9 +125,13 @@ const Menu = ({
               </span>
             </a>
           </div>
-          {skillsFilter && menuIsOpen === false && (
+          {skillsFilter && projects && articles && menuIsOpen === false && (
             <div className="relative top-5 flex flex-col flex-wrap items-center gap-2 sm:top-0 sm:flex-row sm:items-start ">
-              <SearchBar skillsFilter={skillsFilter} />
+              <SearchBar
+                skillsFilter={skillsFilter}
+                projects={projects}
+                articles={articles}
+              />
               <SearchBarFeedback pageId={pageId} color={colorSecondary} />
             </div>
           )}

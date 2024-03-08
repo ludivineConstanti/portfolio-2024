@@ -1,4 +1,3 @@
-import { useEffect, startTransition } from "react";
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
 import clsx from "clsx";
@@ -15,9 +14,9 @@ import {
   returnProjectOrArticleYear,
   returnDataBasedOnFilterState,
   returnSkillsForFilter,
+  returnVisibleSkillBadges,
 } from "@/utils";
-import { useAppSelector, useAppDispatch } from "@/store";
-import { setHowManyArticlesAndProjectsAreVisible } from "@/store/slices/system";
+import { useAppSelector } from "@/store";
 
 export const getStaticProps = async () => {
   const data = await client.fetch(groq`{
@@ -42,10 +41,15 @@ export const getStaticProps = async () => {
     showEmoji: false,
   });
 
+  const dataProjects = projects.map((e: ProjectData) => ({
+    ...e,
+    skillBadges: returnVisibleSkillBadges(e.skillBadges),
+  }));
+
   return {
     props: {
       data: {
-        projects,
+        projects: dataProjects,
         articles,
         skillsFilter,
       },
@@ -61,16 +65,9 @@ const pageData = internalLinks[pageId];
 const AllProjectsPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const dispatch = useAppDispatch();
-
   const { selectedSkillsFilter } = useAppSelector((state) => state.system);
 
   const projects: { [key: string]: ProjectData[] } = {};
-
-  const articlesLength = returnDataBasedOnFilterState(
-    data.articles,
-    selectedSkillsFilter,
-  ).length;
 
   const initialProjectsData =
     selectedSkillsFilter.length === 0
@@ -80,28 +77,12 @@ const AllProjectsPage = ({
   initialProjectsData.forEach((project: ProjectData) => {
     const year = returnProjectOrArticleYear(project.dateEnd);
 
-    const skillBadges = project.skillBadges
-      ? project.skillBadges.sort((a, b) => (a.text > b.text ? 1 : -1))
-      : [];
-    const currentProject = { ...project, skillBadges };
-
     if (projects[year]) {
-      projects[year].push(currentProject);
+      projects[year].push(project);
     } else {
-      projects[year] = [currentProject];
+      projects[year] = [project];
     }
   });
-
-  useEffect(() => {
-    startTransition(() => {
-      dispatch(
-        setHowManyArticlesAndProjectsAreVisible({
-          projects: initialProjectsData.length,
-          articles: articlesLength,
-        }),
-      );
-    });
-  }, [dispatch, initialProjectsData, articlesLength]);
 
   return (
     <Layout
@@ -116,6 +97,8 @@ const AllProjectsPage = ({
           text: year,
         }))}
       skillsFilter={data.skillsFilter}
+      projects={data.projects}
+      articles={data.articles}
     >
       <main
         className={clsx(

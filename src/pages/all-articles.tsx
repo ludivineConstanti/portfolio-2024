@@ -1,4 +1,3 @@
-import { useEffect, startTransition } from "react";
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
 import clsx from "clsx";
@@ -8,6 +7,7 @@ import {
   returnProjectOrArticleYear,
   returnDataBasedOnFilterState,
   returnSkillsForFilter,
+  returnVisibleSkillBadges,
 } from "@/utils";
 import type { ArticleData } from "@/models";
 import { internalLinks, InternalLinksIds } from "@/models";
@@ -17,8 +17,7 @@ import {
   Layout,
   NoArticlesOrProjectsFound,
 } from "@/components";
-import { useAppSelector, useAppDispatch } from "@/store";
-import { setHowManyArticlesAndProjectsAreVisible } from "@/store/slices/system";
+import { useAppSelector } from "@/store";
 
 export const getStaticProps = async () => {
   const data = await client.fetch(groq`{
@@ -28,7 +27,7 @@ export const getStaticProps = async () => {
       "articles": *[_type == "article"] | order(date desc){
         ${queryArticleLink}
       },
-      "skills": *[_type == "skillBadge"] | order(text asc){
+      "skills": *[_type == "skillBadge"]{
         _id,
         text,
       }
@@ -43,12 +42,17 @@ export const getStaticProps = async () => {
     showEmoji: false,
   });
 
+  const articlesData = articles.map((e: ArticleData) => ({
+    ...e,
+    skillBadges: returnVisibleSkillBadges(e.skillBadges, 3),
+  }));
+
   return {
     props: {
       data: {
         projects,
         skillsFilter,
-        articles,
+        articles: articlesData,
       },
     },
   };
@@ -62,14 +66,7 @@ const pageData = internalLinks[InternalLinksIds.allArticles];
 const AllArticlesPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const dispatch = useAppDispatch();
-
   const { selectedSkillsFilter } = useAppSelector((state) => state.system);
-
-  const projectsLength = returnDataBasedOnFilterState(
-    data.projects,
-    selectedSkillsFilter,
-  ).length;
 
   const initialArticlesData =
     selectedSkillsFilter.length === 0
@@ -105,17 +102,6 @@ const AllArticlesPage = ({
     }
   });
 
-  useEffect(() => {
-    startTransition(() => {
-      dispatch(
-        setHowManyArticlesAndProjectsAreVisible({
-          projects: projectsLength,
-          articles: initialArticlesData.length,
-        }),
-      );
-    });
-  }, [dispatch, initialArticlesData, projectsLength]);
-
   return (
     <Layout
       title={pageData.text}
@@ -129,11 +115,13 @@ const AllArticlesPage = ({
           text: year,
         }))}
       skillsFilter={data.skillsFilter}
+      projects={data.projects}
+      articles={data.articles}
     >
       <main
         className={clsx(
           colorPrimary,
-          "pb-individual-page xl:pb-individual-page-xl min-h-[100vh]",
+          "min-h-[100vh] pb-individual-page xl:pb-individual-page-xl",
         )}
       >
         <TitlePage

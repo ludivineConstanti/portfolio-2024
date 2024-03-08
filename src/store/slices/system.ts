@@ -1,9 +1,10 @@
+import { SelectedSkillsFilterProps } from "@/models";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialStateProps {
   width: number;
   height: number;
-  selectedSkillsFilter: { value: string; label: string }[];
+  selectedSkillsFilter: SelectedSkillsFilterProps;
   howManyArticlesAreVisible: number;
   howManyProjectsAreVisible: number;
 }
@@ -18,30 +19,33 @@ const systemSlice = createSlice({
     howManyProjectsAreVisible: 0,
   } as InitialStateProps,
   reducers: {
-    setWidthAndHeight: (state, action) => {
-      state.width = action.payload.width;
-      state.height = action.payload.height;
+    setWidthAndHeight: (
+      state,
+      { payload }: { payload: { width: number; height: number } },
+    ) => {
+      state.width = payload.width;
+      state.height = payload.height;
     },
-    setSelectedSkillsFilter: (state, action) => {
-      state.selectedSkillsFilter = action.payload;
-    },
-    setHowManyArticlesAndProjectsAreVisible: (state, action) => {
-      state.howManyArticlesAreVisible = action.payload.articles;
-      state.howManyProjectsAreVisible = action.payload.projects;
-    },
-    setSkillsFilterSettings: (state, action) => {
-      state.selectedSkillsFilter = action.payload.selectedSkills;
-      state.howManyArticlesAreVisible = action.payload.articles;
-      state.howManyProjectsAreVisible = action.payload.projects;
+    setSkillsFilterSettings: (
+      state,
+      {
+        payload,
+      }: {
+        payload: {
+          selectedSkills: SelectedSkillsFilterProps;
+          articles: number;
+          projects: number;
+        };
+      },
+    ) => {
+      state.selectedSkillsFilter = payload.selectedSkills;
+      state.howManyArticlesAreVisible = payload.articles;
+      state.howManyProjectsAreVisible = payload.projects;
     },
   },
 });
 
-export const {
-  setWidthAndHeight,
-  setSelectedSkillsFilter,
-  setSkillsFilterSettings,
-  setHowManyArticlesAndProjectsAreVisible,
-} = systemSlice.actions;
+export const { setWidthAndHeight, setSkillsFilterSettings } =
+  systemSlice.actions;
 
 export default systemSlice.reducer;

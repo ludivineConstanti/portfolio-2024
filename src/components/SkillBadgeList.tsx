@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { SkillBadgeData, SkillBadgeSizeOptions } from "@/models";
+import { VisibleSkillBadgeData, SkillBadgeSizeOptions } from "@/models";
 import SkillBadge from "./SkillBadge";
 
 const SkillBadgeList = ({
@@ -11,7 +11,7 @@ const SkillBadgeList = ({
   customClass?: string;
   color?: string;
   size?: SkillBadgeSizeOptions;
-  skillBadges: SkillBadgeData[];
+  skillBadges: VisibleSkillBadgeData[];
 }) => {
   return (
     <ul
@@ -21,15 +21,17 @@ const SkillBadgeList = ({
         customClass,
       )}
     >
-      {skillBadges.map((e) => (
-        <SkillBadge
-          key={`skill-badge-${e._id}`}
-          emoji={e.emoji}
-          text={e.text}
-          color={color}
-          size={size}
-        />
-      ))}
+      {skillBadges
+        .filter((e) => e.visible !== false)
+        .map((e) => (
+          <SkillBadge
+            key={`skill-badge-${e._id}`}
+            emoji={e.emoji}
+            text={e.text}
+            color={color}
+            size={size}
+          />
+        ))}
     </ul>
   );
 };
