@@ -14,7 +14,7 @@ import {
 } from "@/components";
 import { SlugProps, SkillBadgeData } from "@/models";
 import { groq } from "next-sanity";
-import { client, querySkillBadges } from "@/sanity/utils";
+import { client } from "@/sanity/utils";
 import { returnProjectOrArticleYear, returnVisibleSkillBadges } from "@/utils";
 
 // Returns a list of possible value for the projects id
@@ -24,7 +24,7 @@ export const getStaticPaths = async () => {
     }`);
 
   return {
-    paths: data.map((project: { slug: SlugProps; _id: string }) => ({
+    paths: data.map((project: { slug: SlugProps }) => ({
       params: { project: project.slug.current },
     })),
     fallback: false,
@@ -39,7 +39,6 @@ export const getStaticProps = async ({
 
   const projectData = await client.fetch(
     groq`*[_type == "project" && slug.current == $project]{
-        ${querySkillBadges}
         _id,
         emoji,
         title,
@@ -49,7 +48,7 @@ export const getStaticProps = async ({
         text,
         dateStart,
         dateEnd,
-        role,
+        role->{emoji,text},
         workExperience->{emoji, title, href},
         client->{_type, emoji, text, title, href},
         colorPrimary,
@@ -58,7 +57,8 @@ export const getStaticProps = async ({
         image{
             'url': asset->url,
             alt
-        },  
+        }, 
+        skillBadges[]->{_id,text,emoji}, 
     }`,
     { project },
   );
@@ -71,16 +71,12 @@ export const getStaticProps = async ({
         slug,
         dateEnd
       },
-      "articlesData": *[_type == "article" && $projectId in projects[]->_id] | order(text asc){
+      "articlesData": *[_type == "article" && $projectId != null && $projectId in projects[]->_id] | order(text asc){
         _id,
         emoji,
         text,
         href,
         projects[]->{_id}, 
-      },
-      "roleData": *[_id == $role]{
-        emoji,
-        text  
       },
       "postsData": *[_type == "post" && project._ref == $projectId] | order(highlightedPost asc, linkedinPost asc, youtubePost asc, instagramPost asc) {
         _id,
@@ -96,11 +92,11 @@ export const getStaticProps = async ({
         href,
       }
     }`,
-    { role: projectData[0].role._ref, projectId: projectData[0]._id },
+    { projectId: projectData[0]._id },
   );
 
   const { projectsData, articlesData, postsData, awardsData } = data;
-  const role = data.roleData;
+  const role = projectData[0].role;
 
   const projects = projectsData.sort(
     (a: { dateEnd: null | string }, b: { dateEnd: null | string }) => {
@@ -159,7 +155,6 @@ export const getStaticProps = async ({
   }
 
   /* AWARDS */
-
   const awards = awardsData.map(
     (award: {
       _id: string;
@@ -172,9 +167,7 @@ export const getStaticProps = async ({
       text: award.category.text,
     }),
   );
-
   /* POSTS */
-
   const posts = postsData.map(
     (post: {
       _id: string;
@@ -232,7 +225,7 @@ export const getStaticProps = async ({
         skillBadges,
         imageLinkHref,
         imageLinkText,
-        role: role[0],
+        role: role || null,
         client: projectClient,
         projectLinks: projectLinks.length ? projectLinks : null,
         articles: articlesData.length ? articlesData : null,
