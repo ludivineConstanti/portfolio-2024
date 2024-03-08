@@ -13,13 +13,19 @@ const Footer = ({ colorSecondary }: { colorSecondary: string }) => {
     <footer
       className={clsx(colorSecondary, "z-9 pointer-events-auto relative")}
     >
-      <ul className="flex justify-center gap-8 p-8 pb-16 xl:p-12 xl:pb-16">
+      <ul className="flex justify-center gap-8 p-8 pb-16 xl:p-12 xl:pb-20">
         {footerLinksKeys.map((e) => (
           <li
             key={`footer-link-${internalLinks[e].text}`}
-            className="text-body text-link"
+            className="text-body"
           >
-            <Link href={internalLinks[e].href}>{internalLinks[e].text}</Link>
+            <Link
+              href={internalLinks[e].href}
+              className="flex items-center gap-1"
+            >
+              <span className="text-[1.25em]">{internalLinks[e].emoji}</span>
+              <span className="text-link">{internalLinks[e].text}</span>
+            </Link>
           </li>
         ))}
       </ul>

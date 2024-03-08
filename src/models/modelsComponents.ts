@@ -1,4 +1,4 @@
-import { InternalLinksIds } from ".";
+import { InternalLinksIds, ProjectData, ArticleData } from ".";
 
 export type BottomNavigationComponentProps = {
   emoji?: string;
@@ -14,4 +14,6 @@ export interface MenuComponentProps {
   pageId?: InternalLinksIds;
   bottomNavigationLinks?: BottomNavigationComponentProps;
   skillsFilter?: SearchBarComponentProps;
+  projects?: ProjectData[];
+  articles?: ArticleData[];
 }

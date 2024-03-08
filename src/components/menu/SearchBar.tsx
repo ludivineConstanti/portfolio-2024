@@ -2,10 +2,16 @@
 
 import dynamic from "next/dynamic";
 import React from "react";
-import { SearchBarComponentProps } from "@/models";
+import {
+  SearchBarComponentProps,
+  ArticleData,
+  ProjectData,
+  SelectedSkillsFilterProps,
+} from "@/models";
 import type { CSSObjectWithLabel } from "react-select";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { setSelectedSkillsFilter } from "@/store/slices/system";
+import { setSkillsFilterSettings } from "@/store/slices/system";
+import { returnDataBasedOnFilterState } from "@/utils";
 
 const Select = dynamic(() => import("react-select"));
 
@@ -19,8 +25,12 @@ const styles = {
 
 const SearchBar = ({
   skillsFilter,
+  projects,
+  articles,
 }: {
   skillsFilter: SearchBarComponentProps;
+  projects: ProjectData[];
+  articles: ArticleData[];
 }) => {
   const dispatch = useAppDispatch();
   const { selectedSkillsFilter } = useAppSelector((state) => state.system);
@@ -34,7 +44,22 @@ const SearchBar = ({
       unstyled={true}
       value={selectedSkillsFilter}
       onChange={(v) => {
-        dispatch(setSelectedSkillsFilter(v));
+        const selectedSkills = v as SelectedSkillsFilterProps;
+        const numberOfProjects = returnDataBasedOnFilterState(
+          projects,
+          selectedSkills,
+        ).length;
+        const numberOfArticles = returnDataBasedOnFilterState(
+          articles,
+          selectedSkills,
+        ).length;
+        dispatch(
+          setSkillsFilterSettings({
+            selectedSkills,
+            projects: numberOfProjects,
+            articles: numberOfArticles,
+          }),
+        );
       }}
       styles={styles}
       className="z-10"

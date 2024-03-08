@@ -1,7 +1,11 @@
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
 import { client, queryProjectLink, queryArticleLink } from "@/sanity/utils";
-import { sortAlphabetically, sortByDateEnd } from "@/utils";
+import {
+  sortAlphabetically,
+  sortByDateEnd,
+  returnVisibleSkillBadges,
+} from "@/utils";
 import {
   Layout,
   HomeHero,
@@ -94,12 +98,12 @@ export const getStaticProps = async () => {
 
   const projects = dataHomePage[0].projects.map((project: ProjectData) => ({
     ...project,
-    skillBadges: sortAlphabetically(project.skillBadges),
+    skillBadges: returnVisibleSkillBadges(project.skillBadges),
   }));
 
   const articles = dataHomePage[0].articles.map((article: ArticleData) => ({
     ...article,
-    skillBadges: sortAlphabetically(article.skillBadges),
+    skillBadges: returnVisibleSkillBadges(article.skillBadges, 5),
   }));
 
   const allProjects = dataProjects.map(
@@ -184,7 +188,7 @@ export const getStaticProps = async () => {
 
 const workExperienceLink = {
   emoji: internalLinks.workExperiences.emoji,
-  text: internalLinks.workExperiences.text,
+  text: "Work Experiences",
   href: "workExperience",
 };
 const skillsFilterLink = {
@@ -204,7 +208,7 @@ const articlesLink = {
 };
 const awardsLink = {
   emoji: internalLinks.awards.emoji,
-  text: internalLinks.awards.text,
+  text: "Awards",
   href: "awards",
 };
 const clientsLink = {

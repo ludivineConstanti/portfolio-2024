@@ -31,13 +31,13 @@ export const internalLinks: Record<
   },
   [InternalLinksIds.workExperiences]: {
     emoji: "🗃️",
-    text: "Work experience",
-    href: "/work-experience",
+    text: "All Work experiences",
+    href: "/all-work-experiences",
   },
   [InternalLinksIds.awards]: {
     emoji: "✨",
-    text: "Awards",
-    href: "/awards",
+    text: "All Awards",
+    href: "/all-awards",
   },
   [InternalLinksIds.sitemap]: {
     emoji: "🗺️",

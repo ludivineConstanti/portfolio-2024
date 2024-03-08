@@ -1,4 +1,4 @@
-import { SkillBadgeData } from "@/models";
+import { SkillBadgeData, VisibleSkillBadgeData } from "@/models";
 
 export const returnProjectOrArticleYear = (
   year?: Date | string,
@@ -144,7 +144,13 @@ export const returnVisibleSkillBadges = (
     return 0;
   });
 
-  return sortedSkillBadges.slice(0, max).sort((a, b) => {
+  const visibleSkillBadges: VisibleSkillBadgeData[] = [];
+
+  sortedSkillBadges.forEach((skillBadge, skillBadgeIndex) => {
+    visibleSkillBadges.push({ ...skillBadge, visible: skillBadgeIndex < max });
+  });
+
+  return visibleSkillBadges.sort((a, b) => {
     if (a.text && b.text) {
       return a.text.localeCompare(b.text);
     }
