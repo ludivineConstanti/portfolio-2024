@@ -20,7 +20,7 @@ const TestimoniesSection = ({
       color={colorSecondary}
       customClass="bg-blue-950 pointer-events-auto"
     >
-      <div className="max-w-home xl:max-w-home-xl flex w-full flex-col items-center">
+      <div className="flex w-full max-w-home flex-col items-center xl:max-w-home-xl">
         <blockquote
           className="text-h4 relative px-8 sm:px-0 xl:max-w-[50rem]"
           cite="https://www.linkedin.com/in/ludivine-constanti"
@@ -61,7 +61,12 @@ const TestimoniesSection = ({
                 fill="currentColor"
               />
             </svg>
-            <Tooltip text="Ufomammoot website ↗️" />
+            <Tooltip
+              text="Ufomammoot website ↗️"
+              customClass="group-hover:scale-[0.9] group-active:scale-[0.8]"
+              side="left"
+              sideSm="top"
+            />
           </a>
         </div>
       </div>

@@ -7,10 +7,12 @@ const ProjectThumbnail = ({
   image,
   href,
   title,
+  emoji,
   color,
 }: {
   _id: string;
   image: { url: string };
+  emoji: string;
   href: string;
   title: string;
   color: string;
@@ -38,7 +40,10 @@ const ProjectThumbnail = ({
         >
           <ArrowForward />
         </div>
-        <Tooltip text={title} />
+        <Tooltip
+          text={`${emoji} ${title}`}
+          customClass="group-hover:scale-[0.9] group-active:scale-[0.8]"
+        />
       </Link>
     </li>
   );

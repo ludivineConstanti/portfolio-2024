@@ -110,3 +110,5 @@ const skillBadges2 = await client.fetch(
 ## 🗂️ Sorting and mapping data with TypeScript
 
 I also compared the score of the 2 queries (on the detailed project page) with the rest of the code (which is used to map and sort the data), to see if it has a significant impact on performance. The first query took 118ms, the 2nd 143ms, and the rest of the TypeScript code 0.82ms. So merging the GROQ queries stays the best performance opportunity gain I could find.
+
+However, I found out that [using the spread operator {...} can add a lot of unnecessary data, which gets transferred to the page and reduces performance](https://github.com/ludivineConstanti/portfolio-2024/blob/main/mdDocumentation/performanceDataTransfer.md), which is why I still ended up removing them in the project.

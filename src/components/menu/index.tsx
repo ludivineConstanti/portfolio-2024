@@ -140,7 +140,7 @@ const Menu = ({
           className={clsx(
             { "hidden sm:flex": !menuIsOpen },
             colorSecondary,
-            "flex h-full flex-wrap justify-center gap-6 p-12 sm:absolute sm:right-6 sm:top-0 sm:flex-col sm:bg-[rgba(255,255,255,0)] sm:p-0 xl:right-7",
+            "z-20 flex h-full flex-wrap justify-center gap-6 p-12 sm:absolute sm:right-6 sm:top-0 sm:flex-col sm:bg-[rgba(255,255,255,0)] sm:p-0 xl:right-7",
           )}
         >
           {socialMediasKeys.map((socialMediaKey) => (

@@ -35,13 +35,13 @@ const WorkExperience = ({
     <li>
       <article
         className={clsx(
-          "max-w-home xl:max-w-home-xl pointer-events-auto rounded-2xl xl:rounded-[2rem]",
+          "pointer-events-auto max-w-home rounded-2xl xl:max-w-home-xl xl:rounded-[2rem]",
           colorPrimary,
         )}
       >
         <header
           className={clsx(
-            "px-home-article sm:px-home-article-sm xl:px-home-article-xl pt-home-article sm:pt-home-article-sm xl:pt-home-article-xl flex gap-4 rounded-t-2xl pb-4 sm:pb-8 xl:rounded-t-[2rem]",
+            "flex gap-4 rounded-t-2xl px-home-article pb-4 pt-home-article sm:px-home-article-sm sm:pb-8 sm:pt-home-article-sm xl:rounded-t-[2rem] xl:px-home-article-xl xl:pt-home-article-xl",
             colorSecondary,
           )}
         >
@@ -65,7 +65,10 @@ const WorkExperience = ({
                 alt={`${title} logo`}
               />
             </span>
-            <Tooltip text={`${title} website ↗️`} />
+            <Tooltip
+              text={`${title} website ↗️`}
+              customClass="group-hover:scale-[0.9] group-active:scale-[0.8]"
+            />
           </a>
           <div>
             <h3 className="text-h3">
@@ -77,7 +80,7 @@ const WorkExperience = ({
             </p>
           </div>
         </header>
-        <div className="px-home-article sm:px-home-article-sm xl:px-home-article-xl pb-home-article sm:pb-home-article-sm xl:pb-home-article-xl pt-4 sm:pt-8">
+        <div className="px-home-article pb-home-article pt-4 sm:px-home-article-sm sm:pb-home-article-sm sm:pt-8 xl:px-home-article-xl xl:pb-home-article-xl">
           <div className="[&>section>h4]:text-h5 [&>section>p]:text-body grid gap-4 pb-4 sm:gap-8 sm:pb-8 xl:grid-cols-2 [&>section>h4]:mb-3 xl:[&>section>h4]:mb-4 [&>section>p:not(:last-child)]:mb-6">
             <section className="[&>p>a]:text-link">
               <PortableText value={text} />
@@ -92,6 +95,7 @@ const WorkExperience = ({
                     image={project.image}
                     href={project.slug.current}
                     title={project.title}
+                    emoji={project.emoji}
                     color={colorPrimary}
                   />
                 ))}

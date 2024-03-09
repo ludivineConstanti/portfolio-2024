@@ -37,6 +37,7 @@ export const getStaticProps = async () => {
         title,
         dateEnd,
         slug,
+        emoji,
         image{
           'url': asset->url,
           alt

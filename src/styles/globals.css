@@ -140,6 +140,7 @@ body {
   color: white;
   background: #172554;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 a {
   color: white;
