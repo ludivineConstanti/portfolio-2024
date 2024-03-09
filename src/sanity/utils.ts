@@ -13,17 +13,7 @@ export const client = createClient({
 });
 
 export const querySkillBadges = `
-  skillBadges[]->{...},
-`;
-
-export const queryArticleLink = `
-  _id,
-  category->{_type,text,title},
-  emoji,
-  text,
-  href,
-  date,
-  ${querySkillBadges}
+  skillBadges[]->{_id,emoji,text},
 `;
 
 export const queryProjectLink = `

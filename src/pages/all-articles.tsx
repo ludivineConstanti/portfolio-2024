@@ -1,7 +1,7 @@
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
 import clsx from "clsx";
-import { client, queryArticleLink } from "@/sanity/utils";
+import { client, querySkillBadges } from "@/sanity/utils";
 import {
   sortAlphabetically,
   returnProjectOrArticleYear,
@@ -9,7 +9,7 @@ import {
   returnSkillsForFilter,
   returnVisibleSkillBadges,
 } from "@/utils";
-import type { ArticleData } from "@/models";
+import type { ArticleData, ArticleProcessedData } from "@/models";
 import { internalLinks, InternalLinksIds } from "@/models";
 import {
   TitlePage,
@@ -25,7 +25,13 @@ export const getStaticProps = async () => {
         skillBadges[]->{_id}  
       },
       "articles": *[_type == "article"] | order(date desc){
-        ${queryArticleLink}
+        _id,
+        category->{_type,text,title},
+        emoji,
+        text,
+        href,
+        date,
+        ${querySkillBadges}
       },
       "skills": *[_type == "skillBadge"]{
         _id,
@@ -44,6 +50,10 @@ export const getStaticProps = async () => {
 
   const articlesData = articles.map((e: ArticleData) => ({
     ...e,
+    category:
+      e.category._type === "project"
+        ? `Project: ${e.category.title}`
+        : e.category.text,
     skillBadges: returnVisibleSkillBadges(e.skillBadges, 3),
   }));
 
@@ -73,22 +83,17 @@ const AllArticlesPage = ({
       ? data.articles
       : returnDataBasedOnFilterState(data.articles, selectedSkillsFilter);
 
-  const articles: { [key: string]: { [key: string]: ArticleData[] } } = {};
+  const articles: { [key: string]: { [key: string]: ArticleProcessedData[] } } =
+    {};
 
-  initialArticlesData.forEach((article: ArticleData) => {
+  initialArticlesData.forEach((article: ArticleProcessedData) => {
     const year = returnProjectOrArticleYear(article.date);
     const skillBadges = article.skillBadges
       ? sortAlphabetically(article.skillBadges)
       : [];
     const currentArticle = { ...article, skillBadges };
 
-    let key = "";
-    if (currentArticle.category._type === "project") {
-      key = `Project: ${currentArticle.category.title}`;
-    }
-    if (currentArticle.category._type === "articleCategory") {
-      key = currentArticle.category.text;
-    }
+    const key = currentArticle.category;
 
     if (articles[year]) {
       if (articles[year][key]) {

@@ -1,14 +1,14 @@
 import React from "react";
 import { TitleYear } from "@/components";
 import ArticleListsWithTitle from "./ArticleListsWithTitle";
-import { ArticleData } from "@/models";
+import { ArticleProcessedData } from "@/models";
 
 const ArticleListPerYear = ({
   color,
   articles,
 }: {
   color: string;
-  articles: { [key: string]: { [key: string]: ArticleData[] } };
+  articles: { [key: string]: { [key: string]: ArticleProcessedData[] } };
 }) => {
   return (
     <div className="mx-custom grid grid-cols-[1fr_auto_1fr]">

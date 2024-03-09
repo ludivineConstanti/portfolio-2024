@@ -147,7 +147,9 @@ export const returnVisibleSkillBadges = (
   const visibleSkillBadges: VisibleSkillBadgeData[] = [];
 
   sortedSkillBadges.forEach((skillBadge, skillBadgeIndex) => {
-    visibleSkillBadges.push({ ...skillBadge, visible: skillBadgeIndex < max });
+    visibleSkillBadges.push(
+      skillBadgeIndex < max ? skillBadge : { _id: skillBadge._id },
+    );
   });
 
   return visibleSkillBadges.sort((a, b) => {

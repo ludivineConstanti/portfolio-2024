@@ -1,12 +1,12 @@
 import Article from "./Article";
-import { ArticleData } from "@/models";
+import { ArticleData, ArticleProcessedData } from "@/models";
 
 const ArticleList = ({
   color,
   articles,
 }: {
   color: string;
-  articles: ArticleData[];
+  articles: (ArticleData | ArticleProcessedData)[];
 }) => {
   return (
     <ul className="flex flex-col gap-6 xl:gap-8">
