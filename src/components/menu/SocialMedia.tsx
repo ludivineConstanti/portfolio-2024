@@ -33,7 +33,11 @@ const SocialMedia = ({
         >
           <SocialMediaIcon id={id} />
         </span>
-        <Tooltip text={`${text} ↗️`} side="left" />
+        <Tooltip
+          text={`${text} ↗️`}
+          sideSm="left"
+          customClass="group-hover:scale-[0.8] group-active:scale-[0.66]"
+        />
       </a>
     </li>
   );

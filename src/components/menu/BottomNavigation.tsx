@@ -26,6 +26,7 @@ const BottomNavigation = ({
             >
               <Tooltip
                 text={link.emoji ? `${link.emoji} ${link.text}` : link.text}
+                customClass="group-hover:scale-[0.66] group-active:scale-[0.8]"
               />
             </span>
           </a>

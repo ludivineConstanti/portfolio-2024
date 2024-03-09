@@ -75,6 +75,7 @@ export const getStaticProps = async () => {
     },
     "dataProjects": *[_type == "project"] | order(dateEnd desc) {
       _id,
+      emoji,
       workExperience,
       client,
       title,
@@ -253,7 +254,7 @@ const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
       bottomNavigationLinks={bottomNavigationLinks}
     >
       <Canvas />
-      <main className="z-1 pointer-events-none relative">
+      <main className="z-1 pointer-events-none relative overflow-x-hidden">
         <HomeHero />
         <HomeWorkExperienceSection
           emoji={workExperienceLink.emoji}
