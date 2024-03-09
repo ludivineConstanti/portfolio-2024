@@ -1,7 +1,11 @@
 import { SkillBadgeList } from "@/components";
-import { ArticleData } from "@/models";
+import { SkillBadgeData } from "@/models";
 
-interface ArticleProps extends ArticleData {
+interface ArticleProps {
+  emoji: string;
+  text: string;
+  href: string;
+  skillBadges: SkillBadgeData[];
   color: string;
 }
 

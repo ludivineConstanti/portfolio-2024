@@ -14,7 +14,7 @@ import {
 } from "@/components";
 import { SlugProps, SkillBadgeData } from "@/models";
 import { groq } from "next-sanity";
-import { client } from "@/sanity/utils";
+import { client, querySkillBadges } from "@/sanity/utils";
 import { returnProjectOrArticleYear, returnVisibleSkillBadges } from "@/utils";
 
 // Returns a list of possible value for the projects id
@@ -58,7 +58,7 @@ export const getStaticProps = async ({
             'url': asset->url,
             alt
         }, 
-        skillBadges[]->{_id,text,emoji}, 
+        ${querySkillBadges} 
     }`,
     { project },
   );

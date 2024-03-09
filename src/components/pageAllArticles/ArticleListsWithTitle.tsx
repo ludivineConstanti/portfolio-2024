@@ -1,5 +1,5 @@
 import { ArticleList } from "@/components";
-import { ArticleData } from "@/models";
+import { ArticleProcessedData } from "@/models";
 import { sortAlphabetically } from "@/utils";
 
 const ArticleListsWithTitle = ({
@@ -7,7 +7,7 @@ const ArticleListsWithTitle = ({
   articles,
 }: {
   color: string;
-  articles: { [key: string]: ArticleData[] };
+  articles: { [key: string]: ArticleProcessedData[] };
 }) => {
   return (
     <div className="col-start-2 flex flex-col gap-20">

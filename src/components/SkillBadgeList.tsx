@@ -22,16 +22,19 @@ const SkillBadgeList = ({
       )}
     >
       {skillBadges
-        .filter((e) => e.visible !== false)
-        .map((e) => (
-          <SkillBadge
-            key={`skill-badge-${e._id}`}
-            emoji={e.emoji}
-            text={e.text}
-            color={color}
-            size={size}
-          />
-        ))}
+        .filter((e) => e.text)
+        .map((e) => {
+          const text = e.text as string;
+          return (
+            <SkillBadge
+              key={`skill-badge-${e._id}`}
+              emoji={e.emoji}
+              text={text}
+              color={color}
+              size={size}
+            />
+          );
+        })}
     </ul>
   );
 };

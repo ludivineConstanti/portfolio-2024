@@ -1,6 +1,6 @@
 import type { InferGetStaticPropsType } from "next";
 import { groq } from "next-sanity";
-import { client, queryProjectLink, queryArticleLink } from "@/sanity/utils";
+import { client, queryProjectLink } from "@/sanity/utils";
 import {
   sortAlphabetically,
   sortByDateEnd,
@@ -54,7 +54,14 @@ export const getStaticProps = async () => {
         ${querySkillBadges}
       },
       projects[]->{${queryProjectLink}},
-      articles[]->{${queryArticleLink}},
+      articles[]->{
+        _id,
+        emoji,
+        text,
+        href,
+        date,
+        ${querySkillBadges}
+      },
     },
     "dataClients": *[_type == "client"] {
       _id,

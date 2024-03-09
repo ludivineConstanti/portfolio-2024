@@ -19,8 +19,10 @@ export interface SkillBadgeData {
   highlighted: true | null;
 }
 
-export interface VisibleSkillBadgeData extends SkillBadgeData {
-  visible?: boolean;
+export interface VisibleSkillBadgeData {
+  _id: string;
+  emoji?: string;
+  text?: string;
 }
 
 interface ArticleCategoryData {
@@ -98,5 +100,9 @@ export interface ArticleData {
   category: ArticleCategoryData | ProjectData;
   skillBadges: SkillBadgeData[];
 }
+
+export type ArticleProcessedData = Omit<ArticleData, "category"> & {
+  category: string;
+};
 
 export type SelectedSkillsFilterProps = { value: string; label: string }[];
