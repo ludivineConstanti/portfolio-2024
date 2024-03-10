@@ -77,8 +77,11 @@ const SkillsSearchSection = ({
           classNames={{
             container: () =>
               "text-h5 min-w-[calc(100vw-4rem)] max-w-[calc(100vw-4rem)] outline-2 rounded-2xl outline-white text-blue-950 border-solid border-2 border-blue-700 px-2 bg-white pointer-events-auto sm:min-h-16 sm:p-2 sm:min-w-min sm:w-[40rem] xl:w-[48rem] xl:rounded-[3rem]",
-            dropdownIndicator: () =>
-              "transition-color [&>svg>path]:fill-blue-700 [&:hover>svg>path]:fill-blue-800 [&:active>svg>path]:fill-blue-950 cursor-pointer [&>svg]:w-6 [&>svg]:h-6 sm:[&>svg]:w-10 sm:[&>svg]:h-10",
+            dropdownIndicator: (e) =>
+              clsx(
+                { "rotate-180": e.selectProps.menuIsOpen },
+                "transition-transform [&>svg>path]:fill-blue-700 [&:hover>svg>path]:fill-blue-800 [&:active>svg>path]:fill-blue-950 cursor-pointer [&>svg]:w-6 [&>svg]:h-6 sm:[&>svg]:w-10 sm:[&>svg]:h-10",
+              ),
             clearIndicator: () =>
               "transition-color [&>svg>path]:fill-blue-700 [&:hover>svg>path]:fill-blue-800 [&:active>svg>path]:fill-blue-950 cursor-pointer [&>svg]:w-6 [&>svg]:h-6 sm:[&>svg]:w-10 sm:[&>svg]:h-10",
             control: () => "px-1 sm:px-3",
