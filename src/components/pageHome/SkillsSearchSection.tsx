@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import clsx from "clsx";
 import Section from "./Section";
 import type {
   SearchBarComponentProps,
@@ -46,6 +47,7 @@ const SkillsSearchSection = ({
     >
       <div className="py-20 xl:py-0">
         <Select
+          aria-label="Choose a skill (TypeScript, React, Node.js...) to filter projects and articles, on the All projects and All Article pages"
           id="react-select-search-bar-home-page"
           placeholder="Choose a skill (TypeScript, React, Node.js...)"
           options={skillsFilter}
@@ -81,16 +83,19 @@ const SkillsSearchSection = ({
               "transition-color [&>svg>path]:fill-blue-700 [&:hover>svg>path]:fill-blue-800 [&:active>svg>path]:fill-blue-950 cursor-pointer [&>svg]:w-6 [&>svg]:h-6 sm:[&>svg]:w-10 sm:[&>svg]:h-10",
             control: () => "px-1 sm:px-3",
             placeholder: () => "text-gray-500",
-            // Need to rework this to only have the absolute position
-            // when the placeholder text is visible
-            // input: () => "z-10 absolute top-0 left-0",
+            // the absolute position should only be present when there's no skills inside of the dropdown
+            // (otherwise, the text will appear on top of the selected skills)
+            input: () =>
+              clsx({
+                "z-10 absolute top-0 left-0": selectedSkillsFilter.length === 0,
+              }),
             // dropdown
             menuList: () =>
               "-bottom-2 -left-2 rounded-lg py-2 bg-white [&>svg>path]:fill-blue-700 [&>svg]:h-24 [&>svg]:w-24 sm:py-4 sm:[&>svg]:h-40 sm:[&>svg]:w-40",
             option: () =>
               "cursor-pointer text-h6 hover:bg-blue-100 bg-white px-2 sm:px-6 py-1",
             // selected values
-            valueContainer: () => "gap-1.5 flex py-1 min-h-6 sm:min-h-7",
+            valueContainer: () => "gap-1.5 flex py-1 min-h-6 sm:min-h-8",
             multiValue: () =>
               "bg-blue-100 text-h6 rounded-sm px-1 flex gap-0.5",
             multiValueRemove: () =>

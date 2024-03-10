@@ -131,6 +131,7 @@ const Menu = ({
                 skillsFilter={skillsFilter}
                 projects={projects}
                 articles={articles}
+                pageId={pageId}
               />
               <SearchBarFeedback pageId={pageId} color={colorSecondary} />
             </div>
