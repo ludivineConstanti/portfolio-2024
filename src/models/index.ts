@@ -106,4 +106,8 @@ export type ArticleProcessedData = Omit<ArticleData, "category"> & {
   category: string;
 };
 
-export type SelectedSkillsFilterProps = { value: string; label: string }[];
+export type SelectedSkillsFilterProps = {
+  value: string;
+  label: string;
+  emoji: string;
+}[];
