@@ -1,11 +1,18 @@
 import Head from "next/head";
+import { useEffect } from "react";
 import { Lexend } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { metadata as metaDataConstants, MenuComponentProps } from "@/models";
+import {
+  metadata as metaDataConstants,
+  MenuComponentProps,
+  storageKey,
+} from "@/models";
 import "@/styles/globals.css";
 import { Menu } from "@/components";
 import Footer from "./Footer";
+import { useAppDispatch } from "@/store";
+import { setAlreadyUsedFilter } from "@/store/slices/system";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -29,6 +36,19 @@ const Layout = ({
   projects,
   articles,
 }: LayoutProps) => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (typeof Storage !== "undefined") {
+      const filterWasAlreadyUsed = localStorage.getItem(
+        storageKey.alreadyUsedFilter,
+      );
+      if (filterWasAlreadyUsed === "true") {
+        dispatch(setAlreadyUsedFilter());
+      }
+    }
+  }, []);
+
   return (
     <div className={lexend.className}>
       <Head>

@@ -1,4 +1,4 @@
-import { SelectedSkillsFilterProps } from "@/models";
+import { SelectedSkillsFilterProps, storageKey } from "@/models";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialStateProps {
@@ -7,6 +7,7 @@ interface InitialStateProps {
   selectedSkillsFilter: SelectedSkillsFilterProps;
   howManyArticlesAreVisible: number;
   howManyProjectsAreVisible: number;
+  alreadyUsedFilter: boolean;
 }
 
 const systemSlice = createSlice({
@@ -17,6 +18,7 @@ const systemSlice = createSlice({
     selectedSkillsFilter: [],
     howManyArticlesAreVisible: 0,
     howManyProjectsAreVisible: 0,
+    alreadyUsedFilter: false,
   } as InitialStateProps,
   reducers: {
     setWidthAndHeight: (
@@ -41,11 +43,23 @@ const systemSlice = createSlice({
       state.selectedSkillsFilter = payload.selectedSkills;
       state.howManyArticlesAreVisible = payload.articles;
       state.howManyProjectsAreVisible = payload.projects;
+      if (state.alreadyUsedFilter === false) {
+        state.alreadyUsedFilter = true;
+        if (typeof Storage !== "undefined") {
+          localStorage.setItem(storageKey.alreadyUsedFilter, "true");
+        }
+      }
+    },
+    setAlreadyUsedFilter: (state) => {
+      state.alreadyUsedFilter = true;
     },
   },
 });
 
-export const { setWidthAndHeight, setSkillsFilterSettings } =
-  systemSlice.actions;
+export const {
+  setWidthAndHeight,
+  setSkillsFilterSettings,
+  setAlreadyUsedFilter,
+} = systemSlice.actions;
 
 export default systemSlice.reducer;

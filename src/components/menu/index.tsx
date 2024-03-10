@@ -21,6 +21,7 @@ import BottomNavigation from "./BottomNavigation";
 import { setWidthAndHeight } from "@/store/slices/system";
 import { useAppDispatch } from "@/store";
 import SearchBarFeedback from "./SearchBarFeedback";
+import SearchBarTutorial from "./SearchBarTutorial";
 
 const internalLinksKeys = Object.keys(internalLinks) as InternalLinksIds[];
 const socialMediasKeys = Object.keys(socialMedias) as SocialMediaIds[];
@@ -134,6 +135,7 @@ const Menu = ({
                 pageId={pageId}
               />
               <SearchBarFeedback pageId={pageId} color={colorSecondary} />
+              <SearchBarTutorial pageId={pageId} />
             </div>
           )}
         </div>
@@ -154,12 +156,10 @@ const Menu = ({
         </ul>
       </header>
       {bottomNavigationLinks && menuIsOpen === false && (
-        <nav className="fixed bottom-0 left-0 z-20 w-full">
-          <BottomNavigation
-            colorPrimary={colorPrimary}
-            bottomNavigationLinks={bottomNavigationLinks}
-          />
-        </nav>
+        <BottomNavigation
+          colorPrimary={colorPrimary}
+          bottomNavigationLinks={bottomNavigationLinks}
+        />
       )}
     </>
   );

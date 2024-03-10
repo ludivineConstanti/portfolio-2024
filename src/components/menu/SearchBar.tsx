@@ -38,6 +38,7 @@ const SearchBar = ({
   const dispatch = useAppDispatch();
   const { selectedSkillsFilter } = useAppSelector((state) => state.system);
   const ariaLabel = `Filter ${pageId === InternalLinksIds.allProjects ? "Projects" : "Articles"} by skills (React...)`;
+
   return (
     <Select
       aria-label={ariaLabel}
@@ -71,7 +72,11 @@ const SearchBar = ({
       classNames={{
         container: () =>
           "outline-2 outline-white text-body min-h-fit text-blue-950 border-solid sm:max-w-52 max-w-[calc(100vw-10rem)] xl:max-w-[40rem] border-2 border-blue-950 px-2 bg-white rounded-2xl pointer-events-auto",
-        dropdownIndicator: () => "[&>svg>path]:fill-blue-800 cursor-pointer",
+        dropdownIndicator: (e) =>
+          clsx(
+            { "rotate-180": e.selectProps.menuIsOpen },
+            "transition-transform [&>svg>path]:fill-blue-800 cursor-pointer",
+          ),
         placeholder: () => "text-gray-500 min-w-60",
         // dropdown
         menuList: () => "-bottom-2 -left-2 rounded-lg py-2 bg-white",
