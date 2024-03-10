@@ -5,6 +5,7 @@ export enum InternalLinksIds {
   awards = "awards",
   sitemap = "sitemap",
   workExperiences = "workExperiences",
+  imprint = "imprint",
 }
 
 export const internalLinks: Record<
@@ -43,6 +44,11 @@ export const internalLinks: Record<
     emoji: "🗺️",
     text: "Sitemap",
     href: "/sitemap",
+  },
+  [InternalLinksIds.imprint]: {
+    emoji: "📑",
+    text: "Imprint",
+    href: "/imprint",
   },
 };
 
