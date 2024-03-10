@@ -75,6 +75,7 @@ const pageData = internalLinks[pageId];
 const pageHomeData = internalLinks[InternalLinksIds.home];
 const pageWorkExperiencesData = internalLinks[InternalLinksIds.workExperiences];
 const pageImprintData = internalLinks[InternalLinksIds.imprint];
+const pagePrivacyData = internalLinks[InternalLinksIds.privacyPolicy];
 
 const Sitemap = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -130,6 +131,15 @@ const Sitemap = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
               <LinkCTA
                 text={pageImprintData.text}
                 href={pageImprintData.href}
+                color={colorSecondary}
+                alignCenter={false}
+                marginBottom="none"
+              />
+            </li>
+            <li>
+              <LinkCTA
+                text={pagePrivacyData.text}
+                href={pagePrivacyData.href}
                 color={colorSecondary}
                 alignCenter={false}
                 marginBottom="none"
