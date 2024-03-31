@@ -33,7 +33,7 @@ export const getStaticProps = async () => {
         date,
         ${querySkillBadges}
       },
-      "skills": *[_type == "skillBadge"]{
+      "skills": *[_type == "skillBadge"] | order(text asc){
         _id,
         text,
       }
