@@ -22,6 +22,8 @@ import { useAppSelector } from "@/store";
 export const getStaticProps = async () => {
   const data = await client.fetch(groq`{
       "projects": *[_type == "project"] | order(dateEnd desc){
+        visible,
+        shownInProjectPage,
         skillBadges[]->{_id}  
       },
       "articles": *[_type == "article"] | order(date desc){
@@ -41,9 +43,14 @@ export const getStaticProps = async () => {
 
   const { projects, skills, articles } = data;
 
+  const filteredProjects = projects.filter(
+    (e: { visible?: boolean; shownInProjectPage: boolean }) =>
+      e.visible && e.shownInProjectPage,
+  );
+
   const skillsFilter = returnSkillsForFilter({
     data: skills,
-    projects,
+    projects: filteredProjects,
     articles,
     showEmoji: false,
   });
@@ -60,7 +67,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       data: {
-        projects,
+        projects: filteredProjects,
         skillsFilter,
         articles: articlesData,
       },

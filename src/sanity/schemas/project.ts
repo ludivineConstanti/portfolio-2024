@@ -6,6 +6,16 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
+      name: "visible",
+      title: "Should be shown on the website",
+      type: "boolean",
+    }),
+    defineField({
+      name: "shownInProjectPage",
+      title: "Should be shown on the project page",
+      type: "boolean",
+    }),
+    defineField({
       name: "emoji",
       title: "Emoji",
       type: "string",

@@ -7,7 +7,7 @@ import InternalLink from "./InternalLink";
 import SocialMedia from "./SocialMedia";
 import ButtonClose from "./ButtonClose";
 import SearchBar from "./SearchBar";
-import { ArrowDownload } from "..";
+// import { ArrowDownload } from "..";
 import {
   internalLinks,
   InternalLinksIds,
@@ -115,7 +115,7 @@ const Menu = ({
                   ))}
               </ul>
             </nav>
-            <a
+            {/* <a
               href="/resume_Ludivine_Constanti.pdf"
               className={clsx(colorPrimary, "menu-link gap-1.5")}
               download
@@ -124,7 +124,7 @@ const Menu = ({
               <span className="w-[0.55rem]">
                 <ArrowDownload />
               </span>
-            </a>
+            </a> */}
           </div>
           {skillsFilter && projects && articles && menuIsOpen === false && (
             <div className="relative top-5 flex flex-col flex-wrap items-center gap-2 sm:top-0 sm:flex-row sm:items-start ">

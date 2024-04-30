@@ -81,26 +81,38 @@ const WorkExperience = ({
           </div>
         </header>
         <div className="px-home-article pb-home-article pt-4 sm:px-home-article-sm sm:pb-home-article-sm sm:pt-8 xl:px-home-article-xl xl:pb-home-article-xl">
-          <div className="[&>section>h4]:text-h5 [&>section>p]:text-body grid gap-4 pb-4 sm:gap-8 sm:pb-8 xl:grid-cols-2 [&>section>h4]:mb-3 xl:[&>section>h4]:mb-4 [&>section>p:not(:last-child)]:mb-6">
-            <section className="[&>p>a]:text-link">
+          <div
+            className={clsx(
+              { "xl:grid-cols-2": projects.length > 0 },
+              "[&>section>h4]:text-h5 [&>section>p]:text-body grid gap-4 pb-4 sm:gap-8 sm:pb-8 [&>section>h4]:mb-3 xl:[&>section>h4]:mb-4 [&>section>p:not(:last-child)]:mb-6",
+            )}
+          >
+            <section
+              className={clsx(
+                { "columns-2": projects.length === 0 },
+                "[&>p>a]:text-link",
+              )}
+            >
               <PortableText value={text} />
             </section>
-            <section>
-              <h4>⚗️ Project{projects.length > 1 && "s"}</h4>
-              <ul className="grid grid-cols-3 gap-3 sm:grid-cols-4 xl:gap-4">
-                {projects.map((project) => (
-                  <ProjectThumbnail
-                    _id={project._id}
-                    key={`project-teaser-${title}-${project._id}`}
-                    image={project.image}
-                    href={project.slug.current}
-                    title={project.title}
-                    emoji={project.emoji}
-                    color={colorPrimary}
-                  />
-                ))}
-              </ul>
-            </section>
+            {projects && projects.length > 0 && (
+              <section>
+                <h4>⚗️ Project{projects.length > 1 && "s"}</h4>
+                <ul className="grid grid-cols-3 gap-3 sm:grid-cols-4 xl:gap-4">
+                  {projects.map((project) => (
+                    <ProjectThumbnail
+                      _id={project._id}
+                      key={`project-teaser-${title}-${project._id}`}
+                      image={project.image}
+                      href={project.slug.current}
+                      title={project.title}
+                      emoji={project.emoji}
+                      color={colorPrimary}
+                    />
+                  ))}
+                </ul>
+              </section>
+            )}
           </div>
           <SkillBadgeList
             color={colorSkillBadge || colorSecondary}

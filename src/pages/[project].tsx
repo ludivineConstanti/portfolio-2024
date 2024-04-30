@@ -20,13 +20,16 @@ import { returnProjectOrArticleYear, returnVisibleSkillBadges } from "@/utils";
 // Returns a list of possible value for the projects id
 export const getStaticPaths = async () => {
   const data = await client.fetch(groq`*[_type == "project"]{
-    slug 
+    slug,
+    visible
     }`);
 
   return {
-    paths: data.map((project: { slug: SlugProps }) => ({
-      params: { project: project.slug.current },
-    })),
+    paths: data
+      .filter((project: { visible: boolean }) => project.visible)
+      .map((project: { slug: SlugProps }) => ({
+        params: { project: project.slug.current },
+      })),
     fallback: false,
   };
 };

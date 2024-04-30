@@ -32,6 +32,7 @@ export const getStaticProps = async () => {
       },
       "dataProjects": *[_type == "project" && workExperience != null] | order(dateEnd desc){
         _id,
+        visible,
         workExperience,
         client,
         title,
@@ -51,7 +52,7 @@ export const getStaticProps = async () => {
     (workExperience: WorkExperienceData) => {
       const workExperienceProjects = dataProjects.filter(
         (project: ProjectTeaserData) =>
-          project.workExperience._ref === workExperience._id,
+          project.workExperience._ref === workExperience._id && project.visible,
       );
       return {
         ...workExperience,

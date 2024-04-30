@@ -43,6 +43,7 @@ export interface SlugProps {
 
 export interface WorkExperienceData {
   _id: string;
+  visible?: boolean;
   href: string;
   title: string;
   role: string;
@@ -60,6 +61,8 @@ export interface WorkExperienceData {
 }
 
 export interface ProjectData {
+  visible?: boolean;
+  shownInProjectPage?: boolean;
   _id: string;
   _type: "project";
   emoji: string;
@@ -80,6 +83,7 @@ export interface ProjectData {
 }
 
 export interface ProjectTeaserData {
+  visible?: boolean;
   _id: string;
   emoji: string;
   title: string;

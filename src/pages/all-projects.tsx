@@ -34,14 +34,18 @@ export const getStaticProps = async () => {
 
   const { projects, skills, articles } = data;
 
+  const filteredProjects = projects.filter((project: ProjectData) => {
+    return project.visible && project.shownInProjectPage;
+  });
+
   const skillsFilter = returnSkillsForFilter({
     data: skills,
-    projects,
+    projects: filteredProjects,
     articles,
     showEmoji: false,
   });
 
-  const dataProjects = projects.map((e: ProjectData) => ({
+  const dataProjects = filteredProjects.map((e: ProjectData) => ({
     ...e,
     skillBadges: returnVisibleSkillBadges(e.skillBadges),
   }));
