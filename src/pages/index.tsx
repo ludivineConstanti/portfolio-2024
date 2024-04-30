@@ -12,8 +12,8 @@ import {
   HomeWorkExperienceSection,
   HomeProjectSection,
   HomeArticleSection,
-  HomeAwardSection,
-  HomeClientSection,
+  // HomeAwardSection,
+  // HomeClientSection,
   Canvas,
   HomeTestimoniesSection,
   HomeSkillsSearchSection,
@@ -75,6 +75,8 @@ export const getStaticProps = async () => {
     },
     "dataProjects": *[_type == "project"] | order(dateEnd desc) {
       _id,
+      shownInProjectPage,
+      visible,
       emoji,
       workExperience,
       client,
@@ -104,30 +106,39 @@ export const getStaticProps = async () => {
   const { dataHomePage, dataClients, dataProjects, dataSkills, dataArticles } =
     data;
 
-  const projects = dataHomePage[0].projects.map((project: ProjectData) => ({
-    ...project,
-    skillBadges: returnVisibleSkillBadges(project.skillBadges),
-  }));
+  const projects = dataHomePage[0].projects
+    .filter(
+      (e: { visible?: boolean; shownInProjectPage?: boolean }) =>
+        e.visible && e.shownInProjectPage,
+    )
+    .map((project: ProjectData) => ({
+      ...project,
+      skillBadges: returnVisibleSkillBadges(project.skillBadges),
+    }));
 
   const articles = dataHomePage[0].articles.map((article: ArticleData) => ({
     ...article,
     skillBadges: returnVisibleSkillBadges(article.skillBadges, 5),
   }));
 
-  const allProjects = dataProjects.map(
-    (e: { skillBadges: SkillBadgeData[] }) => {
+  const allProjects = dataProjects
+    .filter(
+      (e: { visible: boolean; shownInProjectPage: boolean }) =>
+        e.visible && e.shownInProjectPage,
+    )
+    .map((e: { skillBadges: SkillBadgeData[] }) => {
       return {
         skillBadges: e.skillBadges.map((e) => {
           return { _id: e._id };
         }),
       };
-    },
-  );
+    });
 
   const dataWorkExperiencesWithProjects = dataHomePage[0].workExperiences.map(
     (workExperience: WorkExperienceData) => {
       const workExperienceProjects = dataProjects.filter(
         (project: ProjectTeaserData) =>
+          project.visible &&
           project.workExperience &&
           project.workExperience._ref === workExperience._id,
       );
@@ -214,16 +225,16 @@ const articlesLink = {
   text: "Articles",
   href: "articles",
 };
-const awardsLink = {
+/* const awardsLink = {
   emoji: internalLinks.awards.emoji,
   text: "Awards",
   href: "awards",
-};
-const clientsLink = {
+}; */
+/* const clientsLink = {
   emoji: "📔",
   text: "Clients",
   href: "clients",
-};
+}; */
 const testimoniesLink = {
   emoji: "📖",
   text: "Testimonial",
@@ -234,8 +245,8 @@ const bottomNavigationLinks = [
   skillsFilterLink,
   projectsLink,
   articlesLink,
-  awardsLink,
-  clientsLink,
+  // awardsLink,
+  // clientsLink,
   testimoniesLink,
 ];
 
@@ -286,19 +297,19 @@ const HomePage = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
           colorSecondary={colorSecondary}
           articles={data.articles}
         />
-        <HomeAwardSection
+        {/* <HomeAwardSection
           emoji={awardsLink.emoji}
           title={awardsLink.text}
           id={awardsLink.href}
           colorSecondary={colorSecondary}
-        />
-        <HomeClientSection
+        /> */}
+        {/* <HomeClientSection
           emoji={clientsLink.emoji}
           title={clientsLink.text}
           id={clientsLink.href}
           colorSecondary={colorSecondary}
           clients={data.clients}
-        />
+        /> */}
         <HomeTestimoniesSection
           emoji={testimoniesLink.emoji}
           title={testimoniesLink.text}

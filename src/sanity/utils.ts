@@ -18,6 +18,8 @@ export const querySkillBadges = `
 
 export const queryProjectLink = `
   _id,
+  visible,
+  shownInProjectPage,
   emoji,
   title,
   slug,

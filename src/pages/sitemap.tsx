@@ -8,6 +8,7 @@ import { internalLinks, InternalLinksIds } from "@/models";
 export const getStaticProps = async () => {
   const data = await client.fetch(groq`{
     "projectsData": *[_type == "project"] | order(dateEnd desc){
+      visible,
       _id,
       emoji,
       title,
@@ -20,15 +21,23 @@ export const getStaticProps = async () => {
       text,
       href,  
     },
-    "awardsData": *[_type == "award"] | order(dateEnd desc){
-      _id,
-      category->{emoji,text},
-      project->{title},
-      href,  
-    }
+    // "awardsData": *[_type == "award"] | order(dateEnd desc){
+    //   _id,
+    //   category->{emoji,text},
+    //   project->{title},
+    //   href,  
+    // }
   }`);
 
-  const { projectsData, articlesData, awardsData } = data;
+  const {
+    projectsData,
+    articlesData,
+    // awardsData
+  } = data;
+
+  const projectsDataFiltered = projectsData.filter(
+    (e: { visible?: boolean }) => e.visible,
+  );
 
   const articles = articlesData.map(
     (article: {
@@ -45,7 +54,7 @@ export const getStaticProps = async () => {
     }),
   );
 
-  const awards = awardsData.map(
+  /* const awards = awardsData.map(
     (award: {
       category: { emoji: string; text: string };
       project: { title: string };
@@ -55,14 +64,14 @@ export const getStaticProps = async () => {
       text: `${award.category.text}: ${award.project.title}`,
       href: award.href,
     }),
-  );
+  ); */
 
   return {
     props: {
       data: {
-        projects: projectsData,
+        projects: projectsDataFiltered,
         articles,
-        awards,
+        // awards,
       },
     },
   };
@@ -123,10 +132,10 @@ const Sitemap = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
               data={data.articles}
               mainLink={internalLinks[InternalLinksIds.allArticles]}
             />
-            <SitemapListOfLinks
+            {/* <SitemapListOfLinks
               data={data.awards}
               mainLink={internalLinks[InternalLinksIds.awards]}
-            />
+            /> */}
             <li>
               <LinkCTA
                 text={pageImprintData.text}
