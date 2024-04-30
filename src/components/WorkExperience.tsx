@@ -89,7 +89,7 @@ const WorkExperience = ({
           >
             <section
               className={clsx(
-                { "columns-2": projects.length === 0 },
+                { "xl:columns-2 xl:gap-8": projects.length === 0 },
                 "[&>p>a]:text-link",
               )}
             >
