@@ -7,6 +7,7 @@ import {
   returnProjectOrArticleYear,
   returnDiffInYearsAndMonths,
 } from "@/utils";
+import Image from "next/image";
 
 const WorkExperience = ({
   _id,
@@ -56,13 +57,15 @@ const WorkExperience = ({
                 "block rounded-full border-2 border-solid border-current outline-offset-2 group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-current sm:flex sm:h-19 sm:w-19 sm:p-4",
               )}
             >
-              <img
+              <Image
                 className={clsx("relative h-full w-full", {
                   "left-[0.13rem]":
                     _id === "69a580b9-6c3a-495b-a047-e5d077809ae3",
                 })}
                 src={logo.asset.url}
                 alt={`${title} logo`}
+                height={1080}
+                width={1920}
               />
             </span>
             <Tooltip
