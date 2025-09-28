@@ -47,7 +47,7 @@ const SkillsSearchSection = ({
     >
       <div className="py-20 xl:py-0">
         <Select
-          aria-label="Choose a skill (TypeScript, React, Node.js...) to filter projects and articles, on the All projects and All Article pages"
+          aria-label="Choose a skill (TypeScript, React, Node.js...) to filter projects and articles, on the All Personal Projects and All Article pages"
           id="react-select-search-bar-home-page"
           placeholder="Choose a skill (TypeScript, React, Node.js...)"
           options={skillsFilter}

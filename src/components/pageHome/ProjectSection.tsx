@@ -22,7 +22,7 @@ const ProjectSection = ({
       emoji={emoji}
       title={title}
       color={colorSecondary}
-      link={{ href: internalLinks.allProjects.href, text: "See all projects" }}
+      link={{ href: internalLinks.allProjects.href, text: "See all Personal Projects" }}
     >
       <ProjectLinkList projects={projects} />
     </Section>

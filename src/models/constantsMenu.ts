@@ -21,7 +21,7 @@ export const internalLinks: Record<
   },
   [InternalLinksIds.allProjects]: {
     emoji: "⚗️",
-    text: "All Projects",
+    text: "All Personal Projects",
     href: "/all-projects",
     showInMenu: true,
   },
