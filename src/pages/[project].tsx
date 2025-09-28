@@ -68,7 +68,7 @@ export const getStaticProps = async ({
 
   const data = await client.fetch(
     groq`{
-      "projectsData": *[_type == "project"] | order(dateEnd desc){
+      "projectsData": *[_type == "project" && visible == true] | order(dateEnd desc){
         emoji,
         title,
         slug,
