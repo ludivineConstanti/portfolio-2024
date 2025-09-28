@@ -12,7 +12,7 @@ const Hero = () => {
           <p className="text-body pointer-events-auto max-w-[25rem]">
             Welcome to my portfolio!
             <br />I am a technology enthusiast, life-long learner ✨ Creating
-            digital experiences for award-winning agencies since 2017 🏆
+            digital experiences for award-winning Agencies & Startups since 2017 🏆
           </p>
         </section>
       </div>
