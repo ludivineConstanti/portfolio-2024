@@ -10,7 +10,7 @@ import { querySkillBadges } from "@/sanity/utils";
 
 export const getStaticProps = async () => {
   const data = await client.fetch(groq`{
-      "dataWorkExperiences": *[_type == "workExperience"] | order(dateEnd desc){
+      "dataWorkExperiences": *[_type == "workExperience"] | order(dateStart desc){
         _id,
         title,
         role,
