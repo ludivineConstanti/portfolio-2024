@@ -32,11 +32,17 @@ export const returnDiffInYearsAndMonths = (date1: Date, date2: Date) => {
 
   if (days > 0) months++;
 
-  const textYears = years > 0 ? `${years} ` : "";
+  
   let textMonths = "";
   if (months >= 3) textMonths = "¼ ";
   if (months >= 6) textMonths = "½ ";
   if (months >= 9) textMonths = "¾ ";
+  if (months = 11) {
+    textMonths = "";
+    years++;
+    }
+
+    const textYears = years > 0 ? `${years} ` : "";
 
   return years >= 1
     ? `${textYears}${textMonths}year${years > 1 ? "s" : ""}`
