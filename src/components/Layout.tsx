@@ -47,7 +47,7 @@ const Layout = ({
         dispatch(setAlreadyUsedFilter());
       }
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={lexend.className}>
