@@ -90,7 +90,7 @@ const WorkExperience = ({
             <section
               className={clsx(
                 { "xl:columns-2 xl:gap-8": projects.length === 0 },
-                "[&>p>a]:text-link",
+                "[&>p>a]:text-link [&>ul>li]:text-body [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-6",
               )}
             >
               <PortableText value={text} />
