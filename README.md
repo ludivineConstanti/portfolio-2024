@@ -19,3 +19,7 @@ Tech Stack:
 - Vercel
 - React Fiber
 - Three.js
+
+## Sanity
+
+The content of the Sanity CMS is accessible at http://localhost:3000/admin (it's only accessible through login)
