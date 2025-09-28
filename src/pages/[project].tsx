@@ -157,6 +157,12 @@ export const getStaticProps = async ({
     }
   }
 
+  // If none of the links above are defined, fallback to the first instagram post, if it exists
+  if (!imageLinkHref && postsData.length > 0 && postsData[0].instagramPost) {
+      imageLinkHref = postsData[0].href;
+      imageLinkText = "See project on Instagram";
+    }
+
   /* AWARDS */
   const awards = awardsData.map(
     (award: {
