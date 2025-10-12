@@ -7,12 +7,12 @@ const Hero = () => {
             Ludivine Constanti
           </h1>
           <h2 className="text-h2 pointer-events-auto mb-2 leading-none">
-            Full Stack Developer 🚀
+            Full Stack<br/>Software Engineer 🚀
           </h2>
           <p className="text-body pointer-events-auto max-w-[25rem]">
             Welcome to my portfolio!
             <br />I am a technology enthusiast, life-long learner ✨ Creating
-            digital experiences for award-winning Agencies & Startups since 2017 🏆
+            digital experiences for award-winning Agencies & Startup since 2017 🏆
           </p>
         </section>
       </div>

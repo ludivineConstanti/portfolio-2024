@@ -117,6 +117,15 @@ const Sitemap = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
             </li>
             <li>
               <LinkCTA
+                text={internalLinks[InternalLinksIds.aboutMe].text}
+                href={internalLinks[InternalLinksIds.aboutMe].href}
+                color={colorSecondary}
+                alignCenter={false}
+                marginBottom="none"
+              />
+            </li>
+            <li>
+              <LinkCTA
                 text={pageWorkExperiencesData.text}
                 href={pageWorkExperiencesData.href}
                 color={colorSecondary}
