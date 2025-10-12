@@ -75,7 +75,7 @@ const Menu = ({
   return (
     <>
       <header
-        className="pointer-events-none fixed z-20 grid h-full w-full grid-rows-[1fr_auto]"
+        className="pointer-events-none fixed z-[100] grid h-full w-full grid-rows-[1fr_auto]"
         ref={ref}
       >
         <ButtonClose
