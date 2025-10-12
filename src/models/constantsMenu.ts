@@ -1,5 +1,6 @@
 export enum InternalLinksIds {
   home = "home",
+  aboutMe = "aboutMe",
   allProjects = "allProjects",
   allArticles = "allArticles",
   // awards = "awards",
@@ -19,10 +20,16 @@ export const internalLinks: Record<
     href: "/",
     showInMenu: true,
   },
+  [InternalLinksIds.aboutMe]: {
+    emoji: "🤓",
+    text: "About Me",
+    href: "/about-me",
+    showInMenu: true,
+  },
   [InternalLinksIds.allProjects]: {
     emoji: "⚗️",
     text: "All Personal Projects",
-    href: "/all-projects",
+    href: "/all-personal-projects",
     showInMenu: true,
   },
   [InternalLinksIds.allArticles]: {
