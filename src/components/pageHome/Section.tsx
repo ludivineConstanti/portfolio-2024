@@ -1,8 +1,6 @@
-import Link from "next/link";
 import clsx from "clsx";
-import { ArrowForward, LinkCTA } from "@/components";
-
-const classNameMarginTitle = "py-8 xl:py-16";
+import { LinkCTA } from "@/components";
+import TitleSection from "../TitleSection";
 
 const Section = ({
   id,
@@ -25,16 +23,8 @@ const Section = ({
 }) => {
   return (
     <section id={id} className={clsx(customClass, "flex flex-col")}>
-      <h2
-        className={clsx(
-          classNameMarginTitle,
-          "text-h1 pointer-events-auto flex justify-center gap-2 px-8 sm:items-center",
-          color,
-        )}
-      >
-        <span>{emoji}</span>
-        {title}
-      </h2>
+      <TitleSection emoji={emoji} text={title} color={color} />
+
       <div
         className={clsx(
           "mx-section flex flex-col items-center py-16 xl:py-32",
