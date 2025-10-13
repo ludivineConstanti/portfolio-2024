@@ -28,7 +28,7 @@ const AboutMePage = () => {
         <Section
           title="👋 Nice to meet you"
           text={
-            <>
+            <p>
               I am a Full-Stack Software Engineer who loves working remotely (in
               English, German or French) 🌏
               <br />
@@ -43,7 +43,7 @@ const AboutMePage = () => {
               (notably for UI/UX mindset, clear priority setting, adaptability &
               workflow organization), I want to focus on improving my skills on
               automation, Architecture, Back End & AI.
-            </>
+            </p>
           }
           images={
             <>
@@ -66,7 +66,7 @@ const AboutMePage = () => {
         <Section
           title="🕮 Life-long learner"
           text={
-            <>
+            <p>
               Born with the INTP (Logician) personality type, I consider life as
               a long learning journey. This is why I switched countries multiple
               times (learning a few languages along the way) while switching
@@ -84,7 +84,7 @@ const AboutMePage = () => {
               of taking calculated risks. This is a perfect combination with
               learning. While each new learning experience requires risks, they
               are always rewarding.
-            </>
+            </p>
           }
           images={
             <>
@@ -114,23 +114,37 @@ const AboutMePage = () => {
           title="🌱 Healthy Workflows"
           text={
             <>
-              Born with the INTP (Logician) personality type, I consider life as
-              a long learning journey. This is why I switched countries multiple
-              times (learning a few languages along the way) while switching
-              job-titles in the Design & Technology industry.
+              <p>
+                My experience with extra hours in my past jobs, & on passion
+                projects taught me the importance of healthy work processes &
+                how they improve productivity.
+              </p>
               <br />
+              <p>Benefits for the team:</p>
+              <ul>
+                <li>A positive mindset helps individuals & teams</li>
+                <li>
+                  Emotional safety encourages communication, knowledge sharing &
+                  to signal problems in early stages
+                </li>
+              </ul>
               <br />
-              I love when I am able to work with team members with diversified
-              backgrounds, as I found out that it is a great opportunity to
-              learn & teach at the same time. Alternating between beginner &
-              expert mindset is great to build empathy, keep learning while
-              making sure we write code that is understandable for all levels.
+              <p>Benefits for productivity:</p>
+              <ul>
+                <li>Rest time allows energy reset</li>
+                <li>We learn better & make better decisions</li>
+                <li>
+                  Reducing the number of working hours compels us to deeply
+                  think about workflow improvements
+                </li>
+                <li>Taking our time allows us to focus on details</li>
+                <li>Good workflows lowers error rate</li>
+              </ul>
               <br />
-              <br />
-              Since a young age, I have always had a long term mindset, in favor
-              of taking calculated risks. This is a perfect combination with
-              learning. While each new learning experience requires risks, they
-              are always rewarding.
+              <p>
+                Good planning prevents unnecessary work Health is the most
+                important productivity factor.
+              </p>
             </>
           }
           images={
@@ -159,11 +173,11 @@ const AboutMePage = () => {
         <Section
           title="🗠 Data based Growth"
           text={
-            <>
+            <p>
               Whenever faced with a concept or problem (be it for code or human
-              relationships) I love to be able to understand its full concept.
-              This is why I prefer long term projects or teams where I can learn
-              more about my team members.
+              relationships) I love to understand it fully. Therefore I prefer
+              long term projects or teams where I can learn more about my team
+              members.
               <br />
               <br />
               I believe that true learning can only be achieved by staying in
@@ -181,7 +195,7 @@ const AboutMePage = () => {
               <br />
               My favorite part of the SCRUM framework is the retro with the
               team, to reflect & improve our work.
-            </>
+            </p>
           }
           images={
             <>

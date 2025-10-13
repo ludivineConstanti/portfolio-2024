@@ -27,7 +27,7 @@ const Section = ({
         })}
       >
         <h2 className="text-h3 mb-6">{title}</h2>
-        <p className="text-body">{text}</p>
+        <div className="text-body [&>ul]:list-disc [&>ul]:pl-6">{text}</div>
       </section>
       <div
         className={clsx(
