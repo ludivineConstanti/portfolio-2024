@@ -11,7 +11,7 @@ import { returnDataBasedOnFilterState } from "@/utils";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { setSkillsFilterSettings } from "@/store/slices/system";
 
-const Select = dynamic(() => import("react-select"));
+const Select = dynamic(() => import("react-select"), { ssr: false });
 
 const SkillsSearchSection = ({
   id,

@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from "@/store";
 import { setSkillsFilterSettings } from "@/store/slices/system";
 import { returnDataBasedOnFilterState } from "@/utils";
 
-const Select = dynamic(() => import("react-select"));
+const Select = dynamic(() => import("react-select"), { ssr: false });
 
 // has to be set with JavaScript to override the default styles
 const styles = {
