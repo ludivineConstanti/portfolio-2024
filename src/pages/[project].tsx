@@ -40,8 +40,10 @@ export const getStaticProps = async ({
 }: InferGetStaticPropsType<typeof getStaticPaths>) => {
   const { project } = params;
 
-  const projectData = await client.fetch(
-    groq`*[_type == "project" && slug.current == $project]{
+  // Single combined query to fetch all data at once
+  const data = await client.fetch(
+    groq`{
+      "projectData": *[_type == "project" && slug.current == $project]{
         _id,
         emoji,
         title,
@@ -55,50 +57,47 @@ export const getStaticProps = async ({
         workExperience->{emoji, title, href},
         client->{_type, emoji, text, title, href},
         colorPrimary,
-        colorSecondary, 
+        colorSecondary,
         colorSkillBadge,
         image{
             'url': asset->url,
             alt
-        }, 
-        ${querySkillBadges} 
-    }`,
-    { project },
-  );
-
-  const data = await client.fetch(
-    groq`{
+        },
+        ${querySkillBadges}
+        "articlesData": *[_type == "article" && ^._id in projects[]->_id] | order(text asc){
+          _id,
+          emoji,
+          text,
+          href,
+          projects[]->{_id},
+        },
+        "postsData": *[_type == "post" && project._ref == ^._id] | order(highlightedPost asc, linkedinPost asc, youtubePost asc, instagramPost asc) {
+          _id,
+          text,
+          href,
+          youtubePost,
+          instagramPost,
+          linkedinPost,
+        },
+        "awardsData": *[_type == "award" && project._ref == ^._id] {
+          _id,
+          category->{text, emoji},
+          href,
+        }
+      },
       "projectsData": *[_type == "project" && visible == true] | order(dateEnd desc){
         emoji,
         title,
         slug,
         dateEnd
-      },
-      "articlesData": *[_type == "article" && $projectId != null && $projectId in projects[]->_id] | order(text asc){
-        _id,
-        emoji,
-        text,
-        href,
-        projects[]->{_id}, 
-      },
-      "postsData": *[_type == "post" && project._ref == $projectId] | order(highlightedPost asc, linkedinPost asc, youtubePost asc, instagramPost asc) {
-        _id,
-        text,
-        href,
-        youtubePost,
-        instagramPost,
-        linkedinPost, 
-      },
-      "awardsData": *[_type == "award" && project._ref == $projectId] {
-        _id,
-        category->{text, emoji},
-        href,
       }
     }`,
-    { projectId: projectData[0]._id },
+    { project },
   );
 
-  const { projectsData, articlesData, postsData, awardsData } = data;
+  const projectData = data.projectData;
+  const { projectsData } = data;
+  const { articlesData, postsData, awardsData } = projectData[0];
   const role = projectData[0].role;
 
   const projects = projectsData.sort(

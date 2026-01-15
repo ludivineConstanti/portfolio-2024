@@ -9,7 +9,7 @@ export const client = createClient({
   projectId: sanityProjectId,
   dataset: sanityDataset,
   apiVersion: sanityApiVersion,
-  useCdn: false,
+  useCdn: true,
 });
 
 export const querySkillBadges = `
